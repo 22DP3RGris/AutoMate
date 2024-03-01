@@ -16,7 +16,8 @@ public class App extends Application {
     private static Scene scene;
 
     @Override
-    public void start(Stage AppStage) throws IOException {
+    public void start(Stage AppStage) throws IOException, Exception {
+        MacroFunctionality.initialize();
         stage = AppStage;
         scene = new Scene(loadFXML("Login"));
         // stage.initStyle(StageStyle.TRANSPARENT);

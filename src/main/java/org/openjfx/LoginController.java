@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 
 public class LoginController {
 
-
     @FXML
     public void exitApp(){
         System.exit(0);
