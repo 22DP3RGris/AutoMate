@@ -10,6 +10,7 @@
 
 .error-msg{
     -fx-fill: #e73333;
+    fill: #e73333;
 }
 
 #exit-btn{
@@ -24,27 +25,23 @@
     background-color: #cc1818;
 }
 
-#reg-btn{
+#submit-btn{
     -fx-background-color: #82E0AA;
     background-color: #82E0AA;
 }
 
-#reg-btn:hover{
-    -fx-background-color: #169c81;
-    background-color: #169c81;
+#submit-btn:hover{
+    -fx-background-color: #14ae8f;
+    background-color: #14ae8f;
 }
 
 #redirect-href{
     -fx-underline: false;
+    -fx-text-fill: #2993d4;
 }
 
-#redirect-href:visited{
-    -fx-background-color: #1F618D ;
-    background-color: #1F618D 
-}
-
-#redirect-href:active{
-    -fx-background-color: #1F618D ;
-    background-color: #1F618D 
+#redirect-href:hover{
+    -fx-underline: false;
+    -fx-text-fill: #52a9df;
 }
 

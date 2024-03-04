@@ -1,6 +1,7 @@
 module org.openjfx {
     requires transitive javafx.controls;
     requires javafx.fxml;
+    requires lombok;
     requires transitive javafx.graphics;
     requires java.desktop;
 

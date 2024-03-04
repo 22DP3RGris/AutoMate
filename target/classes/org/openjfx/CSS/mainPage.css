@@ -1,0 +1,33 @@
+.body {
+    -fx-background-color: #1F618D;
+    background-color: #1F618D;
+}
+
+.top-bar{
+    -fx-background-color: #154360 ;
+    background-color: #154360 ;
+}
+
+
+
+#logout-btn{
+    -fx-background-color: #1F618D;
+    background-color: #1F618D;
+}
+
+#logout-btn:hover{
+    -fx-background-color: #1a4e71;
+    background-color: #1a4e71;
+}
+
+#exit-btn{
+    -fx-background-color: #10374e;
+    background-color: #10374e;
+    -fx-background-radius: 0;
+
+}
+
+#exit-btn:hover{
+    -fx-background-color: #cc1818;
+    background-color: #cc1818;
+}
