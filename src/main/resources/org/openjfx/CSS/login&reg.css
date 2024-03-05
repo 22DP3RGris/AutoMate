@@ -35,6 +35,17 @@
     background-color: #14ae8f;
 }
 
+#hide-btn{
+    -fx-background-color: #10374e;
+    background-color: #10374e;
+    -fx-background-radius: 0;
+}
+
+#hide-btn:hover{
+    -fx-background-color: #1a4e71;
+    background-color: #1a4e71;
+}
+
 #redirect-href{
     -fx-underline: false;
     -fx-text-fill: #2993d4;

@@ -69,8 +69,15 @@ public class RegisterController {
         App.setRoot("Login");
     }
 
+
+    // TopBar
     @FXML
-    private void exitApp(){
-        App.getStage().close();
+    private void hideApp() throws IOException{
+        TopBarController.hide();
+    }
+
+    @FXML
+    private void exitApp() throws IOException{
+        TopBarController.close();
     }
 }

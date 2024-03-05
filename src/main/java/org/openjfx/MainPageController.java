@@ -10,13 +10,19 @@ public class MainPageController {
 
     @FXML
     private Button logoutBtn;
-    @FXML
+    @FXML 
     private AnchorPane window;
 
+    // TopBar
     @FXML
     private void logout() throws IOException{
         App.setResizable(false);
         App.setRoot("Login");
+    }
+
+    @FXML
+    private void hideApp() throws IOException{
+        App.minimizeStage();
     }
 
     @FXML

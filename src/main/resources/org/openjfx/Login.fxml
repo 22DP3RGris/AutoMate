@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="window" maxHeight="410.0" maxWidth="380.0" minHeight="410.0" minWidth="380.0" prefHeight="410.0" prefWidth="380.0" styleClass="body" stylesheets="@CSS/login&amp;reg.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.LoginController">
    <children>
-      <AnchorPane prefHeight="70.0" prefWidth="380.0" styleClass="top-bar" stylesheets="@CSS/login&amp;reg.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="topBar" prefHeight="70.0" prefWidth="380.0" styleClass="top-bar" stylesheets="@CSS/login&amp;reg.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label alignment="CENTER" layoutX="176.0" layoutY="27.0" text="Login" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                <font>
@@ -23,6 +23,17 @@
             <Button id="exit-btn" fx:id="exitBtn" layoutX="346.0" layoutY="19.0" mnemonicParsing="false" onAction="#exitApp" stylesheets="@CSS/login&amp;reg.css" text="X" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="Arial Bold" size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="hide-btn" fx:id="hideBtn" layoutX="293.0" layoutY="23.0" mnemonicParsing="false" onAction="#hideApp" stylesheets="@CSS/login&amp;reg.css" text="—" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="20.0">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
                </font>
                <padding>
                   <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />

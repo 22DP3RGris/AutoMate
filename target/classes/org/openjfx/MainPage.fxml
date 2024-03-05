@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" styleClass="body" stylesheets="@CSS/mainPage.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.MainPageController">
    <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="70.0" maxWidth="1280.0" prefHeight="70.0" prefWidth="1280.0" styleClass="top-bar" stylesheets="@CSS/mainPage.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="topBar" layoutX="10.0" layoutY="10.0" maxHeight="70.0" maxWidth="1280.0" prefHeight="70.0" prefWidth="1280.0" styleClass="top-bar" stylesheets="@CSS/mainPage.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label alignment="CENTER" layoutX="297.0" layoutY="29.0" text="AutoMate" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="13.0">
                <opaqueInsets>
@@ -30,10 +30,21 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="logout-btn" fx:id="logoutBtn" layoutX="1126.0" layoutY="17.0" mnemonicParsing="false" onAction="#logout" stylesheets="@CSS/mainPage.css" text="Logout" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="20.0">
+            <Button id="logout-btn" fx:id="logoutBtn" layoutX="1096.0" layoutY="22.0" mnemonicParsing="false" onAction="#logout" stylesheets="@CSS/mainPage.css" text="Logout" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="hide-btn" fx:id="hideBtn" layoutX="1183.0" layoutY="26.0" mnemonicParsing="false" onAction="#hideApp" stylesheets="@CSS/login&amp;reg.css" text="—" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="20.0">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />
+               </padding>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

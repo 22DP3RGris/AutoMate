@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="window" minHeight="530.0" minWidth="400.0" prefHeight="530.0" prefWidth="400.0" styleClass="body" stylesheets="@CSS/login&amp;reg.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.RegisterController">
    <children>
-      <AnchorPane prefHeight="70.0" prefWidth="382.0" styleClass="top-bar" stylesheets="@CSS/login&amp;reg.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="topBar" prefHeight="70.0" prefWidth="382.0" styleClass="top-bar" stylesheets="@CSS/login&amp;reg.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label alignment="CENTER" layoutX="186.0" layoutY="27.0" text="Register" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="12.0">
                <font>
@@ -23,6 +23,17 @@
             <Button id="exit-btn" fx:id="exitBtn" layoutX="356.0" layoutY="23.0" mnemonicParsing="false" onAction="#exitApp" stylesheets="@CSS/login&amp;reg.css" text="X" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="Arial Bold" size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="hide-btn" fx:id="hideBtn" layoutX="310.0" layoutY="26.0" mnemonicParsing="false" onAction="#hideApp" stylesheets="@CSS/login&amp;reg.css" text="—" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="20.0">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
                </font>
                <padding>
                   <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />

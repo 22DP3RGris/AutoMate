@@ -5,9 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-// import javafx.stage.StageStyle;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -20,11 +20,16 @@ public class App extends Application {
     @Override
     public void start(Stage AppStage) throws IOException, Exception {
         MacroFunctionality.initialize();
+        
         stage = AppStage;
         scene = new Scene(loadFXML("Login"));
-        // stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
         setResizable(false);
+
+        TopBarController.dragWindow((AnchorPane) scene.lookup("#topBar"));
+
+        stage.setScene(scene);
+
         stage.show();
     }
 
@@ -33,6 +38,7 @@ public class App extends Application {
         stage.sizeToScene();
         stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+        TopBarController.dragWindow((AnchorPane) scene.lookup("#topBar"));
     }
 
     public static void setResizable(boolean resizable){
@@ -41,6 +47,10 @@ public class App extends Application {
 
     public static Stage getStage(){
         return stage;
+    }
+
+    public static void minimizeStage(){
+        stage.setIconified(true);
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
