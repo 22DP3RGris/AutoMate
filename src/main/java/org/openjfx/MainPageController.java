@@ -27,11 +27,11 @@ public class MainPageController {
 
     @FXML
     private void hideApp() throws IOException{
-        App.minimizeStage();
+        TopBarController.hide();
     }
 
     @FXML
-    private void exitApp(){
-        App.getStage().close();
+    private void exitApp() throws IOException{
+        TopBarController.close();
     }
 }
