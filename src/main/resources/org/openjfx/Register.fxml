@@ -8,6 +8,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -20,28 +21,38 @@
                   <Font name="Arial Bold" size="40.0" />
                </font>
             </Label>
-            <Button id="exit-btn" fx:id="exitBtn" layoutX="356.0" layoutY="23.0" mnemonicParsing="false" onAction="#exitApp" stylesheets="@CSS/login&amp;reg.css" text="X" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-               <font>
-                  <Font name="Arial Bold" size="20.0" />
-               </font>
-               <padding>
-                  <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />
-               </padding>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button id="hide-btn" fx:id="hideBtn" layoutX="310.0" layoutY="26.0" mnemonicParsing="false" onAction="#hideApp" stylesheets="@CSS/login&amp;reg.css" text="—" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="20.0">
-               <font>
-                  <Font name="Arial Bold" size="14.0" />
-               </font>
-               <padding>
-                  <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />
-               </padding>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
+            <HBox layoutX="309.0" layoutY="-23.0" prefHeight="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button id="hide-btn" fx:id="hideBtn" focusTraversable="false" mnemonicParsing="false" onAction="#hideApp" prefHeight="30.0" prefWidth="30.0" stylesheets="@CSS/login&amp;reg.css" text="—" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="1.0" right="10.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="exit-btn" fx:id="exitBtn" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#exitApp" prefHeight="30.0" prefWidth="30.0" stylesheets="@CSS/mainPage.css" text="X" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                     <font>
+                        <Font name="Arial Bold" size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="1.0" right="20.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
       <TextField fx:id="usernameField" layoutX="75.0" layoutY="101.0" minWidth="240.0" prefHeight="35.0" prefWidth="250.0" promptText="Username" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="120.0" />
@@ -52,7 +63,7 @@
       <Text fx:id="passwordError" layoutX="80.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="error-msg" text="Password must be Strong." visible="false" wrappingWidth="240.0" AnchorPane.topAnchor="298.05078125" />
       <PasswordField fx:id="cPasswordField" layoutX="126.0" layoutY="336.0" prefHeight="35.0" prefWidth="240.0" promptText="Confirm Password" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="330.0" />
       <Text fx:id="cPasswordError" layoutX="80.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="error-msg" text="Please make sure your Passwords match." visible="false" wrappingWidth="240.0" AnchorPane.topAnchor="368.0" />
-      <Button id="submit-btn" fx:id="submitReg" layoutX="174.0" layoutY="369.0" mnemonicParsing="false" onAction="#processForm" stylesheets="@CSS/login&amp;reg.css" text="Submit" textFill="WHITE" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="400.0">
+      <Button id="submit-btn" fx:id="submitReg" focusTraversable="false" layoutX="174.0" layoutY="369.0" mnemonicParsing="false" onAction="#processForm" stylesheets="@CSS/login&amp;reg.css" text="Submit" textFill="WHITE" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="400.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

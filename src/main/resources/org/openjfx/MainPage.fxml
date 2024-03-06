@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" styleClass="body" stylesheets="@CSS/mainPage.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.MainPageController">
@@ -19,36 +20,63 @@
                   <Font name="Arial Bold" size="40.0" />
                </font>
             </Label>
-            <Button id="exit-btn" fx:id="exitBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1238.0" layoutY="21.0" mnemonicParsing="false" onAction="#exitApp" stylesheets="@CSS/mainPage.css" text="X" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-               <font>
-                  <Font name="Arial Bold" size="20.0" />
-               </font>
-               <padding>
-                  <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />
-               </padding>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button id="logout-btn" fx:id="logoutBtn" layoutX="1096.0" layoutY="22.0" mnemonicParsing="false" onAction="#logout" stylesheets="@CSS/mainPage.css" text="Logout" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="20.0">
-               <font>
-                  <Font name="Arial Bold" size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button id="hide-btn" fx:id="hideBtn" layoutX="1183.0" layoutY="26.0" mnemonicParsing="false" onAction="#hideApp" stylesheets="@CSS/login&amp;reg.css" text="—" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="20.0">
-               <font>
-                  <Font name="Arial Bold" size="14.0" />
-               </font>
-               <padding>
-                  <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />
-               </padding>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
+            <HBox layoutX="1067.0" layoutY="7.0" prefHeight="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button id="logout-btn" fx:id="logoutBtn" focusTraversable="false" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" stylesheets="@CSS/mainPage.css" text="Logout" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="1.0" right="20.0" top="17.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="hide-btn" fx:id="maximizeBtn" alignment="CENTER" contentDisplay="BOTTOM" focusTraversable="false" mnemonicParsing="false" onAction="#maximizeApp" prefHeight="35.0" prefWidth="35.0" stylesheets="@CSS/login&amp;reg.css" text="□" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="26.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="5.0" left="8.0" right="8.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="18.0" left="1.0" right="10.0" top="17.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="hide-btn" fx:id="hideBtn" focusTraversable="false" mnemonicParsing="false" onAction="#hideApp" prefHeight="35.0" prefWidth="35.0" stylesheets="@CSS/login&amp;reg.css" text="—" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets bottom="18.0" left="1.0" right="10.0" top="17.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="exit-btn" fx:id="exitBtn" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#exitApp" prefHeight="35.0" prefWidth="35.0" stylesheets="@CSS/mainPage.css" text="X" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                     <font>
+                        <Font name="Arial Bold" size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets bottom="18.0" left="1.0" right="20.0" top="17.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </children>

@@ -22,8 +22,9 @@ public class App extends Application {
         MacroFunctionality.initialize();
         
         stage = AppStage;
+        stage.setTitle("AutoMate");
         scene = new Scene(loadFXML("Login"));
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
         setResizable(false);
 
         TopBarController.dragWindow((AnchorPane) scene.lookup("#topBar"));
@@ -31,6 +32,7 @@ public class App extends Application {
         stage.setScene(scene);
 
         stage.show();
+        
     }
 
     public static void setRoot(String fxml) throws IOException {

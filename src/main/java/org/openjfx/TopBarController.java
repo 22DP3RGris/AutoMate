@@ -17,6 +17,15 @@ public class TopBarController{
         App.getStage().close();
     }
 
+    @FXML
+    public static void maximize() throws IOException{
+        if(App.getStage().isMaximized()){
+            App.getStage().setMaximized(false);
+        } else {
+            App.getStage().setMaximized(true);
+        }
+    }
+
     private static double xOffSet = 0, yOffSet = 0;
 
     public static void dragWindow(AnchorPane topBar) {

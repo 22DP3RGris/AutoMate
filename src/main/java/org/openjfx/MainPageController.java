@@ -21,6 +21,11 @@ public class MainPageController {
     }
 
     @FXML
+    private void maximizeApp() throws IOException{
+        TopBarController.maximize();
+    }
+
+    @FXML
     private void hideApp() throws IOException{
         App.minimizeStage();
     }
