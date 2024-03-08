@@ -29,10 +29,10 @@ public class RegisterController {
     @FXML
     private void processForm() throws IOException{
 
-        usernameError.setVisible(false);
-        eMailError.setVisible(false);
-        passwordError.setVisible(false);
-        cPasswordError.setVisible(false);
+        usernameError.setVisible(false); usernameError.setText("");
+        eMailError.setVisible(false); eMailError.setText("");
+        passwordError.setVisible(false); passwordError.setText("");
+        cPasswordError.setVisible(false); cPasswordError.setText("");
 
         String username = usernameField.getText();
         String email = eMailField.getText();
@@ -42,18 +42,19 @@ public class RegisterController {
         boolean dataIsValid = true;
 
         if (!Validator.validateUsername(username)){
-            usernameError.setVisible(true);
+            usernameError.setText("Input valid Username."); usernameError.setVisible(true);
             dataIsValid = false;
         }
         if (!Validator.validateEmail(email)){
-            eMailError.setVisible(true);
+            eMailError.setText("Input valid E-mail."); eMailError.setVisible(true);
             dataIsValid = false;
         }
         if (!Validator.validatePassword(password)){
-            passwordError.setVisible(true);
+            passwordError.setText("Password must be Strong."); passwordError.setVisible(true);
             dataIsValid = false;
         }
-        if (!password.equals(cPassword) && dataIsValid){
+        if (!password.equals(cPassword) && Validator.validatePassword(password)){
+            cPasswordError.setText("Please make sure your Passwords match.");
             cPasswordError.setVisible(true);
             dataIsValid = false;
         }
@@ -67,17 +68,5 @@ public class RegisterController {
     @FXML
     private void redirectToLogin() throws IOException{
         App.setRoot("Login");
-    }
-
-
-    // TopBar
-    @FXML
-    private void hideApp() throws IOException{
-        TopBarController.hide();
-    }
-
-    @FXML
-    private void exitApp() throws IOException{
-        TopBarController.close();
     }
 }

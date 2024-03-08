@@ -22,8 +22,8 @@ public class MacroFunctionality {
         robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
     }
 
-    // double moueseX = MouseInfo.getPointerInfo().getLocation().getX();
-    // double moueseY = MouseInfo.getPointerInfo().getLocation().getY();
+    // double mouseX = MouseInfo.getPointerInfo().getLocation().getX();
+    // double mouseY = MouseInfo.getPointerInfo().getLocation().getY();
 
 
 

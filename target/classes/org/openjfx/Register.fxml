@@ -23,7 +23,7 @@
             </Label>
             <HBox layoutX="309.0" layoutY="-23.0" prefHeight="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button id="hide-btn" fx:id="hideBtn" focusTraversable="false" mnemonicParsing="false" onAction="#hideApp" prefHeight="30.0" prefWidth="30.0" stylesheets="@CSS/login&amp;reg.css" text="—" textFill="WHITE">
+                  <Button id="hide-btn" fx:id="hideBtn" focusTraversable="false" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" stylesheets="@CSS/login&amp;reg.css" text="—" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -37,7 +37,7 @@
                         <Insets bottom="20.0" left="1.0" right="10.0" top="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="exit-btn" fx:id="exitBtn" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#exitApp" prefHeight="30.0" prefWidth="30.0" stylesheets="@CSS/mainPage.css" text="X" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                  <Button id="exit-btn" fx:id="exitBtn" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" stylesheets="@CSS/mainPage.css" text="X" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font name="Arial Bold" size="20.0" />
                      </font>

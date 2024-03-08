@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -18,21 +19,19 @@ public class App extends Application {
     private static Rectangle2D screenBounds = javafx.stage.Screen.getPrimary().getVisualBounds();
 
     @Override
-    public void start(Stage AppStage) throws IOException, Exception {
-        MacroFunctionality.initialize();
+    public void start(Stage appStage) throws Exception {
         
-        stage = AppStage;
-        stage.setTitle("AutoMate");
+        stage = appStage;
         scene = new Scene(loadFXML("Login"));
+        stage.setTitle("AutoMate");
         stage.initStyle(StageStyle.TRANSPARENT);
-        setResizable(false);
+        stage.setResizable(false);
 
-        TopBarController.dragWindow((AnchorPane) scene.lookup("#topBar"));
+        MacroFunctionality.initialize();
+        initTopbar();
 
         stage.setScene(scene);
-
         stage.show();
-        
     }
 
     public static void setRoot(String fxml) throws IOException {
@@ -40,19 +39,8 @@ public class App extends Application {
         stage.sizeToScene();
         stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
-        TopBarController.dragWindow((AnchorPane) scene.lookup("#topBar"));
-    }
 
-    public static void setResizable(boolean resizable){
-        stage.setResizable(resizable);
-    }
-
-    public static Stage getStage(){
-        return stage;
-    }
-
-    public static void minimizeStage(){
-        stage.setIconified(true);
+        initTopbar();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
@@ -62,6 +50,22 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    // Additional functionality
+    public static void setResizable(boolean resizable){
+        stage.setResizable(resizable);
+    }
+
+    public static Stage getStage(){
+        return stage;
+    }
+
+    private static void initTopbar() throws IOException{
+        TopBarController.maximize((Button) scene.lookup("#max-btn"));
+        TopBarController.hide((Button) scene.lookup("#hide-btn"));
+        TopBarController.close((Button) scene.lookup("#exit-btn"));
+        TopBarController.dragWindow((AnchorPane) scene.lookup("#topBar"));
     }
 
 }

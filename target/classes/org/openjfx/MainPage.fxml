@@ -33,7 +33,7 @@
                         <Insets left="1.0" right="20.0" top="17.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="hide-btn" fx:id="maximizeBtn" alignment="CENTER" contentDisplay="BOTTOM" focusTraversable="false" mnemonicParsing="false" onAction="#maximizeApp" prefHeight="35.0" prefWidth="35.0" stylesheets="@CSS/login&amp;reg.css" text="□" textAlignment="CENTER" textFill="WHITE">
+                  <Button id="max-btn" fx:id="maximizeBtn" alignment="CENTER" contentDisplay="BOTTOM" focusTraversable="false" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" stylesheets="@CSS/mainPage.css" text="□" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="26.0" />
                      </font>
@@ -47,7 +47,7 @@
                         <Insets bottom="18.0" left="1.0" right="10.0" top="17.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="hide-btn" fx:id="hideBtn" focusTraversable="false" mnemonicParsing="false" onAction="#hideApp" prefHeight="35.0" prefWidth="35.0" stylesheets="@CSS/login&amp;reg.css" text="—" textFill="WHITE">
+                  <Button id="hide-btn" fx:id="hideBtn" focusTraversable="false" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" stylesheets="@CSS/mainPage.css" text="—" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
@@ -61,7 +61,7 @@
                         <Insets bottom="18.0" left="1.0" right="10.0" top="17.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="exit-btn" fx:id="exitBtn" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#exitApp" prefHeight="35.0" prefWidth="35.0" stylesheets="@CSS/mainPage.css" text="X" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                  <Button id="exit-btn" fx:id="exitBtn" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" stylesheets="@CSS/mainPage.css" text="X" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font name="Arial Bold" size="20.0" />
                      </font>

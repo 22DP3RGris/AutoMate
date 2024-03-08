@@ -20,12 +20,14 @@ public class LoginController {
     
     @FXML
     private void processForm() throws IOException{
-        errorMsg.setVisible(false);
+
+        errorMsg.setVisible(false); errorMsg.setText("");
+
         if(usernameField.getText().equals("admin") && passwordField.getText().equals("admin")){
             App.setResizable(true);
             App.setRoot("MainPage");
         } else {
-            errorMsg.setVisible(true);
+            errorMsg.setText("Incorrect password or username.");errorMsg.setVisible(true);
         }
     }
 
@@ -34,20 +36,4 @@ public class LoginController {
         App.setRoot("Register");
     }
 
-    @FXML
-    private void redirectToMainPage() throws IOException{
-        App.setRoot("MainPage");
-    }
-
-
-    // TopBar
-    @FXML
-    private void hideApp() throws IOException{
-        TopBarController.hide();
-    }
-
-    @FXML
-    private void exitApp() throws IOException{
-        TopBarController.close();
-    }
 }
