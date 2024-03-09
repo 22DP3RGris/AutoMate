@@ -52,3 +52,40 @@
     -fx-background-color: #2c2e31;
     background-color: #2c2e31;
 }
+
+.side-nav-element-child-uppers{
+    -fx-background-color: #31343a;
+    background-color: #31343a;
+    -fx-border-color: #282b30;
+    border-color: #282b30;
+    -fx-border-width: 0px 0px 1 0px;
+    border-width: 0px 0px 1px 0px;
+    -fx-background-radius: 0;
+}
+
+.side-nav-element-child-uppers:hover{
+    -fx-background-color: #383a40;
+    background-color: #383a40;
+}
+
+.side-nav-element-child-lowers{
+    -fx-background-color: #31343a;
+    background-color: #31343a;
+    -fx-border-color: #282b30;
+    border-color: #282b30;
+    -fx-border-width: 1px 0px 0px 0px;
+    border-width: 1px 0px 0px 0px;
+    -fx-background-radius: 0;
+}
+
+.side-nav-element-child-lowers:hover{
+    -fx-background-color: #383a40;
+    background-color: #383a40;
+}
+
+#side-nav-elements{
+    -fx-border-color: #282b30;
+    border-color: #282b30;
+    -fx-border-width: 0px 1px 0px 0px;
+    border-width: 0px 1px 0px 0px;
+}

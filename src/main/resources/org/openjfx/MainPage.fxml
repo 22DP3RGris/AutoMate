@@ -80,7 +80,7 @@
                   </Button>
                </children>
             </HBox>
-            <Button fx:id="sideNav" focusTraversable="false" minHeight="71.0" minWidth="75.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="75.0" style="-fx-background-radius: 0;" styleClass="thrd-nav-bar" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Button fx:id="sideNavBtn" focusTraversable="false" minHeight="71.0" minWidth="75.0" mnemonicParsing="false" onAction="#openSideNav" prefHeight="71.0" prefWidth="75.0" style="-fx-background-radius: 0;" styleClass="thrd-nav-bar" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -97,11 +97,75 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="71.0" prefHeight="200.0" prefWidth="75.0" styleClass="sec-nav-bar" stylesheets="@CSS/backgrounds.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="71.0">
+      <AnchorPane id="side-nav-elements" fx:id="sideNavElements" layoutX="75.0" layoutY="71.0" prefHeight="649.0" prefWidth="200.0" styleClass="frth-nav-bar" stylesheets="@CSS/nav-bar.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="71.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="499.0" prefWidth="75.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="199.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="homeBtn" focusTraversable="false" minHeight="71.0" minWidth="75.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="75.0" styleClass="side-nav-element" stylesheets="@CSS/nav-bar.css">
+                  <Button alignment="BASELINE_LEFT" focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="75.0" prefWidth="200.0" styleClass="side-nav-element-child-uppers" text="HOME" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Arial Bold" size="30.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" focusTraversable="false" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" styleClass="side-nav-element-child-uppers" text="CREATE" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Arial Bold" size="30.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" focusTraversable="false" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" styleClass="side-nav-element-child-uppers" text="SAVED" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Arial Bold" size="30.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" focusTraversable="false" maxHeight="75.0" minHeight="75.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" styleClass="side-nav-element-child-uppers" text="FRIENDS" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Arial Bold" size="30.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox layoutY="450.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Button alignment="BASELINE_LEFT" focusTraversable="false" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" styleClass="side-nav-element-child-lowers" text="ACCOUNT" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Arial Bold" size="30.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" focusTraversable="false" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" styleClass="side-nav-element-child-lowers" text="SETTINGS" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Arial Bold" size="30.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox layoutY="300.0" prefHeight="198.0" prefWidth="200.0" styleClass="frth-nav-bar" AnchorPane.bottomAnchor="151.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="sideNav" layoutY="71.0" prefHeight="200.0" prefWidth="75.0" styleClass="sec-nav-bar" stylesheets="@CSS/backgrounds.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="71.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="450.0" prefWidth="75.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="homeBtn" focusTraversable="false" minHeight="75.0" minWidth="75.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="side-nav-element" stylesheets="@CSS/nav-bar.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -116,7 +180,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="createBtn" focusTraversable="false" minHeight="71.0" minWidth="75.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="75.0" styleClass="side-nav-element" stylesheets="@CSS/nav-bar.css">
+                  <Button fx:id="createBtn" focusTraversable="false" minHeight="75.0" minWidth="75.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="side-nav-element" stylesheets="@CSS/nav-bar.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -131,7 +195,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="folderBtn" focusTraversable="false" minHeight="71.0" minWidth="75.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="75.0" styleClass="side-nav-element" stylesheets="@CSS/nav-bar.css">
+                  <Button fx:id="folderBtn" focusTraversable="false" minHeight="75.0" minWidth="75.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="side-nav-element" stylesheets="@CSS/nav-bar.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -146,7 +210,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="friendsBtn" focusTraversable="false" minHeight="71.0" minWidth="75.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="75.0" styleClass="side-nav-element" stylesheets="@CSS/nav-bar.css">
+                  <Button fx:id="friendsBtn" focusTraversable="false" minHeight="74.0" minWidth="75.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="75.0" styleClass="side-nav-element" stylesheets="@CSS/nav-bar.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -162,9 +226,9 @@
                      </graphic>
                   </Button>
                </children></VBox>
-            <VBox alignment="CENTER" layoutY="574.0" prefHeight="150.0" prefWidth="75.0" stylesheets="@CSS/nav-bar.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <VBox alignment="CENTER" layoutY="499.0" prefHeight="150.0" prefWidth="75.0" stylesheets="@CSS/nav-bar.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <Button fx:id="userBtn" focusTraversable="false" minHeight="71.0" minWidth="75.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="75.0" styleClass="side-nav-element">
+                  <Button fx:id="userBtn" focusTraversable="false" minHeight="75.0" minWidth="75.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="side-nav-element">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -179,7 +243,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="settingsBtn" focusTraversable="false" minHeight="71.0" minWidth="75.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="75.0" styleClass="side-nav-element">
+                  <Button fx:id="settingsBtn" focusTraversable="false" minHeight="75.0" minWidth="75.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="side-nav-element">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

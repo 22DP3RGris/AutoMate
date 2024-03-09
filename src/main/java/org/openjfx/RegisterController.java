@@ -5,10 +5,14 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 public class RegisterController {
 
+    @FXML
+    private AnchorPane window;
     @FXML
     private TextField usernameField;
     @FXML 
@@ -25,6 +29,19 @@ public class RegisterController {
     private PasswordField cPasswordField;
     @FXML 
     private Text cPasswordError;
+
+    @FXML
+    private void initialize(){
+        window.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    processForm();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
     @FXML
     private void processForm() throws IOException{
