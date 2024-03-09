@@ -1,0 +1,54 @@
+.logout-btn{
+    -fx-background-color: #36393e;
+    background-color: #36393e;
+}
+
+.logout-btn:hover{
+    -fx-background-color: #424549;
+    background-color: #424549;
+}
+
+.max-btn{
+    -fx-background-color: #36393e;
+    background-color: #36393e;
+    -fx-background-radius: 0;
+}
+
+.max-btn:hover{
+    -fx-background-color: #424549;
+    background-color: #424549;
+}
+
+.hide-btn{
+    -fx-background-color: #36393e;
+    background-color: #36393e;
+    -fx-background-radius: 0;
+}
+
+.hide-btn:hover{
+    -fx-background-color: #424549;
+    background-color: #424549;
+}
+
+.exit-btn{
+    -fx-background-color: #36393e;
+    background-color: #36393e;
+    -fx-background-radius: 0;
+
+}
+
+.exit-btn:hover{
+    -fx-background-color: #cc1818;
+    background-color: #cc1818;
+}
+
+.side-nav-element{
+    -fx-background-color: #282b30;
+    background-color: #282b30;
+    -fx-background-radius: 0;
+}
+
+.side-nav-element:hover{
+    -fx-background-color: #2c2e31;
+    background-color: #2c2e31;
+}

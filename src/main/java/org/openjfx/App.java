@@ -62,9 +62,9 @@ public class App extends Application {
     }
 
     private static void initTopbar() throws IOException{
-        TopBarController.maximize((Button) scene.lookup("#max-btn"));
-        TopBarController.hide((Button) scene.lookup("#hide-btn"));
-        TopBarController.close((Button) scene.lookup("#exit-btn"));
+        TopBarController.maximize((Button) scene.lookup("#maxBtn"));
+        TopBarController.hide((Button) scene.lookup("#hideBtn"));
+        TopBarController.close((Button) scene.lookup("#exitBtn"));
         TopBarController.dragWindow((AnchorPane) scene.lookup("#topBar"));
     }
 

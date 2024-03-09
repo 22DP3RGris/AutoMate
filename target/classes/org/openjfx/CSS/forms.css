@@ -1,0 +1,36 @@
+.input-field{
+    -fx-background-color: #313438;
+    background-color:#313438;
+    -fx-border-color: #2a2d30;
+    border-color: #2a2d30;
+    -fx-text-fill: #BCBCBC;
+    -fx-border-radius: 5px;
+    border-radius: 5px;
+  
+}
+
+.error-msg{
+    -fx-fill: #e73333;
+    fill: #e73333;
+}
+
+.submit-btn{
+    -fx-background-color: #282b30;
+    background-color: #282b30;
+}
+
+.submit-btn:hover{
+    -fx-background-color: #2c3035;
+    background-color: #2c3035;
+}
+
+.redirect-href{
+    -fx-underline: false;
+    -fx-text-fill: #BCBCBC;
+}
+
+.redirect-href:hover{
+    -fx-underline: false;
+    -fx-text-fill: #BCBCBC;
+}
+
