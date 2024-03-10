@@ -34,12 +34,12 @@ public class App extends Application {
         stage.show();
     }
 
-    public static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml, boolean newScene) throws IOException {
         scene.setRoot(loadFXML(fxml));
-        stage.sizeToScene();
-        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
-        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
-
+        if (newScene){
+            stage.sizeToScene();
+        }
+        if (newScene) centerStage();
         initTopbar();
     }
 
@@ -61,11 +61,16 @@ public class App extends Application {
         return stage;
     }
 
+    private static void centerStage(){
+        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+    } 
+
     private static void initTopbar() throws IOException{
-        TopBarController.maximize((Button) scene.lookup("#maxBtn"));
-        TopBarController.hide((Button) scene.lookup("#hideBtn"));
-        TopBarController.close((Button) scene.lookup("#exitBtn"));
-        TopBarController.dragWindow((AnchorPane) scene.lookup("#topBar"));
+        Topbar.maximize((Button) scene.lookup("#maxBtn"));
+        Topbar.hide((Button) scene.lookup("#hideBtn"));
+        Topbar.close((Button) scene.lookup("#exitBtn"));
+        Topbar.dragWindow((AnchorPane) scene.lookup("#topBar"));
     }
 
 }

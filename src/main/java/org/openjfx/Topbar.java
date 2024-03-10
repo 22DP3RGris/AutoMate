@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 
-public class TopBarController{
+public class Topbar{
 
     @FXML
     public static void hide(Button button) throws IOException{

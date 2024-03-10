@@ -14,21 +14,13 @@ public class RegisterController {
     @FXML
     private AnchorPane window;
     @FXML
-    private TextField usernameField;
-    @FXML 
-    private Text usernameError;
-    @FXML
-    private TextField eMailField;
-    @FXML 
-    private Text eMailError;
+    private TextField usernameField, eMailField;
     @FXML
     private PasswordField passwordField;
-    @FXML 
-    private Text passwordError;
     @FXML
     private PasswordField cPasswordField;
     @FXML 
-    private Text cPasswordError;
+    private Text usernameError, eMailError, passwordError, cPasswordError;
 
     @FXML
     private void initialize(){
@@ -78,12 +70,12 @@ public class RegisterController {
         if (dataIsValid){
             User user = new User(username, password, email);
             System.out.println(user);
-            App.setRoot("Login");
+            App.setRoot("Login", true);
         }
     }
 
     @FXML
     private void redirectToLogin() throws IOException{
-        App.setRoot("Login");
+        App.setRoot("Login", true);
     }
 }

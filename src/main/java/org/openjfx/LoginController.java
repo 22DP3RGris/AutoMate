@@ -43,7 +43,7 @@ public class LoginController {
 
         if(usernameField.getText().equals("admin") && passwordField.getText().equals("admin")){
             App.setResizable(true);
-            App.setRoot("MainPage");
+            App.setRoot("HomePage", true);
         } else {
             errorMsg.setText("Incorrect password or username.");errorMsg.setVisible(true);
         }
@@ -51,7 +51,7 @@ public class LoginController {
 
     @FXML
     private void redirectToRegister() throws IOException{
-        App.setRoot("Register");
+        App.setRoot("Register", true);
     }
 
 }
