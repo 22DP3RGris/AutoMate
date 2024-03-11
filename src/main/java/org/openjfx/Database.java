@@ -12,6 +12,7 @@ import com.google.firebase.database.*;
 public class Database{
 
     private static boolean userExist;
+    private static DatabaseReference baseRef;
 
     public static void init() throws IOException{
         FileInputStream serviceAccount = new FileInputStream("Firebase/key.json");
@@ -19,15 +20,15 @@ public class Database{
         .setCredentials(GoogleCredentials.fromStream(serviceAccount))
         .setDatabaseUrl("https://automate-a6cf3-default-rtdb.europe-west1.firebasedatabase.app")
         .build();
-
         FirebaseApp.initializeApp(options);
+        baseRef = FirebaseDatabase.getInstance("https://automate-a6cf3-default-rtdb.europe-west1.firebasedatabase.app/").getReference("users");
     }
 
-    public static boolean checkUser(String username, String password) {
-        if (username.equals("") || password.equals("")) return false;
+    public static boolean loginUser(String username, String password) {
+
         userExist = false;
 
-        DatabaseReference ref = FirebaseDatabase.getInstance("https://automate-a6cf3-default-rtdb.europe-west1.firebasedatabase.app/").getReference("users/" + username);
+        DatabaseReference ref = baseRef.child(username);
 
         final Semaphore semaphore = new Semaphore(0);
 
@@ -55,5 +56,49 @@ public class Database{
             e.printStackTrace();
         }
         return userExist;
+    }
+
+    public static boolean usernameExist(String username) {
+
+        if (username.equals("")) return false;
+        userExist = false;
+
+        DatabaseReference ref = baseRef.child(username);
+
+        final Semaphore semaphore = new Semaphore(0);
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    userExist = true;
+                }
+                semaphore.release();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+                semaphore.release();
+            }
+        });
+
+        try {
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return userExist;
+    }
+
+    public static boolean registerUser(String username, String password, String email) {
+   
+        DatabaseReference ref = baseRef.child(username);
+
+        ref.child("email").setValueAsync(email);
+        ref.child("password").setValueAsync(password);
+
+        return true;
     }
 }

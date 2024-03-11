@@ -39,12 +39,13 @@ public class LoginController {
     @FXML
     private void processForm() throws IOException{
 
-        if(Database.checkUser(usernameField.getText(), passwordField.getText())){
-            App.setResizable(true);
-            App.setRoot("HomePage", true);
-        } else {
-            errorMsg.setText("Incorrect password or username.");errorMsg.setVisible(true);
+        if (!usernameField.getText().equals("") && !passwordField.getText().equals ("")){
+            if(Database.loginUser(usernameField.getText(), passwordField.getText())){
+                App.setResizable(true);
+                App.setRoot("HomePage", true);
+            }
         }
+        errorMsg.setText("Incorrect password or username.");errorMsg.setVisible(true);
     }
 
     @FXML

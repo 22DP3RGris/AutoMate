@@ -54,12 +54,16 @@ public class RegisterController {
             usernameError.setText("Input valid Username."); usernameError.setVisible(true);
             dataIsValid = false;
         }
+        if (Database.usernameExist(username)){
+            usernameError.setText("Username already exists."); usernameError.setVisible(true);
+            dataIsValid = false;
+        }
         if (!Validator.validateEmail(email)){
             eMailError.setText("Input valid E-mail."); eMailError.setVisible(true);
             dataIsValid = false;
         }
         if (!Validator.validatePassword(password)){
-            passwordError.setText("Password must be Strong."); passwordError.setVisible(true);
+            passwordError.setText("Password must be at least 6 characters."); passwordError.setVisible(true);
             dataIsValid = false;
         }
         if (!password.equals(cPassword) && Validator.validatePassword(password)){
@@ -68,8 +72,7 @@ public class RegisterController {
             dataIsValid = false;
         }
         if (dataIsValid){
-            User user = new User(username, password, email);
-            System.out.println(user);
+            Database.registerUser(username, password, email);
             App.setRoot("Login", true);
         }
     }
