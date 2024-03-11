@@ -5,12 +5,16 @@ import java.util.HashMap;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 public class AccountPageController {
 
     @FXML
     private AnchorPane sideNavElements, workspace;
+
+    @FXML
+    private Label usernameLabel, emailLabel, passwordLabel;
 
     @FXML
     private Button createBtn, createLabel, homeBtn, homeLabel, folderBtn, folderLabel, friendsBtn, friendsLabel, settingsBtn, settingsLabel, accountBtn, accountLabel;
@@ -30,10 +34,16 @@ public class AccountPageController {
         // sideNavButtons.put(settingsBtn, settingsLabel);
         SideNav.setSideNavButtons(sideNavButtons);
         SideNav.openBtns();
+
+        usernameLabel.setText(User.getUsername());
+        emailLabel.setText(User.getEmail());
+        passwordLabel.setText(User.getPassword());
     }
 
     @FXML
     private void logout() throws IOException{
+        User.clear();
+        App.getStage().setMaximized(false);
         App.setRoot("login", true);
     }
 

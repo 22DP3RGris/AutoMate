@@ -54,7 +54,7 @@ public class RegisterController {
             usernameError.setText("Input valid Username."); usernameError.setVisible(true);
             dataIsValid = false;
         }
-        if (Database.usernameExist(username)){
+        else if (Database.usernameExist(username)){
             usernameError.setText("Username already exists."); usernameError.setVisible(true);
             dataIsValid = false;
         }

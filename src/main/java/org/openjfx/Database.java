@@ -15,6 +15,7 @@ public class Database{
     private static DatabaseReference baseRef;
 
     public static void init() throws IOException{
+        
         FileInputStream serviceAccount = new FileInputStream("Firebase/key.json");
         FirebaseOptions options = FirebaseOptions.builder()
         .setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -37,6 +38,9 @@ public class Database{
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     if (dataSnapshot.child("password").getValue().equals(password)) {
+                        User.setUsername(username);
+                        User.setEmail(dataSnapshot.child("email").getValue().toString());
+                        User.setPassword(password);
                         userExist = true;
                     }
                 }

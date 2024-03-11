@@ -13,10 +13,17 @@
 
 <AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" styleClass="main-back" stylesheets="@CSS/backgrounds.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.HomePageController">
    <children>
-      <AnchorPane fx:id="workspace" layoutX="76.0" layoutY="71.0" prefHeight="649.0" prefWidth="1204.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="71.0" />
+      <AnchorPane fx:id="workspace" layoutX="76.0" layoutY="71.0" prefHeight="649.0" prefWidth="1204.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="71.0">
+         <children>
+            <Label fx:id="welcomeMsg" alignment="CENTER" layoutX="348.0" layoutY="54.0" text="Welcome {Username}!" textFill="WHITE" AnchorPane.leftAnchor="348.0" AnchorPane.rightAnchor="347.0" AnchorPane.topAnchor="54.0">
+               <font>
+                  <Font name="Arial Bold" size="48.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
       <AnchorPane fx:id="topBar" layoutX="10.0" layoutY="10.0" maxHeight="70.0" maxWidth="1280.0" prefHeight="70.0" prefWidth="1280.0" styleClass="nav-bar" stylesheets="@CSS/backgrounds.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="297.0" layoutY="29.0" text="AutoMate" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="13.0">
+            <Label alignment="CENTER" layoutX="297.0" layoutY="29.0" text="AutoMate" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="13.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -87,7 +94,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane id="side-nav-elements" fx:id="sideNavElements" layoutX="75.0" layoutY="71.0" prefHeight="649.0" prefWidth="200.0" styleClass="frth-nav-bar" stylesheets="@CSS/nav-bar.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="71.0">
+      <AnchorPane id="side-nav-elements" fx:id="sideNavElements" layoutX="75.0" layoutY="71.0" prefHeight="649.0" prefWidth="200.0" styleClass="frth-nav-bar" stylesheets="@CSS/nav-bar.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="71.0">
          <children>
             <VBox alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="199.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>

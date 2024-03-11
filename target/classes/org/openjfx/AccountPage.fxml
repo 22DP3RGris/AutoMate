@@ -15,18 +15,67 @@
    <children>
       <AnchorPane fx:id="workspace" layoutX="76.0" layoutY="71.0" prefHeight="649.0" prefWidth="1204.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="71.0">
          <children>
-            <Button fx:id="logoutBtn" alignment="CENTER" focusTraversable="false" layoutX="518.0" layoutY="527.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" styleClass="logout-btn" stylesheets="@CSS/nav-bar.css" text="Logout" textFill="WHITE" AnchorPane.bottomAnchor="100.0">
-               <font>
-                  <Font name="Arial Bold" size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
+            <VBox alignment="CENTER" layoutX="522.0" layoutY="453.0" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="522.0" AnchorPane.rightAnchor="521.0">
+               <children>
+                  <Button fx:id="logoutBtn" alignment="CENTER" focusTraversable="false" maxHeight="61.0" maxWidth="162.0" mnemonicParsing="false" onAction="#logout" prefHeight="61.0" prefWidth="162.0" styleClass="logout-btn" stylesheets="@CSS/nav-bar.css" text="Logout" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="34.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" layoutX="500.0" layoutY="98.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+               <children>
+                  <VBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="55.0" styleClass="main-font" text="Username:" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" prefHeight="55.0" text="E-Mail:" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" prefHeight="55.0" text="Password:" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label fx:id="usernameLabel" prefHeight="55.0" text="test" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="emailLabel" prefHeight="55.0" text="test" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="passwordLabel" prefHeight="55.0" text="test" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
          </children></AnchorPane>
       <AnchorPane fx:id="topBar" layoutX="10.0" layoutY="10.0" maxHeight="70.0" maxWidth="1280.0" prefHeight="70.0" prefWidth="1280.0" styleClass="nav-bar" stylesheets="@CSS/backgrounds.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="297.0" layoutY="29.0" text="AutoMate" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="13.0">
+            <Label alignment="CENTER" layoutX="297.0" layoutY="29.0" text="AutoMate" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="13.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -97,7 +146,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane id="side-nav-elements" fx:id="sideNavElements" layoutX="75.0" layoutY="71.0" prefHeight="649.0" prefWidth="200.0" styleClass="frth-nav-bar" stylesheets="@CSS/nav-bar.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="71.0">
+      <AnchorPane id="side-nav-elements" fx:id="sideNavElements" layoutX="75.0" layoutY="71.0" prefHeight="649.0" prefWidth="200.0" styleClass="frth-nav-bar" stylesheets="@CSS/nav-bar.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="71.0">
          <children>
             <VBox alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="199.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>

@@ -40,6 +40,7 @@ public class SideNav {
 
     @FXML
     public static void open(AnchorPane sideNavElements) throws IOException, InterruptedException{
+        sideNavElements.setVisible(true);
         TranslateTransition transit = new TranslateTransition(Duration.seconds(0.35), sideNavElements);
         double xOffset;
         if(sideNavOpen){
