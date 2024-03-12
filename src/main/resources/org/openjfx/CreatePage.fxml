@@ -1,30 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" styleClass="main-back" stylesheets="@CSS/backgrounds.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.CreatePageController">
+<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" styleClass="main-back" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.CreatePageController">
    <children>
       <AnchorPane fx:id="workspace" layoutX="76.0" layoutY="71.0" prefHeight="649.0" prefWidth="1204.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="71.0">
          <children>
-            <HBox alignment="CENTER" layoutX="484.0" layoutY="178.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="TEST">
-                     <font>
-                        <Font size="96.0" />
-                     </font>
-                  </Text>
-               </children>
-            </HBox>
+            <ScrollPane hbarPolicy="NEVER" layoutX="905.0" layoutY="-7.0" prefHeight="649.0" prefWidth="300.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-2.0">
+               <content>
+                  <VBox>
+                     <children>
+                        <Pane fx:id="leftClick" prefHeight="50.0" prefWidth="200.0" styleClass="element">
+                           <VBox.margin>
+                              <Insets left="50.0" top="20.0" />
+                           </VBox.margin>
+                           <children>
+                              <Label alignment="CENTER" focusTraversable="false" layoutX="22.0" layoutY="14.0" text="Left Click">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <TextField alignment="CENTER" focusTraversable="false" layoutX="120.0" layoutY="13.0" prefHeight="25.0" prefWidth="66.0" promptText="Count" styleClass="element-input" />
+                           </children>
+                        </Pane>
+                     </children></VBox>
+               </content>
+               <padding>
+                  <Insets bottom="1.0" right="1.0" top="2.0" />
+               </padding>
+            </ScrollPane>
+            <ScrollPane fx:id="mainScroll" hbarPolicy="NEVER" prefHeight="649.0" prefWidth="841.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="299.0" AnchorPane.topAnchor="-1.0">
+               <padding>
+                  <Insets left="200.0" />
+               </padding>
+               <content>
+                  <VBox fx:id="elements" alignment="CENTER">
+                     <children>
+                        <Button fx:id="run" mnemonicParsing="false" onAction="#runMacro" styleClass="run-btn" text="RUN" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin></Button>
+                        <HBox fx:id="placeholder" alignment="CENTER" prefHeight="75.0" prefWidth="300.0" styleClass="placeholder">
+                           <children>
+                              <Label text="Select Element">
+                                 <font>
+                                    <Font name="Arial Bold" size="30.0" />
+                                 </font></Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="303.0" right="303.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </ScrollPane>
          </children></AnchorPane>
       <AnchorPane fx:id="topBar" layoutX="10.0" layoutY="10.0" maxHeight="70.0" maxWidth="1280.0" prefHeight="70.0" prefWidth="1280.0" styleClass="nav-bar" stylesheets="@CSS/backgrounds.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -265,4 +314,8 @@
          </children>
       </AnchorPane>
    </children>
+   <stylesheets>
+      <URL value="@CSS/backgrounds.css" />
+      <URL value="@CSS/main.css" />
+   </stylesheets>
 </AnchorPane>
