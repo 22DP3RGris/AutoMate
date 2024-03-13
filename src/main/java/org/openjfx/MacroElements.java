@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 
 public class MacroElements {
     @FXML
-    public static void cloneLeftClick(Pane sourcePane, HBox targetPane) {
+    public static void countAndDelay(Pane sourcePane, HBox targetPane) {
         targetPane.getChildren().clear();
         targetPane.setAlignment(Pos.CENTER);
         targetPane.getChildren().add(removeBtn());

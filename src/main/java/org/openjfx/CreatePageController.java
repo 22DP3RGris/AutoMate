@@ -11,7 +11,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class CreatePageController {
@@ -20,10 +19,7 @@ public class CreatePageController {
     private AnchorPane sideNavElements, workspace;
 
     @FXML
-    private Pane leftClick;
-
-    @FXML
-    private HBox placeholder;
+    private HBox placeholder, leftClick;
 
     @FXML
     private ScrollPane mainScroll;
@@ -51,9 +47,9 @@ public class CreatePageController {
     }
 
     @FXML
-    private void setTarget(Pane sourcePane) {
+    private void setTarget(HBox sourcePane) {
         sourcePane.setOnMouseClicked(event -> {
-            MacroElements.cloneLeftClick(sourcePane, placeholder);
+            MacroElements.countAndDelay(sourcePane, placeholder);
             placeHolder();
         });
     }
@@ -64,14 +60,6 @@ public class CreatePageController {
             placeholder = MacroElements.placeHolder();
             elements.getChildren().add(placeholder);
         }
-    }
-
-
-    @FXML
-    private Pane getPane(Pane sourcePane) {
-        Pane newPane = new Pane();
-        newPane.getChildren().add(sourcePane);
-        return newPane;
     }
 
     @FXML
@@ -88,12 +76,14 @@ public class CreatePageController {
     private HashMap<Integer, HashMap<String, String>> getCommands() {
         HashMap<Integer, HashMap<String, String>> commands = new HashMap<>();
         String name = "";
-        String value = "";
+        String count = "";
+        String delay = "";
         for (Node node : elements.getChildren()) {
             if (node instanceof HBox) {
                 HBox hbox = (HBox) node;
                 name = "";
-                value = "";
+                count = "";
+                delay = "";
                 for (Node child : hbox.getChildren()) {
                     if (child instanceof Label) {
                         Label label = (Label) child;
@@ -104,16 +94,27 @@ public class CreatePageController {
                         }
                     } else if (child instanceof TextField) {
                         TextField textField = (TextField) child;
-                        if (textField.getText() == ""){
-                            value = "0";
-                        }
-                        else{
-                            value = textField.getText();
+                        if (textField.getPromptText().equals("Count")) {
+                            if (textField.getText() == ""){
+                                count = "1";
+                            }
+                            else{
+                                count = textField.getText();
+                            }
+                        } else if (textField.getPromptText().equals("Delay")){
+                            if (textField.getText() == ""){
+                                delay = "100";
+                            }
+                            else{
+                                delay = textField.getText();
+                            }
                         }
                     }
-                    if (!value.isEmpty()) {
+                    if (!count.isEmpty() && !delay.isEmpty()) {
                         HashMap<String, String> command = new HashMap<>();
-                        command.put(name, value);
+                        command.put("name", name);
+                        command.put("count", count);
+                        command.put("delay", delay);
                         commands.put(commands.size(), command);
                     }
                 }

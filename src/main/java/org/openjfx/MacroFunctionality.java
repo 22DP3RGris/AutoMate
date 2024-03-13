@@ -22,17 +22,15 @@ public class MacroFunctionality {
         }
         for (int i : commands.keySet()) {
             HashMap<String, String> command = commands.get(i);
-            for (String key : command.keySet()) {
-                switch (key) {
-                    case "LC":
-                        for(int j = 0; j < Integer.parseInt(command.get(key)); j++){
-                            leftMouseClick();
-                            sleep(1);
-                        }
-                        break;
-                    default:
-                        break;
-                }
+            switch (command.get("name")) {
+                case "LC":
+                    for(int j = 0; j < Integer.parseInt(command.get("count")); j++){
+                        leftMouseClick();
+                        sleep(Integer.parseInt(command.get("delay")));
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }

@@ -11,7 +11,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -23,19 +22,27 @@
                <content>
                   <VBox>
                      <children>
-                        <Pane fx:id="leftClick" prefHeight="50.0" prefWidth="200.0" styleClass="element">
-                           <VBox.margin>
-                              <Insets left="50.0" top="20.0" />
-                           </VBox.margin>
+                        <HBox fx:id="leftClick" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="element">
                            <children>
-                              <Label alignment="CENTER" focusTraversable="false" layoutX="22.0" layoutY="14.0" text="Left Click">
+                              <Label alignment="CENTER" focusTraversable="false" text="Left Click">
                                  <font>
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <TextField alignment="CENTER" focusTraversable="false" layoutX="120.0" layoutY="13.0" prefHeight="25.0" prefWidth="66.0" promptText="Count" styleClass="element-input" />
+                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="51.0" promptText="Count" styleClass="element-input">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin></TextField>
+                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Delay" styleClass="element-input">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
                            </children>
-                        </Pane>
+                           <VBox.margin>
+                              <Insets left="15.0" top="20.0" />
+                           </VBox.margin>
+                        </HBox>
                      </children></VBox>
                </content>
                <padding>
@@ -56,7 +63,7 @@
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin></Button>
-                        <HBox fx:id="placeholder" alignment="CENTER" prefHeight="75.0" prefWidth="300.0" styleClass="placeholder">
+                        <HBox fx:id="placeholder" alignment="CENTER" prefHeight="75.0" prefWidth="400.0" styleClass="placeholder">
                            <children>
                               <Label text="Select Element">
                                  <font>
@@ -69,7 +76,7 @@
                         </HBox>
                      </children>
                      <padding>
-                        <Insets left="303.0" right="303.0" />
+                        <Insets left="253.0" right="253.0" />
                      </padding>
                   </VBox>
                </content>
