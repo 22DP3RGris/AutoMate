@@ -13,21 +13,26 @@ public class MacroFunctionality {
         robot = new Robot();
     }
 
-    public static void runMacro(HashMap<String, String> commands){
-        for (int i = 5; i > 0; i--) {
-            System.out.println(i);
+    public static void runMacro(HashMap<Integer, HashMap<String, String>> commands){
+        if (commands.isEmpty()) {
+            return;
+        }
+        for (int i = 5; i > 0; i--){
             sleep(1000);
         }
-        for (String key : commands.keySet()) {
-            switch (key) {
-                case "LC":
-                    for(int i = 0; i < Integer.parseInt(commands.get(key)); i++){
-                        leftMouseClick();
-                        sleep(1);
-                    }
-                    break;
-                default:
-                    break;
+        for (int i : commands.keySet()) {
+            HashMap<String, String> command = commands.get(i);
+            for (String key : command.keySet()) {
+                switch (key) {
+                    case "LC":
+                        for(int j = 0; j < Integer.parseInt(command.get(key)); j++){
+                            leftMouseClick();
+                            sleep(1);
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }

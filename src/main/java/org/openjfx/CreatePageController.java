@@ -85,21 +85,21 @@ public class CreatePageController {
     }
 
     @FXML
-    private HashMap<String, String> getCommands() {
-        HashMap<String, String> commands = new HashMap<>();
-        String command = "";
+    private HashMap<Integer, HashMap<String, String>> getCommands() {
+        HashMap<Integer, HashMap<String, String>> commands = new HashMap<>();
+        String name = "";
         String value = "";
         for (Node node : elements.getChildren()) {
             if (node instanceof HBox) {
                 HBox hbox = (HBox) node;
-                command = "";
+                name = "";
                 value = "";
                 for (Node child : hbox.getChildren()) {
                     if (child instanceof Label) {
                         Label label = (Label) child;
                         for (char c : label.getText().toCharArray()) {
                             if (Character.isUpperCase(c)) {
-                                command += String.valueOf(c);
+                                name += String.valueOf(c);
                             }
                         }
                     } else if (child instanceof TextField) {
@@ -111,10 +111,10 @@ public class CreatePageController {
                             value = textField.getText();
                         }
                     }
-                    if (value != "")
-                    {
-                        System.out.println(command + " " + value);
-                        commands.put(command, value);
+                    if (!value.isEmpty()) {
+                        HashMap<String, String> command = new HashMap<>();
+                        command.put(name, value);
+                        commands.put(commands.size(), command);
                     }
                 }
             }
