@@ -43,6 +43,7 @@ public class CreatePageController {
         // sideNavButtons.put(settingsBtn, settingsLabel);
         SideNav.setSideNavButtons(sideNavButtons);
         SideNav.openBtns();
+        Validator.numberField(leftClick);
         setTarget(leftClick);
     }
 

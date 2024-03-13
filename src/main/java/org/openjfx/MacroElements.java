@@ -8,21 +8,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class MacroElements {
     @FXML
-    public static void countAndDelay(Pane sourcePane, HBox targetPane) {
-        targetPane.getChildren().clear();
-        targetPane.setAlignment(Pos.CENTER);
-        targetPane.getChildren().add(removeBtn());
-        for (Node node : sourcePane.getChildren()) {
+    public static void countAndDelay(HBox source, HBox target) {
+        target.getChildren().clear();
+        target.setAlignment(Pos.CENTER);
+        target.getChildren().add(removeBtn());
+        for (Node node : source.getChildren()) {
             if (node instanceof Label) {
                 Label originalLabel = (Label) node;
                 Label clonedLabel = new Label(originalLabel.getText());
                 clonedLabel.getStyleClass().add("element-label");
-                targetPane.getChildren().add(clonedLabel);
+                target.getChildren().add(clonedLabel);
             } else if (node instanceof TextField) {
                 TextField originalTextField = (TextField) node;
                 TextField clonedTextField = new TextField(originalTextField.getText());
@@ -31,9 +30,10 @@ public class MacroElements {
                 clonedTextField.getStyleClass().add("element-input");
                 HBox.setMargin(clonedTextField, new Insets(0, 0, 0, 10));
                 clonedTextField.setPrefHeight(30);
-                targetPane.getChildren().add(clonedTextField);
+                target.getChildren().add(clonedTextField);
             }
         }
+        Validator.numberField(target);
     }
 
     @FXML
