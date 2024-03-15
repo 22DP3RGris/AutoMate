@@ -3,6 +3,7 @@ package org.openjfx;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 
 public class Validator {
@@ -28,14 +29,27 @@ public class Validator {
         for (Node node : source.getChildren()) {
             if (node instanceof TextField) {
                 TextField textField = (TextField) node;
-                if (!textField.getPromptText().equals("Key")){
-                    textField.textProperty().addListener((observable, oldValue, newValue) -> {
-                        if (!newValue.matches("\\d*")) {
-                            textField.setText(newValue.replaceAll("[^\\d]", ""));
-                        }
-                    });
+                if (textField.getPromptText().equals("Key")){
+                    keyField(textField);
+                    continue;
                 }
+                textField.textProperty().addListener((observable, oldValue, newValue) -> {
+                    if (!newValue.matches("\\d*")) {
+                        textField.setText(newValue.replaceAll("[^\\d]", ""));
+                    }
+                });
             }
         }
+    }
+
+    @FXML
+    public static void keyField(TextField textField) {
+        textField.setOnMouseClicked(event -> {
+            textField.setText("");
+        });
+        textField.setOnKeyPressed(event -> {
+            KeyCode keyCode = event.getCode();
+            textField.setText(keyCode.getName());
+        });
     }
 }

@@ -72,7 +72,9 @@ public class SideNav {
             String page = btn.getId().split("B")[0] + "Page";
             btn.setOnMouseReleased(event -> {
                 try {
-                    App.setRoot(page, false);
+                    if (!App.getCurrentScene().equals(page)){
+                        App.setRoot(page, false);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -86,7 +88,9 @@ public class SideNav {
             String page = btn.getId().split("B")[0] + "Page";
             sideNavButtons.get(btn).setOnMouseReleased(event -> {
                 try {
-                    App.setRoot(page, false);
+                    if (!App.getCurrentScene().equals(page)){
+                        App.setRoot(page, false);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

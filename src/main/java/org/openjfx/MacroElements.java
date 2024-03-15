@@ -30,6 +30,10 @@ public class MacroElements {
                 TextField clonedTextField = new TextField(originalTextField.getText());
                 clonedTextField.setPrefWidth(originalTextField.getPrefWidth());
                 clonedTextField.setPromptText(originalTextField.getPromptText());
+                if (originalTextField.getPromptText().equals("Key")) {
+                    clonedTextField.setPrefWidth(80);
+                    clonedTextField.setEditable(false);
+                } 
                 clonedTextField.getStyleClass().add("element-input");
                 HBox.setMargin(clonedTextField, new Insets(0, 0, 0, 10));
                 clonedTextField.setPrefHeight(30);
@@ -66,6 +70,7 @@ public class MacroElements {
         removeBtn.setPrefWidth(30);
         removeBtn.setPrefHeight(30);
         HBox.setMargin(removeBtn, new Insets(0, 20, 0, 0));
+        removeBtn.cursorProperty().set(javafx.scene.Cursor.HAND);
         removeBtn.setOnAction(event -> {
             HBox parentNode = (HBox)((Button) event.getSource()).getParent();
             ((VBox) parentNode.getParent()).getChildren().remove(parentNode);

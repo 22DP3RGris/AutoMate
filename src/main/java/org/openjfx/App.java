@@ -15,6 +15,7 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Stage stage;
+    private static String currentScene;
     private static Scene scene;
     private static Rectangle2D screenBounds = javafx.stage.Screen.getPrimary().getVisualBounds();
 
@@ -45,6 +46,7 @@ public class App extends Application {
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        currentScene = fxml;
         return fxmlLoader.load();
     }
 
@@ -60,6 +62,10 @@ public class App extends Application {
 
     public static Stage getStage(){
         return stage;
+    }
+
+    public static String getCurrentScene(){
+        return currentScene;
     }
 
     private static void centerStage(){

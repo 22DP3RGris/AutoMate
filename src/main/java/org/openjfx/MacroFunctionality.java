@@ -3,8 +3,9 @@ package org.openjfx;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.util.HashMap;
+
+import javafx.scene.input.KeyCode;
 
 public class MacroFunctionality {
 
@@ -40,7 +41,7 @@ public class MacroFunctionality {
                     break;
                 case "P":
                     for (int j = 0; j < Integer.parseInt(command.get("count")); j++) {
-                        keyPress(command.get("letter"));
+                        keyPress(KeyCode.valueOf(command.get("letter").toUpperCase()));
                         sleep(Integer.parseInt(command.get("delay")));
                     }
                 default:
@@ -63,9 +64,8 @@ public class MacroFunctionality {
         robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
     }
 
-    public static void keyPress(String key){
-        int keyCode = KeyEvent.getExtendedKeyCodeForChar(key.charAt(0));
-        robot.keyPress(keyCode);
-        robot.keyRelease(keyCode);
+    public static void keyPress(KeyCode keyCode){
+        robot.keyPress(keyCode.getCode());
+        robot.keyRelease(keyCode.getCode());
     }
 }
