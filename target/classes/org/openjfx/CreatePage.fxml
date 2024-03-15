@@ -43,6 +43,72 @@
                               <Insets left="15.0" top="20.0" />
                            </VBox.margin>
                         </HBox>
+                        <HBox fx:id="rightClick" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="element">
+                           <children>
+                              <Label alignment="CENTER" focusTraversable="false" text="Right Click">
+                                 <font>
+                                    <Font name="Arial Bold" size="19.0" />
+                                 </font>
+                              </Label>
+                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="51.0" promptText="Count" styleClass="element-input">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Delay" styleClass="element-input">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="15.0" top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox fx:id="wait" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="element">
+                           <children>
+                              <Label alignment="CENTER" focusTraversable="false" text="Wait">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Time" styleClass="element-input">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="15.0" top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox fx:id="oneKey" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="element">
+                           <children>
+                              <Label alignment="CENTER" focusTraversable="false" text="Press">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="46.0" promptText="Key" styleClass="element-input">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="49.0" promptText="Count" styleClass="element-input">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Delay" styleClass="element-input">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="15.0" top="20.0" />
+                           </VBox.margin>
+                        </HBox>
                      </children></VBox>
                </content>
                <padding>
@@ -68,7 +134,8 @@
                               <Label text="Select Element">
                                  <font>
                                     <Font name="Arial Bold" size="30.0" />
-                                 </font></Label>
+                                 </font>
+                              </Label>
                            </children>
                            <VBox.margin>
                               <Insets top="20.0" />

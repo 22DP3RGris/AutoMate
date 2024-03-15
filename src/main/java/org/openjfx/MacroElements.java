@@ -14,8 +14,8 @@ public class MacroElements {
     @FXML
     public static void countAndDelay(HBox source, HBox target) {
         target.getChildren().clear();
-        target.setAlignment(Pos.CENTER);
         target.getChildren().add(removeBtn());
+        target.setAlignment(Pos.CENTER);
         for (Node node : source.getChildren()) {
             if (node instanceof Label) {
                 Label originalLabel = (Label) node;
@@ -34,6 +34,7 @@ public class MacroElements {
             }
         }
         Validator.numberField(target);
+    
     }
 
     @FXML
@@ -52,6 +53,7 @@ public class MacroElements {
 
     @FXML 
     private static Button removeBtn() {
+
         Button removeBtn = new Button("X");
         removeBtn.getStyleClass().add("element-delete");
         removeBtn.setPrefWidth(20);

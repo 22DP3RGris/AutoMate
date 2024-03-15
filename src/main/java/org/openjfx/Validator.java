@@ -28,11 +28,13 @@ public class Validator {
         for (Node node : source.getChildren()) {
             if (node instanceof TextField) {
                 TextField textField = (TextField) node;
-                textField.textProperty().addListener((observable, oldValue, newValue) -> {
-                    if (!newValue.matches("\\d*")) {
-                        textField.setText(newValue.replaceAll("[^\\d]", ""));
-                    }
-                });
+                if (!textField.getPromptText().equals("Key")){
+                    textField.textProperty().addListener((observable, oldValue, newValue) -> {
+                        if (!newValue.matches("\\d*")) {
+                            textField.setText(newValue.replaceAll("[^\\d]", ""));
+                        }
+                    });
+                }
             }
         }
     }

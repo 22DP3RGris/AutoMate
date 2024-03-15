@@ -19,7 +19,7 @@ public class CreatePageController {
     private AnchorPane sideNavElements, workspace;
 
     @FXML
-    private HBox placeholder, leftClick;
+    private HBox placeholder, leftClick, rightClick, wait, oneKey;
 
     @FXML
     private ScrollPane mainScroll;
@@ -44,16 +44,19 @@ public class CreatePageController {
         SideNav.setSideNavButtons(sideNavButtons);
         SideNav.openBtns();
         Validator.numberField(leftClick);
-        setTarget(leftClick);
+        setElements(leftClick, rightClick, wait, oneKey);
     }
 
     @FXML
-    private void setTarget(HBox sourcePane) {
-        sourcePane.setOnMouseClicked(event -> {
-            MacroElements.countAndDelay(sourcePane, placeholder);
-            placeHolder();
-        });
+    private void setElements(HBox... sourcePanes) {
+        for (HBox sourcePane : sourcePanes) {
+            sourcePane.setOnMouseClicked(event -> {
+                MacroElements.countAndDelay(sourcePane, placeholder);
+                placeHolder();
+            });
+        }
     }
+
 
     @FXML
     private void placeHolder() {
@@ -79,15 +82,20 @@ public class CreatePageController {
         String name = "";
         String count = "";
         String delay = "";
+        String letter = "";
+        byte parameterCounter = 0;
         for (Node node : elements.getChildren()) {
             if (node instanceof HBox) {
                 HBox hbox = (HBox) node;
+                parameterCounter = 0;
                 name = "";
+                letter = "";
                 count = "";
                 delay = "";
                 for (Node child : hbox.getChildren()) {
                     if (child instanceof Label) {
                         Label label = (Label) child;
+                        parameterCounter++;
                         for (char c : label.getText().toCharArray()) {
                             if (Character.isUpperCase(c)) {
                                 name += String.valueOf(c);
@@ -95,6 +103,7 @@ public class CreatePageController {
                         }
                     } else if (child instanceof TextField) {
                         TextField textField = (TextField) child;
+                        parameterCounter++;
                         if (textField.getPromptText().equals("Count")) {
                             if (textField.getText() == ""){
                                 count = "1";
@@ -102,23 +111,39 @@ public class CreatePageController {
                             else{
                                 count = textField.getText();
                             }
-                        } else if (textField.getPromptText().equals("Delay")){
+                        } else if (textField.getPromptText().equals("Delay") || textField.getPromptText().equals("Time")){
                             if (textField.getText() == ""){
                                 delay = "100";
                             }
                             else{
                                 delay = textField.getText();
                             }
+                        } else if (textField.getPromptText().equals("Key")){
+                            letter = textField.getText();
                         }
                     }
-                    if (!count.isEmpty() && !delay.isEmpty()) {
-                        HashMap<String, String> command = new HashMap<>();
-                        command.put("name", name);
-                        command.put("count", count);
-                        command.put("delay", delay);
-                        commands.put(commands.size(), command);
-                    }
                 }
+                if (!letter.isEmpty() && parameterCounter == 4){
+                    HashMap<String, String> command = new HashMap<>();
+                    command.put("name", name);
+                    command.put("letter", letter);
+                    command.put("count", count);
+                    command.put("delay", delay);
+                    commands.put(commands.size(), command);
+                } else
+                if (!count.isEmpty() && !delay.isEmpty() && parameterCounter == 3) {
+                    HashMap<String, String> command = new HashMap<>();
+                    command.put("name", name);
+                    command.put("count", count);
+                    command.put("delay", delay);
+                    commands.put(commands.size(), command);
+                } else if (!delay.isEmpty() && parameterCounter == 2){
+                    HashMap<String, String> command = new HashMap<>();
+                    command.put("name", name);
+                    command.put("delay", delay);
+                    commands.put(commands.size(), command);
+                }
+                System.out.println(name + " " + count + " " + delay);
             }
         }
         return commands;
