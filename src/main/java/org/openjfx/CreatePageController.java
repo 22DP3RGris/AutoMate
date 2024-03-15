@@ -63,6 +63,7 @@ public class CreatePageController {
         if (!placeholder.getChildren().isEmpty()) {
             placeholder = MacroElements.placeHolder();
             elements.getChildren().add(placeholder);
+            placeholder = (HBox) placeholder.getChildren().get(0);
         }
     }
 
@@ -86,7 +87,7 @@ public class CreatePageController {
         byte parameterCounter = 0;
         for (Node node : elements.getChildren()) {
             if (node instanceof HBox) {
-                HBox hbox = (HBox) node;
+                HBox hbox = ((HBox) node).getChildren().size() == 2 ? (HBox) ((HBox) node).getChildren().get(1) : (HBox) ((HBox) node).getChildren().get(0);
                 parameterCounter = 0;
                 name = "";
                 letter = "";
