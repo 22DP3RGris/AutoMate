@@ -35,3 +35,23 @@
     -fx-text-fill: #BCBCBC;
 }
 
+.chk-box .box {
+
+    -fx-alignment: center;
+    -fx-background-color: #666666;
+    background-color:#666666;
+    -fx-border-color: #2a2d30;
+    border-color: #2a2d30;
+    -fx-border-radius: 5px;
+    border-radius: 5px;
+    -fx-background-radius: 10px;
+    -fx-background-insets: 0;
+
+}
+    
+.chk-box:selected .box {
+
+-fx-background-color: #BCBCBC;
+background-color:#BCBCBC;
+}
+

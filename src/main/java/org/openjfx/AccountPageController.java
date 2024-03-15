@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
@@ -15,6 +16,9 @@ public class AccountPageController {
 
     @FXML
     private Label usernameLabel, emailLabel, passwordLabel;
+
+    @FXML
+    private CheckBox showPassword;
 
     @FXML
     private Button createBtn, createLabel, homeBtn, homeLabel, folderBtn, folderLabel, friendsBtn, friendsLabel, settingsBtn, settingsLabel, accountBtn, accountLabel;
@@ -37,7 +41,20 @@ public class AccountPageController {
 
         usernameLabel.setText(User.getUsername());
         emailLabel.setText(User.getEmail());
-        passwordLabel.setText(User.getPassword());
+        if (showPassword.isSelected()){
+            passwordLabel.setText(User.getPassword());
+        }
+        else{
+            passwordLabel.setText("*".repeat(User.getPassword().length()));
+        }
+        showPassword.setOnAction(event -> {
+            if (showPassword.isSelected()){
+                passwordLabel.setText(User.getPassword());
+            }
+            else{
+                passwordLabel.setText("*".repeat(User.getPassword().length()));
+            }
+        });
     }
 
     @FXML

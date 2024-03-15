@@ -42,6 +42,9 @@
                            <VBox.margin>
                               <Insets left="15.0" top="20.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </HBox>
                         <HBox fx:id="rightClick" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="element">
                            <children>
@@ -64,6 +67,9 @@
                            <VBox.margin>
                               <Insets left="15.0" top="20.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </HBox>
                         <HBox fx:id="wait" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="element">
                            <children>
@@ -81,6 +87,9 @@
                            <VBox.margin>
                               <Insets left="15.0" top="20.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </HBox>
                         <HBox fx:id="oneKey" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="element">
                            <children>
@@ -108,6 +117,9 @@
                            <VBox.margin>
                               <Insets left="15.0" top="20.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </HBox>
                      </children></VBox>
                </content>
