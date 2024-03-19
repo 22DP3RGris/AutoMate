@@ -1,6 +1,5 @@
 org\openjfx\Topbar.class
 org\openjfx\CreatePageController.class
-org\openjfx\Main.class
 org\openjfx\Database$1.class
 org\openjfx\MacroFunctionality.class
 org\openjfx\LoginController.class
