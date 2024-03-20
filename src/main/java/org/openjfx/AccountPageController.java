@@ -61,6 +61,7 @@ public class AccountPageController {
     private void logout() throws IOException{
         User.clear();
         App.getStage().setMaximized(false);
+        App.getStage().setResizable(false);
         App.setRoot("login", true);
     }
 

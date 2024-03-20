@@ -34,15 +34,15 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
 
-        ResizeHelper.addResizeListener(stage);
+        // ResizeHelper.addResizeListener(stage);
     }
 
     public static void setRoot(String fxml, boolean newScene) throws IOException {
         scene.setRoot(loadFXML(fxml));
         if (newScene){
             stage.sizeToScene();
+            centerStage();
         }
-        if (newScene) centerStage();
         initTopbar();
     }
 

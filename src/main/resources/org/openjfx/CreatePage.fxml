@@ -18,7 +18,7 @@
    <children>
       <AnchorPane fx:id="workspace" layoutX="76.0" layoutY="71.0" prefHeight="649.0" prefWidth="1204.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="71.0">
          <children>
-            <ScrollPane hbarPolicy="NEVER" layoutX="905.0" layoutY="-7.0" prefHeight="649.0" prefWidth="300.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="906.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-2.0">
+            <ScrollPane hbarPolicy="NEVER" layoutX="905.0" layoutY="-7.0" prefHeight="649.0" prefWidth="300.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-2.0">
                <content>
                   <VBox>
                      <children>
@@ -180,20 +180,6 @@
             </Label>
             <HBox layoutX="1067.0" layoutY="7.0" prefHeight="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="maxBtn" alignment="CENTER" contentDisplay="BOTTOM" focusTraversable="false" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="max-btn" stylesheets="@CSS/nav-bar.css" text="□" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Bold" size="26.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <padding>
-                        <Insets bottom="5.0" left="8.0" right="8.0" />
-                     </padding>
-                     <HBox.margin>
-                        <Insets bottom="18.0" left="1.0" right="10.0" top="17.0" />
-                     </HBox.margin>
-                  </Button>
                   <Button fx:id="hideBtn" focusTraversable="false" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="hide-btn" stylesheets="@CSS/nav-bar.css" text="—" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
@@ -204,6 +190,20 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <HBox.margin>
+                        <Insets bottom="18.0" left="1.0" right="10.0" top="17.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="maxBtn" alignment="CENTER" contentDisplay="BOTTOM" focusTraversable="false" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="max-btn" stylesheets="@CSS/nav-bar.css" text="□" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="26.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="5.0" left="8.0" right="8.0" />
+                     </padding>
                      <HBox.margin>
                         <Insets bottom="18.0" left="1.0" right="10.0" top="17.0" />
                      </HBox.margin>
