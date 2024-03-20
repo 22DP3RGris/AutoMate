@@ -22,13 +22,13 @@ public class App extends Application {
     @Override
     public void start(Stage appStage) throws Exception {
         
+        MacroFunctionality.initialize();
         stage = appStage;
         scene = new Scene(loadFXML("Login"));
         stage.setTitle("AutoMate");
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);
 
-        MacroFunctionality.initialize();
         initTopbar();
 
         stage.setScene(scene);

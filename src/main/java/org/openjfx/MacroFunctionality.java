@@ -15,14 +15,14 @@ public class MacroFunctionality {
         robot = new Robot();
     }
 
-    public static void runMacro(HashMap<Integer, HashMap<String, String>> commands){
+    public static void runMacro(HashMap<String, HashMap<String, String>> commands){
         if (commands.isEmpty()) {
             return;
         }
         for (int i = 5; i > 0; i--){
             sleep(1000);
         }
-        for (int i : commands.keySet()) {
+        for (String i : commands.keySet()) {
             HashMap<String, String> command = commands.get(i);
             switch (command.get("name")) {
                 case "LC":

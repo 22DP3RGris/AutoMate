@@ -28,7 +28,7 @@ public class HomePageController {
         HashMap<Button, Button> sideNavButtons = new HashMap<>();
         sideNavButtons.put(homeBtn, homeLabel);
         sideNavButtons.put(createBtn, createLabel);
-        // sideNavButtons.put(folderBtn, folderLabel);
+        sideNavButtons.put(folderBtn, folderLabel);
         // sideNavButtons.put(friendsBtn, friendsLabel);
         sideNavButtons.put(accountBtn, accountLabel);
         // sideNavButtons.put(settingsBtn, settingsLabel);

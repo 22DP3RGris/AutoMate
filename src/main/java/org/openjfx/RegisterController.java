@@ -62,6 +62,10 @@ public class RegisterController {
             eMailError.setText("Input valid E-mail."); eMailError.setVisible(true);
             dataIsValid = false;
         }
+        else if (Database.emailExist(email)){
+            eMailError.setText("E-mail already exists."); eMailError.setVisible(true);
+            dataIsValid = false;
+        }
         if (!Validator.validatePassword(password)){
             passwordError.setText("Password must be at least 6 characters."); passwordError.setVisible(true);
             dataIsValid = false;

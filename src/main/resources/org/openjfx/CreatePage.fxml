@@ -134,13 +134,29 @@
                <content>
                   <VBox fx:id="elements" alignment="CENTER">
                      <children>
-                        <Button fx:id="run" mnemonicParsing="false" onAction="#runMacro" styleClass="run-btn" text="RUN" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
+                        <HBox fx:id="btns" alignment="CENTER" prefWidth="400.0">
+                           <children>
+                              <Button fx:id="save" mnemonicParsing="false" onAction="#saveMacro" styleClass="run-btn" text="SAVE" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="run" mnemonicParsing="false" onAction="#runMacro" styleClass="run-btn" text="RUN" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
                            <VBox.margin>
                               <Insets left="45.0" top="20.0" />
-                           </VBox.margin></Button>
+                           </VBox.margin>
+                        </HBox>
                         <HBox alignment="CENTER">
                            <VBox.margin>
                               <Insets top="20.0" />
@@ -170,13 +186,16 @@
          </children></AnchorPane>
       <AnchorPane fx:id="topBar" layoutX="10.0" layoutY="10.0" maxHeight="70.0" maxWidth="1280.0" prefHeight="70.0" prefWidth="1280.0" styleClass="nav-bar" stylesheets="@CSS/backgrounds.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="75.0" layoutY="29.0" prefHeight="47.0" prefWidth="906.0" text="AutoMate" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="254.0" AnchorPane.topAnchor="12.0">
+            <Label alignment="CENTER" layoutX="75.0" layoutY="29.0" prefHeight="47.0" prefWidth="905.0" text="AutoMate" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="12.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <font>
                   <Font name="Arial Bold" size="40.0" />
                </font>
+               <padding>
+                  <Insets right="250.0" />
+               </padding>
             </Label>
             <HBox layoutX="1067.0" layoutY="7.0" prefHeight="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>

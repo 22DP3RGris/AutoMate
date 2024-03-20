@@ -17,7 +17,7 @@ public class Validator {
     }
 
     public static boolean validateEmail(String email){
-        return email.matches(EMAIL_REGEX);
+        return email.matches(EMAIL_REGEX) && email.length() <= 50;
     }
 
     public static boolean validatePassword(String password){

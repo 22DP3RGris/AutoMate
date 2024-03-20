@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
 public class Topbar{
@@ -51,4 +52,24 @@ public class Topbar{
         });
     }
 
+    @FXML
+    public static void dragDialog(AnchorPane topBar, Stage stage) {
+        topBar.setOnMousePressed(event -> {
+            xOffSet = event.getSceneX();
+            yOffSet = event.getSceneY();
+        });
+
+        topBar.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffSet);
+            stage.setY(event.getScreenY() - yOffSet);
+        });
+    }
+
+    @FXML
+    public static void closeDialog(Button button, Stage stage) throws IOException{
+        if (button == null) return;
+        button.setOnMouseReleased(event -> {
+            stage.close();
+        });
+    }
 }

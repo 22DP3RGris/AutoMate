@@ -1,0 +1,8 @@
+.main{
+    -fx-background-color: #282b30;
+    background-color: #282b30;
+    -fx-border-color: #282b30;
+    border-color: #282b30;
+    -fx-border-width: 3px;
+    border-width: 3px;
+}
