@@ -1,6 +1,5 @@
 package org.openjfx;
 
-import java.awt.AWTException;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -61,7 +60,8 @@ public class CreatePageController {
     }
 
     @FXML // Run the macro
-    private void runMacro() throws NumberFormatException, AWTException {
+    private void runMacro() throws Exception {
+        MacroFunctionality.init();
         MacroFunctionality.runMacro(getCommands());
     }
 
