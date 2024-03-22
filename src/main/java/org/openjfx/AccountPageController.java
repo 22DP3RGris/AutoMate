@@ -1,19 +1,15 @@
 package org.openjfx;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 
 public class AccountPageController {
 
-    @FXML
-    private AnchorPane sideNavElements, workspace;
-
+    // Scene elements
     @FXML
     private Label usernameLabel, emailLabel, passwordLabel;
 
@@ -21,32 +17,24 @@ public class AccountPageController {
     private CheckBox showPassword;
 
     @FXML
-    private Button createBtn, createLabel, homeBtn, homeLabel, folderBtn, folderLabel, friendsBtn, friendsLabel, settingsBtn, settingsLabel, accountBtn, accountLabel;
-
-    @FXML
     private Button logoutBtn;
 
-    @FXML
-    private void initialize() throws IOException{
-        SideNav.initSideNav(sideNavElements, workspace);
-        HashMap<Button, Button> sideNavButtons = new HashMap<>();
-        sideNavButtons.put(homeBtn, homeLabel);
-        sideNavButtons.put(createBtn, createLabel);
-        sideNavButtons.put(folderBtn, folderLabel);
-        // sideNavButtons.put(friendsBtn, friendsLabel);
-        sideNavButtons.put(accountBtn, accountLabel);
-        // sideNavButtons.put(settingsBtn, settingsLabel);
-        SideNav.setSideNavButtons(sideNavButtons);
-        SideNav.openBtns();
 
+    @FXML // Initialize the scene
+    private void initialize() throws IOException{
+
+        // Set the user's information
         usernameLabel.setText(User.getUsername());
         emailLabel.setText(User.getEmail());
-        if (showPassword.isSelected()){
+
+        if (showPassword.isSelected()){ // Show the password
             passwordLabel.setText(User.getPassword());
         }
-        else{
+        else{ // Hide the password
             passwordLabel.setText("*".repeat(User.getPassword().length()));
         }
+
+        // Show the password when the checkbox is selected
         showPassword.setOnAction(event -> {
             if (showPassword.isSelected()){
                 passwordLabel.setText(User.getPassword());
@@ -57,16 +45,11 @@ public class AccountPageController {
         });
     }
 
-    @FXML
+    @FXML // Logout the user
     private void logout() throws IOException{
         User.clear();
         App.getStage().setMaximized(false);
         App.getStage().setResizable(false);
         App.setRoot("login", true);
-    }
-
-    @FXML
-    private void openSideNav() throws IOException, InterruptedException {
-        SideNav.open(sideNavElements);
     }
 }

@@ -1,6 +1,5 @@
 package org.openjfx;
 
-import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -12,8 +11,7 @@ import javafx.scene.layout.VBox;
 
 public class MacroElements {
 
-    @FXML
-    public static void countAndDelay(HBox source, HBox target) {
+    public static void cloneElement(HBox source, HBox target) {
         target.getChildren().clear();
         HBox parent = (HBox) target.getParent();
         HBox.setMargin(target, new Insets(0, 0, 0, 0));
@@ -43,7 +41,6 @@ public class MacroElements {
         Validator.numberField(target);
     }
 
-    @FXML
     public static HBox placeHolder() {
         HBox mainBox = new HBox();
         mainBox.setAlignment(Pos.CENTER);
@@ -63,7 +60,6 @@ public class MacroElements {
         return mainBox;
     }
 
-    @FXML 
     private static Button removeBtn() {
         Button removeBtn = new Button("X");
         removeBtn.getStyleClass().add("element-delete");

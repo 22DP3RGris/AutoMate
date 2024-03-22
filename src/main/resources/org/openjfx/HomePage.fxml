@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -77,7 +78,7 @@
                   </Button>
                </children>
             </HBox>
-            <Button fx:id="sideNavBtn" focusTraversable="false" minHeight="71.0" minWidth="75.0" mnemonicParsing="false" onAction="#openSideNav" prefHeight="71.0" prefWidth="75.0" style="-fx-background-radius: 0;" styleClass="thrd-nav-bar" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Button fx:id="sideNavBtn" focusTraversable="false" minHeight="71.0" minWidth="75.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="75.0" style="-fx-background-radius: 0;" styleClass="thrd-nav-bar" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -94,7 +95,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane id="side-nav-elements" fx:id="sideNavElements" layoutX="75.0" layoutY="71.0" prefHeight="649.0" prefWidth="200.0" styleClass="frth-nav-bar" stylesheets="@CSS/nav-bar.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="71.0">
+      <AnchorPane fx:id="sideNavElements" layoutX="75.0" layoutY="71.0" prefHeight="649.0" prefWidth="200.0" stylesheets="@CSS/nav-bar.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="71.0">
          <children>
             <VBox alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="199.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -157,6 +158,10 @@
             </VBox>
             <VBox layoutY="300.0" prefHeight="198.0" prefWidth="200.0" styleClass="frth-nav-bar" AnchorPane.bottomAnchor="151.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="300.0" />
          </children>
+         <styleClass>
+            <String fx:value="side-nav-elements" />
+            <String fx:value="frth-nav-bar" />
+         </styleClass>
       </AnchorPane>
       <AnchorPane fx:id="sideNav" layoutY="71.0" prefHeight="200.0" prefWidth="75.0" styleClass="sec-nav-bar" stylesheets="@CSS/backgrounds.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="71.0">
          <children>

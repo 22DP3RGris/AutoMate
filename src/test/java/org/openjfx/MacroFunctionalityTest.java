@@ -2,23 +2,10 @@ package org.openjfx;
 
 import static org.junit.Assert.assertTrue;
 
-import java.awt.AWTException;
 
 import org.junit.Test;
 
 public class MacroFunctionalityTest {
-
-    @Test
-    public void testInitialize(){
-        try {
-            MacroFunctionality.initialize();
-
-            assertTrue(true);
-
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Test
     public void testSleep(){

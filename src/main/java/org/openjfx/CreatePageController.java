@@ -1,5 +1,6 @@
 package org.openjfx;
 
+import java.awt.AWTException;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -20,9 +21,7 @@ import javafx.stage.Stage;
 
 public class CreatePageController {
 
-    @FXML
-    private AnchorPane sideNavElements, workspace;
-
+    // Scene elements
     @FXML
     private HBox placeholder, leftClick, rightClick, wait, oneKey;
 
@@ -32,39 +31,28 @@ public class CreatePageController {
     @FXML
     private VBox elements;
 
-    @FXML
-    private Button createBtn, createLabel, homeBtn, homeLabel, folderBtn, folderLabel, friendsBtn, friendsLabel, settingsBtn, settingsLabel, accountBtn, accountLabel;
-
-    @FXML
+    @FXML // Initialize the scene
     private void initialize() throws IOException{
-        elements.prefWidthProperty().bind(mainScroll.widthProperty());
-        SideNav.initSideNav(sideNavElements, workspace);
-        HashMap<Button, Button> sideNavButtons = new HashMap<>();
-        sideNavButtons.put(homeBtn, homeLabel);
-        sideNavButtons.put(createBtn, createLabel);
-        sideNavButtons.put(folderBtn, folderLabel);
-        // sideNavButtons.put(friendsBtn, friendsLabel);
-        sideNavButtons.put(accountBtn, accountLabel);
-        // sideNavButtons.put(settingsBtn, settingsLabel);
-        SideNav.setSideNavButtons(sideNavButtons);
-        SideNav.openBtns();
-        Validator.numberField(leftClick);
-        setElements(leftClick, rightClick, wait, oneKey);
+
+        elements.prefWidthProperty().bind(mainScroll.widthProperty()); // Center the elements
+        setElements(leftClick, rightClick, wait, oneKey); // Set the elements to be clicked
+
     }
 
-    @FXML
+    @FXML // Set the elements to be clicked
     private void setElements(HBox... sourcePanes) {
         for (HBox sourcePane : sourcePanes) {
-            sourcePane.setOnMouseClicked(event -> {
-                MacroElements.countAndDelay(sourcePane, placeholder);
+            sourcePane.setOnMouseClicked(event -> { 
+                // If the element is clicked then clone it and add it to the elements and add a new placeholder
+                MacroElements.cloneElement(sourcePane, placeholder);
                 placeHolder();
             });
         }
     }
 
-
-    @FXML
+    @FXML // Add a placeholder to the elements
     private void placeHolder() {
+        // If last placeholder is not empty then add a new placeholder
         if (!placeholder.getChildren().isEmpty()) {
             placeholder = MacroElements.placeHolder();
             elements.getChildren().add(placeholder);
@@ -72,13 +60,8 @@ public class CreatePageController {
         }
     }
 
-    @FXML
-    private void openSideNav() throws IOException, InterruptedException {
-        SideNav.open(sideNavElements);
-    }
-
-    @FXML
-    private void runMacro() {
+    @FXML // Run the macro
+    private void runMacro() throws NumberFormatException, AWTException {
         MacroFunctionality.runMacro(getCommands());
     }
 

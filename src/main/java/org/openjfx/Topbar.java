@@ -2,14 +2,13 @@ package org.openjfx;
 
 import java.io.IOException;
 
-import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 public class Topbar{
 
-    @FXML
     public static void hide(Button button) throws IOException{
         if (button == null) return;
         button.setOnMouseReleased(event -> {
@@ -17,7 +16,6 @@ public class Topbar{
         });
     }
 
-    @FXML
     public static void close(Button button) throws IOException{
         if (button == null) return;
         button.setOnMouseReleased(event -> {
@@ -25,7 +23,6 @@ public class Topbar{
         });
     }
 
-    @FXML
     public static void maximize(Button button) throws IOException{
         if (button == null) return;
         button.setOnMouseReleased(event -> {
@@ -39,7 +36,6 @@ public class Topbar{
 
     private static double xOffSet = 0, yOffSet = 0;
 
-    @FXML
     public static void dragWindow(AnchorPane topBar) {
         topBar.setOnMousePressed(event -> {
             xOffSet = event.getSceneX();
@@ -52,7 +48,6 @@ public class Topbar{
         });
     }
 
-    @FXML
     public static void dragDialog(AnchorPane topBar, Stage stage) {
         topBar.setOnMousePressed(event -> {
             xOffSet = event.getSceneX();
@@ -65,11 +60,17 @@ public class Topbar{
         });
     }
 
-    @FXML
     public static void closeDialog(Button button, Stage stage) throws IOException{
         if (button == null) return;
         button.setOnMouseReleased(event -> {
             stage.close();
         });
+    }
+
+    public static void init(Scene scene) throws IOException{
+        Topbar.maximize((Button) scene.lookup("#maxBtn"));
+        Topbar.hide((Button) scene.lookup("#hideBtn"));
+        Topbar.close((Button) scene.lookup("#exitBtn"));
+        Topbar.dragWindow((AnchorPane) scene.lookup("#topBar"));
     }
 }

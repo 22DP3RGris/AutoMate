@@ -83,7 +83,7 @@
     background-color: #383a40;
 }
 
-#side-nav-elements{
+.side-nav-elements{
     -fx-border-color: #282b30;
     border-color: #282b30;
     -fx-border-width: 0px 1px 0px 0px;

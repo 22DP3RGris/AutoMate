@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javafx.animation.TranslateTransition;
-import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -12,13 +12,21 @@ import javafx.util.Duration;
 
 public class SideNav {
 
-    private static HashMap<Button, Button> sideNavButtons = null;
+    private static HashMap<Button, Button> sideNavButtons;
     public static boolean sideNavOpen;
 
-    @FXML
-    public static void initSideNav(AnchorPane sideNavElements, AnchorPane workspace) throws IOException{
+    public static void init(AnchorPane sideNavElements, AnchorPane workspace) throws IOException{
+        SideNav.setSideNavButtons(getSideNavButtons());
         sideNavOpen = false;
         sideNavElements.setTranslateX(-300);
+        Button sideNavBtn = (Button) App.getScene().lookup("#sideNavBtn");
+        sideNavBtn.setOnAction(event -> {
+            try {
+                open(sideNavElements);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
         workspace.setOnMouseClicked(event -> {
             if (sideNavOpen){
                 try {
@@ -28,6 +36,7 @@ public class SideNav {
                 }
             }
         });
+        SideNav.openBtns();
     }
 
     public static void setSideNavButtons(HashMap<Button, Button> buttons){
@@ -38,7 +47,6 @@ public class SideNav {
         return sideNavButtons == null;
     }
 
-    @FXML
     public static void open(AnchorPane sideNavElements) throws IOException, InterruptedException{
         sideNavElements.setVisible(true);
         TranslateTransition transit = new TranslateTransition(Duration.seconds(0.35), sideNavElements);
@@ -55,7 +63,6 @@ public class SideNav {
         sideNavOpen = true;
     }
 
-    @FXML
     public static void close(AnchorPane sideNavElements) throws IOException, InterruptedException{
         TranslateTransition transit = new TranslateTransition(Duration.seconds(0.35), sideNavElements);
         double xOffset;
@@ -66,7 +73,6 @@ public class SideNav {
         sideNavOpen = false;
     }
 
-    @FXML
     public static void openBtns() throws IOException{
         for (Button btn : sideNavButtons.keySet()){
             String page = btn.getId().split("B")[0] + "Page";
@@ -82,7 +88,6 @@ public class SideNav {
         }
     }
 
-    @FXML
     public static void openLabels() throws IOException{
         for (Button btn : sideNavButtons.keySet()){
             String page = btn.getId().split("B")[0] + "Page";
@@ -98,10 +103,22 @@ public class SideNav {
         }
     }
 
-    @FXML
     public static void closeLabels() throws IOException{
         for (Button btn : sideNavButtons.keySet()){
             sideNavButtons.get(btn).removeEventHandler(MouseEvent.MOUSE_RELEASED, sideNavButtons.get(btn).getOnMouseReleased());
         }
     }
+
+    private static HashMap<Button, Button> getSideNavButtons(){
+        HashMap<Button, Button> sideNavButtons = new HashMap<>();
+        Scene scene = App.getStage().getScene();
+        sideNavButtons.put(((Button) scene.lookup("#homeBtn")), (Button) scene.lookup("#homeLabel"));
+        sideNavButtons.put((Button) scene.lookup("#createBtn"), (Button) scene.lookup("#createLabel"));
+        sideNavButtons.put((Button) scene.lookup("#folderBtn"), (Button) scene.lookup("#folderLabel"));
+        // sideNavButtons.put((Button) scene.lookup("#friendsBtn"), (Button) scene.lookup("#friendsLabel"));
+        sideNavButtons.put((Button) scene.lookup("#accountBtn"), (Button) scene.lookup("#accountLabel"));
+        // sideNavButtons.put((Button) scene.lookup("#settingsBtn"), (Button) scene.lookup("#settingsLabel"));
+        return sideNavButtons;
+    }
+
 }
