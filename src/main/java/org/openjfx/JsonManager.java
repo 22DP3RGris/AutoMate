@@ -16,10 +16,12 @@ public class JsonManager {
         HashMap<String, HashMap<String, HashMap<String, String>>> macros = new HashMap<>();
 
         // If the file already exists, read it into the macros map
-        try {
-            macros = mapper.readValue(file, new TypeReference<HashMap<String, HashMap<String, HashMap<String, String>>>>() {});
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (file.exists()) {
+            try {
+                macros = mapper.readValue(file, new TypeReference<HashMap<String, HashMap<String, HashMap<String, String>>>>() {});
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         // Add the new macro to the macros map
@@ -39,11 +41,13 @@ public class JsonManager {
 
         HashMap<String, HashMap<String, HashMap<String, String>>> macros = new HashMap<>();
 
-    
-        try {
-            macros = mapper.readValue(file, new TypeReference<HashMap<String, HashMap<String, HashMap<String, String>>>>() {});
-        } catch (IOException e) {
-            e.printStackTrace();
+        // If the file already exists, read it into the macros map
+        if (file.exists()) {
+            try {
+                macros = mapper.readValue(file, new TypeReference<HashMap<String, HashMap<String, HashMap<String, String>>>>() {});
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return macros;
@@ -55,10 +59,13 @@ public class JsonManager {
 
         HashMap<String, HashMap<String, HashMap<String, String>>> macros = new HashMap<>();
 
-        try {
-            macros = mapper.readValue(file, new TypeReference<HashMap<String, HashMap<String, HashMap<String, String>>>>() {});
-        } catch (IOException e) {
-            e.printStackTrace();
+        // If the file already exists, read it into the macros map
+        if (file.exists()) {
+            try {
+                macros = mapper.readValue(file, new TypeReference<HashMap<String, HashMap<String, HashMap<String, String>>>>() {});
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         // Remove the macro from the macros map
