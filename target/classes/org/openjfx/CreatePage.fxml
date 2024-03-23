@@ -137,7 +137,7 @@
                      <children>
                         <HBox fx:id="btns" alignment="CENTER" prefWidth="400.0">
                            <children>
-                              <Button fx:id="save" mnemonicParsing="false" onAction="#saveMacro" styleClass="run-btn" text="SAVE" textFill="WHITE">
+                              <Button fx:id="save" focusTraversable="false" mnemonicParsing="false" onAction="#saveMacro" styleClass="run-btn" text="SAVE" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
@@ -145,7 +145,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="run" mnemonicParsing="false" onAction="#runMacro" styleClass="run-btn" text="RUN" textFill="WHITE">
+                              <Button fx:id="run" focusTraversable="false" mnemonicParsing="false" styleClass="run-btn" text="RUN" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>

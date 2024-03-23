@@ -15,7 +15,9 @@ public class SideNav {
     private static HashMap<Button, Button> sideNavButtons;
     public static boolean sideNavOpen;
 
-    public static void init(AnchorPane sideNavElements, AnchorPane workspace) throws IOException{
+    public static void init(Scene scene) throws IOException{
+        AnchorPane sideNavElements = (AnchorPane) scene.lookup("#sideNavElements");
+        AnchorPane workspace = (AnchorPane) scene.lookup("#workspace");
         SideNav.setSideNavButtons(getSideNavButtons());
         sideNavOpen = false;
         sideNavElements.setTranslateX(-300);

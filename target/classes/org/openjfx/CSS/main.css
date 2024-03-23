@@ -1,3 +1,13 @@
+.custom-text{
+    -fx-font-size: 26px;
+    font-size: 26px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-font-family: "Arial";
+    font-family: "Arial";
+
+}
+
 .scroll-pane{
     -fx-background-color: #36393e;
     background-color: #36393e;

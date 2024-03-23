@@ -10,8 +10,6 @@ public class HomePageController {
     @FXML
     private Label welcomeMsg;
 
-
-
     @FXML
     private void initialize() throws IOException{
  

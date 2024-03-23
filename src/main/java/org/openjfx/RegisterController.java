@@ -77,12 +77,12 @@ public class RegisterController {
         }
         if (dataIsValid){
             Database.registerUser(username, password, email);
-            App.setRoot("Login", true);
+            App.setRoot("login", true);
         }
     }
 
     @FXML
     private void redirectToLogin() throws IOException{
-        App.setRoot("Login", true);
+        App.setRoot("login", true);
     }
 }

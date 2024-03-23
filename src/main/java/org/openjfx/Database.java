@@ -150,6 +150,12 @@ public class Database{
         ref.setValueAsync(commands);
     }
 
+    public static void deleteMacro(String macroName) {
+        DatabaseReference ref = baseRef.child(User.getUsername()).child("macros").child(macroName);
+
+        ref.removeValueAsync();
+    }
+
     public static boolean macroExist(String macroName) {
 
         if (macroName.equals("")) return false;

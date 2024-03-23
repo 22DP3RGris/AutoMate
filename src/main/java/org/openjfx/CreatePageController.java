@@ -30,12 +30,30 @@ public class CreatePageController {
     @FXML
     private VBox elements;
 
+    @FXML 
+    private Button run;
+
     @FXML // Initialize the scene
     private void initialize() throws IOException{
 
         elements.prefWidthProperty().bind(mainScroll.widthProperty()); // Center the elements
         setElements(leftClick, rightClick, wait, oneKey); // Set the elements to be clicked
-
+        run.setOnMouseReleased(event -> {
+            App.getScene().getRoot().requestFocus(); // Set the focus to the scene
+            run.setDisable(true); // Disable the run button
+            
+            // Run the macro in a new thread to prevent the UI from freezing
+            new Thread(() -> { 
+                try {
+                    MacroFunctionality.init();
+                    MacroFunctionality.runMacro(getCommands());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    run.setDisable(false);
+                }
+            }).start();
+        });
     }
 
     @FXML // Set the elements to be clicked
@@ -57,12 +75,6 @@ public class CreatePageController {
             elements.getChildren().add(placeholder);
             placeholder = (HBox) placeholder.getChildren().get(0);
         }
-    }
-
-    @FXML // Run the macro
-    private void runMacro() throws Exception {
-        MacroFunctionality.init();
-        MacroFunctionality.runMacro(getCommands());
     }
 
     @FXML
@@ -92,6 +104,7 @@ public class CreatePageController {
             }
             else{
                 Database.saveMacro(macroName.getText(), getCommands());
+                JsonManager.writeMacroToJson(macroName.getText(), getCommands());
                 dialogStage.close();
             }
 
@@ -149,7 +162,7 @@ public class CreatePageController {
                                 delay = textField.getText();
                             }
                         } else if (textField.getPromptText().equals("Key")){
-                            letter = textField.getText();
+                            letter = KeyCodeReverse.reverseKeyCode(textField.getText());
                         }
                     }
                 }

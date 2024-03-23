@@ -16,10 +16,8 @@ public class MacroFunctionality {
     }
 
     public static void runMacro(HashMap<String, HashMap<String, String>> commands) throws Exception{
-        if (commands.isEmpty()) {
-            return;
-        }
-        sleep(5000);
+        if (commands.isEmpty()) return;
+
         for (int i = 0; i < commands.size(); i++){
             HashMap<String, String> command = commands.get(String.valueOf(i));
             switch (command.get("name")) {
@@ -34,14 +32,17 @@ public class MacroFunctionality {
                         rightMouseClick();
                         sleep(Integer.parseInt(command.get("delay")));
                     }
+                    break;
                 case "W":
                     sleep(Integer.parseInt(command.get("delay")));
                     break;
                 case "P":
                     for (int j = 0; j < Integer.parseInt(command.get("count")); j++) {
                         keyPress(KeyCode.valueOf(command.get("letter").toUpperCase()));
-                        sleep(Integer.parseInt(command.get("delay")));
+                        int delay = (Integer.parseInt(command.get("delay")) > 100) ? Integer.parseInt(command.get("delay")) : 100;
+                        sleep(delay);
                     }
+                    break;
                 default:
                     break;
             }
@@ -52,17 +53,17 @@ public class MacroFunctionality {
         robot.delay(duration);
     }
 
-    public static void leftMouseClick() throws AWTException{
+    private static void leftMouseClick() throws AWTException{
         robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
     }
-
-    public static void rightMouseClick() throws AWTException{
+    
+    private static void rightMouseClick() throws AWTException{
         robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
         robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
     }
 
-    public static void keyPress(KeyCode keyCode) throws AWTException{
+    private static void keyPress(KeyCode keyCode) throws AWTException{
         robot.keyPress(keyCode.getCode());
         robot.keyRelease(keyCode.getCode());
     }

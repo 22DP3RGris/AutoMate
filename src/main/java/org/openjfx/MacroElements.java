@@ -19,23 +19,25 @@ public class MacroElements {
         target.setAlignment(Pos.CENTER);
         for (Node node : source.getChildren()) {
             if (node instanceof Label) {
-                Label originalLabel = (Label) node;
-                Label clonedLabel = new Label(originalLabel.getText());
-                clonedLabel.getStyleClass().add("element-label");
-                target.getChildren().add(clonedLabel);
+                Label original = (Label) node;
+                Label clone = new Label(original.getText());
+                clone.setFocusTraversable(false);
+                clone.getStyleClass().add("element-label");
+                target.getChildren().add(clone);
             } else if (node instanceof TextField) {
-                TextField originalTextField = (TextField) node;
-                TextField clonedTextField = new TextField(originalTextField.getText());
-                clonedTextField.setPrefWidth(originalTextField.getPrefWidth());
-                clonedTextField.setPromptText(originalTextField.getPromptText());
-                if (originalTextField.getPromptText().equals("Key")) {
-                    clonedTextField.setPrefWidth(80);
-                    clonedTextField.setEditable(false);
+                TextField original = (TextField) node;
+                TextField clone = new TextField(original.getText());
+                clone.setPrefWidth(original.getPrefWidth());
+                clone.setPromptText(original.getPromptText());
+                if (original.getPromptText().equals("Key")) {
+                    clone.setPrefWidth(80);
+                    clone.setEditable(false);
                 } 
-                clonedTextField.getStyleClass().add("element-input");
-                HBox.setMargin(clonedTextField, new Insets(0, 0, 0, 10));
-                clonedTextField.setPrefHeight(30);
-                target.getChildren().add(clonedTextField);
+                clone.getStyleClass().add("element-input");
+                HBox.setMargin(clone, new Insets(0, 0, 0, 10));
+                clone.setPrefHeight(30);
+                clone.setFocusTraversable(false);
+                target.getChildren().add(clone);
             }
         }
         Validator.numberField(target);
@@ -72,6 +74,7 @@ public class MacroElements {
             ((VBox) parentNode.getParent()).getChildren().remove(parentNode);
             
         });
+        removeBtn.setFocusTraversable(false);
         return removeBtn;
     }
 }

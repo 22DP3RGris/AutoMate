@@ -1,0 +1,65 @@
+{
+  "Open Notepad" : {
+    "0" : {
+      "delay" : "100",
+      "letter" : "Windows",
+      "name" : "P",
+      "count" : "1"
+    },
+    "1" : {
+      "delay" : "100",
+      "letter" : "N",
+      "name" : "P",
+      "count" : "1"
+    },
+    "2" : {
+      "delay" : "100",
+      "letter" : "O",
+      "name" : "P",
+      "count" : "1"
+    },
+    "3" : {
+      "delay" : "100",
+      "letter" : "T",
+      "name" : "P",
+      "count" : "1"
+    },
+    "4" : {
+      "delay" : "100",
+      "letter" : "E",
+      "name" : "P",
+      "count" : "1"
+    },
+    "5" : {
+      "delay" : "100",
+      "letter" : "P",
+      "name" : "P",
+      "count" : "1"
+    },
+    "6" : {
+      "delay" : "100",
+      "letter" : "A",
+      "name" : "P",
+      "count" : "1"
+    },
+    "7" : {
+      "delay" : "100",
+      "letter" : "D",
+      "name" : "P",
+      "count" : "1"
+    },
+    "8" : {
+      "delay" : "1000",
+      "letter" : "Enter",
+      "name" : "P",
+      "count" : "1"
+    }
+  },
+  "Left click" : {
+    "0" : {
+      "delay" : "100",
+      "name" : "LC",
+      "count" : "1"
+    }
+  }
+}

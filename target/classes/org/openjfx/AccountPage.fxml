@@ -34,14 +34,14 @@
                <children>
                   <VBox alignment="CENTER_RIGHT">
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="55.0" styleClass="main-font" text="Username:" textFill="WHITE">
+                        <Label alignment="CENTER_RIGHT" prefHeight="55.0" styleClass="main-font" text="Username:" textFill="#ddd6d6">
                            <font>
-                              <Font name="Arial Bold" size="25.0" />
+                              <Font name="Arial Bold" size="40.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" prefHeight="55.0" text="E-Mail:" textFill="WHITE">
+                        <Label alignment="CENTER_RIGHT" prefHeight="55.0" text="E-Mail:" textFill="#ddd6d6">
                            <font>
-                              <Font name="Arial Bold" size="25.0" />
+                              <Font name="Arial Bold" size="40.0" />
                            </font>
                         </Label>
                         <HBox alignment="CENTER_RIGHT">
@@ -53,10 +53,13 @@
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
-                              </CheckBox>
-                              <Label alignment="CENTER_RIGHT" prefHeight="55.0" text="Password:" textFill="WHITE">
                                  <font>
-                                    <Font name="Arial Bold" size="25.0" />
+                                    <Font size="15.0" />
+                                 </font>
+                              </CheckBox>
+                              <Label alignment="CENTER_RIGHT" prefHeight="55.0" text="Password:" textFill="#ddd6d6">
+                                 <font>
+                                    <Font name="Arial Bold" size="40.0" />
                                  </font>
                               </Label>
                            </children>
@@ -67,17 +70,17 @@
                      <children>
                         <Label fx:id="usernameLabel" prefHeight="55.0" text="test" textFill="WHITE">
                            <font>
-                              <Font name="Arial" size="25.0" />
+                              <Font name="Arial" size="40.0" />
                            </font>
                         </Label>
                         <Label fx:id="emailLabel" prefHeight="55.0" text="test" textFill="WHITE">
                            <font>
-                              <Font size="25.0" />
+                              <Font name="Arial" size="40.0" />
                            </font>
                         </Label>
                         <Label fx:id="passwordLabel" accessibleRole="PASSWORD_FIELD" prefHeight="55.0" text="test" textFill="WHITE">
                            <font>
-                              <Font size="25.0" />
+                              <Font name="Arial" size="40.0" />
                            </font>
                         </Label>
                      </children>

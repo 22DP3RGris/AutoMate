@@ -42,7 +42,7 @@ public class LoginController {
         if (!usernameField.getText().equals("") && !passwordField.getText().equals ("")){
             if(Database.loginUser(usernameField.getText(), passwordField.getText())){
                 App.setResizable(true);
-                App.setRoot("HomePage", true);
+                App.setRoot("homePage", true);
             }
         }
         errorMsg.setText("Incorrect password or username.");errorMsg.setVisible(true);
@@ -50,7 +50,7 @@ public class LoginController {
 
     @FXML
     private void redirectToRegister() throws IOException{
-        App.setRoot("Register", true);
+        App.setRoot("register", true);
     }
 
 }

@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -23,7 +22,7 @@ public class App extends Application {
     public void start(Stage appStage) throws Exception {
 
         stage = appStage;
-        scene = new Scene(loadFXML("Login"));
+        scene = new Scene(loadFXML("login"));
         stage.setTitle("AutoMate");
         stage.initStyle(StageStyle.TRANSPARENT); // Removes built-in topbar
         stage.setResizable(false);
@@ -42,10 +41,11 @@ public class App extends Application {
         Topbar.init(scene);
         if (newScene){ // If window size changes
             stage.sizeToScene();
-            centerStage();
+            centerStage();                                            
         } 
-        if (!fxml.equals("Login") && !fxml.equals("Register")){ // If page has SideNav
-            SideNav.init((AnchorPane) scene.lookup("#sideNavElements"), (AnchorPane) scene.lookup("#workspace"));
+        // If page has SideNav then initialize it
+        if (!fxml.equals("login") && !fxml.equals("register")){ 
+            SideNav.init(scene);
         }
     }
 
