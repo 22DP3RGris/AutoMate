@@ -94,6 +94,11 @@
     background-color: #47494d;
 }
 
+.open-element:hover{
+    -fx-background-color: #363739;
+    background-color: #363739;
+}
+
 .run-btn{
     -fx-background-color: #282b30;
     background-color: #282b30;

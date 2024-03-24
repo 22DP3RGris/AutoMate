@@ -59,6 +59,14 @@ public class FolderPageController {
         Label label = new Label(macroName);
         label.getStyleClass().add("element-label");
         macroBox.getChildren().add(label);
+        macroBox.getStyleClass().add("open-element");
+        macroBox.setOnMouseClicked(event -> {
+            try {
+                App.setRoot("createPage", false);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         parent.getChildren().add(macroBox);
         parent.getChildren().add(0, removeBtn());
         macroList.getChildren().add(parent);
