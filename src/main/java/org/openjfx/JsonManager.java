@@ -8,6 +8,17 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonManager {
+
+    public static void updateMacros(HashMap<String, HashMap<String, HashMap<String, String>>> macros) {
+        ObjectMapper mapper = new ObjectMapper();
+        File file = new File("Macros/" + User.getUsername() + ".json");
+
+        try {
+            mapper.writerWithDefaultPrettyPrinter().writeValue(file, macros);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     
     public static void writeMacroToJson(String macroName, HashMap<String, HashMap<String, String>> commands) {
         ObjectMapper mapper = new ObjectMapper();

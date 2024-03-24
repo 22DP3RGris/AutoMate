@@ -29,6 +29,17 @@ public class FolderPageController {
         createMacroBoxes(macros);
     }
 
+    @FXML
+    private void syncWithDb() throws IOException{
+        HashMap<String, HashMap<String, HashMap<String, String>>> macros = Database.getMacros();
+        JsonManager.updateMacros(macros);
+        macros = JsonManager.readMacrosFromJson();
+        while (macroList.getChildren().size() > 2) {
+            macroList.getChildren().remove(macroList.getChildren().size() - 1);
+        }
+        createMacroBoxes(macros);
+    }
+
     private void createMacroBoxes(HashMap<String, HashMap<String, HashMap<String, String>>> macros){
         for (String macroName : macros.keySet()){
             createMacroBox(macroName, macros.get(macroName));

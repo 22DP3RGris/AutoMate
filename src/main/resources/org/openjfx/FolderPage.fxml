@@ -30,6 +30,18 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                         </Label>
+                        <HBox alignment="CENTER" prefWidth="200.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#syncWithDb" styleClass="run-btn" text="Sync with DB" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="21.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children></VBox>
                </content>
             </ScrollPane>

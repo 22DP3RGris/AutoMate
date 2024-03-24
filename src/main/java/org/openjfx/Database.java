@@ -189,4 +189,45 @@ public class Database{
 
         return exist;
     }
+
+    public static HashMap<String, HashMap<String, HashMap<String, String>>> getMacros() {
+
+        HashMap<String, HashMap<String, HashMap<String, String>>> macros = new HashMap<>();
+
+        DatabaseReference ref = baseRef.child(User.getUsername()).child("macros");
+
+        final Semaphore semaphore = new Semaphore(0);
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot MacroName : dataSnapshot.getChildren()) {
+                    HashMap<String, HashMap<String, String>> commands = new HashMap<>();
+                    HashMap<String, String> command = new HashMap<>();
+                    for (DataSnapshot MacroCommand : MacroName.getChildren()) {
+                        for (DataSnapshot parameter : MacroCommand.getChildren()) {
+                            command.put(parameter.getKey(), parameter.getValue().toString());
+                        }
+                        commands.put(MacroCommand.getKey(), command);
+                    }
+                    macros.put(MacroName.getKey(), commands);
+                }
+                semaphore.release();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+                semaphore.release();
+            }
+        });
+
+        try {
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return macros;
+    }
 }
