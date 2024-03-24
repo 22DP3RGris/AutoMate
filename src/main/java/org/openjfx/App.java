@@ -59,6 +59,7 @@ public class App extends Application {
     // Main method, initializes the database and launches the application
     public static void main(String[] args) throws IOException {
         Database.init();
+        JsonManager.init();
         launch(args);
     }
 

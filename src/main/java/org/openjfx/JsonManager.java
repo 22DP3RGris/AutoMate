@@ -9,6 +9,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonManager {
 
+    public static void init(){
+        File dir = new File("Macros");
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+    }
+
     public static void updateMacros(HashMap<String, HashMap<String, HashMap<String, String>>> macros) {
         ObjectMapper mapper = new ObjectMapper();
         File file = new File("Macros/" + User.getUsername() + ".json");
