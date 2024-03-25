@@ -157,7 +157,7 @@ public class CreatePageController {
                                 delay = textField.getText();
                             }
                         } else if (textField.getPromptText().equals("Key")){
-                            letter = KeyCodeReverse.reverseKeyCode(textField.getText());
+                            letter = KeyCodeReverse.reverseKeyCodeToMacro(textField.getText());
                         }
                     }
                 }

@@ -1,7 +1,7 @@
 package org.openjfx;
 
 public class KeyCodeReverse {
-    public static String reverseKeyCode(String keyCode) {
+    public static String reverseKeyCodeToMacro(String keyCode) {
         switch (keyCode) {
             case "Backspace":
                 return "BACK_SPACE";
@@ -75,6 +75,83 @@ public class KeyCodeReverse {
                 return "NUMPAD9";
             default:
                 return keyCode; 
+        }
+    }
+
+    public static String reverseKeyCodeToUser(String KeyCode){
+        switch (KeyCode){
+            case "BACK_SPACE":
+                return "Backspace";
+            case "ESCAPE":
+                return "Esc";
+            case "CAPS":
+                return "Caps Lock";
+            case "NUM_LOCK":
+                return "Num Lock";
+            case "CONTEXT_MENU":
+                return "Context Menu";
+            case "BACK_SLASH":
+                return "Back Slash";
+            case "SCROLL_LOCK":
+                return "Scroll Lock";
+            case "PRINTSCREEN":
+                return "Print Screen";
+            case "CLOSE_BRACKET":
+                return "Close Bracket";
+            case "OPEN_BRACKET":
+                return "Open Bracket";
+            case "BACK_QUOTE":
+                return "Back Quote";
+            case "ALT_GRAPH":
+                return "Alt Graph";
+            case "CONTROL":
+                return "Ctrl";
+            case "PAGE_DOWN":
+                return "Page Down";
+            case "PAGE_UP":
+                return "Page Up";
+            case "DIGIT0":
+                return "0";
+            case "DIGIT1":
+                return "1";
+            case "DIGIT2":
+                return "2";
+            case "DIGIT3":
+                return "3";
+            case "DIGIT4":
+                return "4";
+            case "DIGIT5":
+                return "5";
+            case "DIGIT6":
+                return "6";
+            case "DIGIT7":
+                return "7";
+            case "DIGIT8":
+                return "8";
+            case "DIGIT9":
+                return "9";
+            case "NUMPAD0":
+                return "Numpad 0";
+            case "NUMPAD1":
+                return "Numpad 1";
+            case "NUMPAD2":
+                return "Numpad 2";
+            case "NUMPAD3":
+                return "Numpad 3";
+            case "NUMPAD4":
+                return "Numpad 4";
+            case "NUMPAD5":
+                return "Numpad 5";
+            case "NUMPAD6":
+                return "Numpad 6";
+            case "NUMPAD7":
+                return "Numpad 7";
+            case "NUMPAD8":
+                return "Numpad 8";
+            case "NUMPAD9":
+                return "Numpad 9";
+            default:
+                return KeyCode.toLowerCase().substring(0, 1).toUpperCase() + KeyCode.toLowerCase().substring(1);
         }
     }
 }

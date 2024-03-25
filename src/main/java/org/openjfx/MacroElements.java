@@ -147,7 +147,7 @@ public class MacroElements {
                         delay.setFocusTraversable(false);
                         macroBox.getChildren().add(delay);
                     } else if (command.equals("letter")) {
-                        TextField letter = new TextField(macro.get(key).get(command));
+                        TextField letter = new TextField(KeyCodeReverse.reverseKeyCodeToUser(macro.get(key).get(command)));
                         letter.setPrefWidth(100);
                         letter.setPromptText("Key");
                         letter.setEditable(false);
