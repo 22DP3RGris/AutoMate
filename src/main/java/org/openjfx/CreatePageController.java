@@ -36,6 +36,10 @@ public class CreatePageController {
     @FXML // Initialize the scene
     private void initialize() throws IOException{
 
+        if (!MacroElements.getMacro().isEmpty()) {
+            MacroElements.createMacroBoxes(elements);
+        }
+
         elements.prefWidthProperty().bind(mainScroll.widthProperty()); // Center the elements
         setElements(leftClick, rightClick, wait, oneKey); // Set the elements to be clicked
         run.setOnMouseReleased(event -> {
@@ -45,6 +49,7 @@ public class CreatePageController {
             // Run the macro in a new thread to prevent the UI from freezing
             new Thread(() -> { 
                 try {
+                    MacroElements.setMacro(getCommands());
                     MacroFunctionality.init();
                     MacroFunctionality.runMacro(getCommands());
                 } catch (Exception e) {
@@ -104,7 +109,7 @@ public class CreatePageController {
             }
             else{
                 Database.saveMacro(macroName.getText(), getCommands());
-                JsonManager.writeMacroToJson(macroName.getText(), getCommands());
+                JsonManager.writeMacro(macroName.getText(), getCommands());
                 dialogStage.close();
             }
 

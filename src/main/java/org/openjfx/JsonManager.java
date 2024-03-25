@@ -27,7 +27,7 @@ public class JsonManager {
         }
     }
     
-    public static void writeMacroToJson(String macroName, HashMap<String, HashMap<String, String>> commands) {
+    public static void writeMacro(String macroName, HashMap<String, HashMap<String, String>> commands) {
         ObjectMapper mapper = new ObjectMapper();
         File file = new File("Macros/" + User.getUsername() + ".json");
 
@@ -71,7 +71,7 @@ public class JsonManager {
         return macros;
     }
 
-    public static void removeMacroFromJson(String macroName){
+    public static void removeMacro(String macroName){
         ObjectMapper mapper = new ObjectMapper();
         File file = new File("Macros/" + User.getUsername() + ".json");
 

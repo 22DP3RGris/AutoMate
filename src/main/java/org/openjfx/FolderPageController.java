@@ -62,6 +62,7 @@ public class FolderPageController {
         macroBox.getStyleClass().add("open-element");
         macroBox.setOnMouseClicked(event -> {
             try {
+                MacroElements.setMacro(commands);
                 App.setRoot("createPage", false);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -84,7 +85,7 @@ public class FolderPageController {
             ((VBox) parentNode.getParent()).getChildren().remove(parentNode);
             String macroName = ((Label) ((HBox)parentNode.getChildren().get(1)).getChildren().get(0)).getText();
             Database.deleteMacro(macroName);
-            JsonManager.removeMacroFromJson(macroName);
+            JsonManager.removeMacro(macroName);
         });
         removeBtn.setFocusTraversable(false);
         return removeBtn;

@@ -1,5 +1,7 @@
 package org.openjfx;
 
+import java.util.HashMap;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -10,6 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class MacroElements {
+
+    private static HashMap<String, HashMap<String, String>> macro = new HashMap<>();
 
     public static void cloneElement(HBox source, HBox target) {
         target.getChildren().clear();
@@ -76,5 +80,17 @@ public class MacroElements {
         });
         removeBtn.setFocusTraversable(false);
         return removeBtn;
+    }
+
+    public static void setMacro(HashMap<String, HashMap<String, String>> Macro) {
+        macro = Macro;
+    }
+
+    public static HashMap<String, HashMap<String, String>> getMacro() {
+        return macro;
+    }
+
+    public static void createMacroBoxes(VBox commands) {
+        System.out.println(macro);
     }
 }
