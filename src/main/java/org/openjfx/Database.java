@@ -203,12 +203,12 @@ public class Database{
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot MacroName : dataSnapshot.getChildren()) {
                     HashMap<String, HashMap<String, String>> commands = new HashMap<>();
-                    HashMap<String, String> command = new HashMap<>();
-                    for (DataSnapshot MacroCommand : MacroName.getChildren()) {
-                        for (DataSnapshot parameter : MacroCommand.getChildren()) {
-                            command.put(parameter.getKey(), parameter.getValue().toString());
+                    for (DataSnapshot command : MacroName.getChildren()) {
+                        HashMap<String, String> commandMap = new HashMap<>();
+                        for (DataSnapshot parameter : command.getChildren()) {
+                            commandMap.put(parameter.getKey(), parameter.getValue().toString());
                         }
-                        commands.put(MacroCommand.getKey(), command);
+                        commands.put(command.getKey(), commandMap);
                     }
                     macros.put(MacroName.getKey(), commands);
                 }

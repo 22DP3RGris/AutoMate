@@ -37,7 +37,7 @@ public class CreatePageController {
     private void initialize() throws IOException{
 
         if (!MacroElements.getMacro().isEmpty()) {
-            MacroElements.createMacroBoxes(elements);
+            placeholder = MacroElements.createMacroBoxes(placeholder, elements);
         }
 
         elements.prefWidthProperty().bind(mainScroll.widthProperty()); // Center the elements
@@ -67,18 +67,8 @@ public class CreatePageController {
             sourcePane.setOnMouseClicked(event -> { 
                 // If the element is clicked then clone it and add it to the elements and add a new placeholder
                 MacroElements.cloneElement(sourcePane, placeholder);
-                placeHolder();
+                placeholder = MacroElements.appendPlaceHolder(placeholder, elements);
             });
-        }
-    }
-
-    @FXML // Add a placeholder to the elements
-    private void placeHolder() {
-        // If last placeholder is not empty then add a new placeholder
-        if (!placeholder.getChildren().isEmpty()) {
-            placeholder = MacroElements.placeHolder();
-            elements.getChildren().add(placeholder);
-            placeholder = (HBox) placeholder.getChildren().get(0);
         }
     }
 

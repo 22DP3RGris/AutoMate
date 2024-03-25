@@ -19,7 +19,7 @@ public class MacroElements {
         target.getChildren().clear();
         HBox parent = (HBox) target.getParent();
         HBox.setMargin(target, new Insets(0, 0, 0, 0));
-        parent.getChildren().add(0, removeBtn());
+        parent.getChildren().add(0, createRemoveBtn());
         target.setAlignment(Pos.CENTER);
         for (Node node : source.getChildren()) {
             if (node instanceof Label) {
@@ -34,7 +34,7 @@ public class MacroElements {
                 clone.setPrefWidth(original.getPrefWidth());
                 clone.setPromptText(original.getPromptText());
                 if (original.getPromptText().equals("Key")) {
-                    clone.setPrefWidth(80);
+                    clone.setPrefWidth(100);
                     clone.setEditable(false);
                 } 
                 clone.getStyleClass().add("element-input");
@@ -47,7 +47,7 @@ public class MacroElements {
         Validator.numberField(target);
     }
 
-    public static HBox placeHolder() {
+    public static HBox createPlaceHolder() {
         HBox mainBox = new HBox();
         mainBox.setAlignment(Pos.CENTER);
         mainBox.setPrefWidth(400);
@@ -66,7 +66,7 @@ public class MacroElements {
         return mainBox;
     }
 
-    private static Button removeBtn() {
+    private static Button createRemoveBtn() {
         Button removeBtn = new Button("X");
         removeBtn.getStyleClass().add("element-delete");
         removeBtn.setPrefWidth(30);
@@ -90,7 +90,105 @@ public class MacroElements {
         return macro;
     }
 
-    public static void createMacroBoxes(VBox commands) {
-        System.out.println(macro);
+    public static HBox createMacroBoxes(HBox placeholder, VBox commands) {
+        while (commands.getChildren().size() > 1) {
+            commands.getChildren().remove(commands.getChildren().size() - 1);
+        }
+        for (int i = 0; i < macro.size(); i++) {
+
+            String key = String.valueOf(i);
+
+            HBox parent = new HBox();
+            parent.setAlignment(Pos.CENTER);
+            parent.getChildren().add(0, createRemoveBtn());
+            HBox macroBox = new HBox();
+            macroBox.setPrefWidth(400);
+            macroBox.setPrefHeight(75);
+            macroBox.setAlignment(Pos.CENTER);
+            VBox.setMargin(parent, new Insets(20, 0, 0, 0));
+
+            // Order of elements
+            String[] order = {"name", "letter", "count", "delay"}; 
+
+            for (String command : order) { 
+                if (macro.get(key).containsKey(command)) {
+                    if (command.equals("name")) {
+                        Label label = new Label(getFullCommandName(macro.get(key).get(command)));
+                        label.getStyleClass().add("element-label");
+                        macroBox.getChildren().add(label);
+                    } else if (command.equals("count")) {
+                        String countValue = macro.get(key).get(command);
+                        if (countValue.equals("1")) {
+                            countValue = "";
+                        }
+                        TextField count = new TextField(countValue);
+                        count.setPrefWidth(51);
+                        count.setPromptText("Count");
+                        count.getStyleClass().add("element-input");
+                        HBox.setMargin(count, new Insets(0, 0, 0, 10));
+                        count.setPrefHeight(30);
+                        count.setFocusTraversable(false);
+                        macroBox.getChildren().add(count);
+                    } else if (command.equals("delay")) {
+                        String delayValue = macro.get(key).get(command);
+                        if (delayValue.equals("100")) {
+                            delayValue = "";
+                        }
+                        TextField delay = new TextField(delayValue);
+                        delay.setPrefWidth(54);
+                        if (macro.get(key).get("name").equals("W")) {
+                            delay.setPromptText("Time");
+                        } else{
+                            delay.setPromptText("Delay");
+                        }
+                        delay.getStyleClass().add("element-input");
+                        HBox.setMargin(delay, new Insets(0, 0, 0, 10));
+                        delay.setPrefHeight(30);
+                        delay.setFocusTraversable(false);
+                        macroBox.getChildren().add(delay);
+                    } else if (command.equals("letter")) {
+                        TextField letter = new TextField(macro.get(key).get(command));
+                        letter.setPrefWidth(100);
+                        letter.setPromptText("Key");
+                        letter.setEditable(false);
+                        letter.getStyleClass().add("element-input");
+                        HBox.setMargin(letter, new Insets(0, 0, 0, 10));
+                        letter.setPrefHeight(30);
+                        letter.setFocusTraversable(false);
+                        macroBox.getChildren().add(letter);
+                    }
+                }
+            }
+            macroBox.getStyleClass().add("placeholder");
+            parent.getChildren().add(macroBox);
+            commands.getChildren().add(parent);
+        }
+        return appendPlaceHolder(placeholder, commands);
+    }
+
+    public static HBox appendPlaceHolder(HBox placeholder, VBox elements) {
+        // If last placeholder is not empty then add a new placeholder
+        if (!placeholder.getChildren().isEmpty()) {
+            placeholder = MacroElements.createPlaceHolder();
+            elements.getChildren().add(placeholder);
+            placeholder = (HBox) placeholder.getChildren().get(0);
+        }
+
+        return placeholder;
+    }
+
+    private static String getFullCommandName(String name) {
+        switch (name) {
+            case "LC":
+                return "Left Click";
+            case "RC":
+                return "Right Click";
+            case "W":
+                return "Wait";
+            case "P":
+                return "Press";
+            default:
+                return "";
+        }
     }
 }

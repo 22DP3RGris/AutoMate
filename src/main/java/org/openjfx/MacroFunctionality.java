@@ -17,7 +17,7 @@ public class MacroFunctionality {
 
     public static void runMacro(HashMap<String, HashMap<String, String>> commands) throws Exception{
         if (commands.isEmpty()) return;
-
+        sleep(4000);
         for (int i = 0; i < commands.size(); i++){
             HashMap<String, String> command = commands.get(String.valueOf(i));
             switch (command.get("name")) {

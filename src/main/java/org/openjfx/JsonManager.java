@@ -62,7 +62,7 @@ public class JsonManager {
         // If the file already exists, read it into the macros map
         if (file.exists()) {
             try {
-                macros = mapper.readValue(file, new TypeReference<HashMap<String, HashMap<String, HashMap<String, String>>>>() {});
+                macros = mapper.readValue(file, new TypeReference<HashMap <String, HashMap<String, HashMap<String, String>>>>() {});
             } catch (IOException e) {
                 e.printStackTrace();
             }

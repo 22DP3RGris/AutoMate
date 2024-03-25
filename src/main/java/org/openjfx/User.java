@@ -1,5 +1,7 @@
 package org.openjfx;
 
+import java.util.HashMap;
+
 public class User {
 
     private static String username;
@@ -7,6 +9,7 @@ public class User {
     private static String password;
 
     public static void clear(){
+        MacroElements.setMacro(new HashMap<>());
         username = null;
         email = null;
         password = null;
