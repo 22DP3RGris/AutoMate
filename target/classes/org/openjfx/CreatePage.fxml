@@ -153,6 +153,14 @@
                                     <Insets />
                                  </HBox.margin>
                               </Button>
+                              <Button fx:id="clear" focusTraversable="false" mnemonicParsing="false" onAction="#clearCommands" styleClass="run-btn" text="CLEAR" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Button>
                            </children>
                            <VBox.margin>
                               <Insets left="45.0" top="20.0" />

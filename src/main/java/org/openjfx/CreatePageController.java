@@ -73,6 +73,14 @@ public class CreatePageController {
     }
 
     @FXML
+    private void clearCommands() {
+        while (elements.getChildren().size() > 1){
+            elements.getChildren().remove(elements.getChildren().size() - 1);
+        }
+        placeholder = MacroElements.appendPlaceHolder(placeholder, elements);
+    }
+
+    @FXML
     private void saveMacro() throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("SaveMacro.fxml"));
