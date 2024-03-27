@@ -5,6 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -86,5 +89,20 @@ public class App extends Application {
     private static void centerStage(){
         stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
-    } 
+    }
+
+    public static Stage createDialogStage(String fxml) throws IOException{
+        FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        
+        Stage dialogStage = new Stage();
+        dialogStage.initModality(Modality.APPLICATION_MODAL);
+        dialogStage.initStyle(javafx.stage.StageStyle.UNDECORATED);
+        dialogStage.setScene(new Scene(loader.load()));
+        dialogStage.setResizable(false);
+        dialogStage.sizeToScene();
+
+        Topbar.dragDialog((AnchorPane) dialogStage.getScene().lookup("#topBar"), dialogStage);
+        Topbar.closeDialog((Button) dialogStage.getScene().lookup("#exitBtn"), dialogStage);
+        return dialogStage;
+    }
 }

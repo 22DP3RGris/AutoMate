@@ -13,7 +13,7 @@ public class HomePageController {
     @FXML
     private void initialize() throws IOException{
  
-        welcomeMsg.setText("Welcome, " + User.getUsername() + "!");
+        welcomeMsg.setText("Welcome, " + CurrentUser.getUsername() + "!");
 
     }
 

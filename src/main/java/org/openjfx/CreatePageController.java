@@ -4,18 +4,16 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class CreatePageController {
@@ -83,22 +81,23 @@ public class CreatePageController {
     @FXML
     private void saveMacro() throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SaveMacro.fxml"));
-        
-        Stage dialogStage = new Stage();
-        dialogStage.initModality(Modality.APPLICATION_MODAL);
-        dialogStage.initStyle(javafx.stage.StageStyle.UNDECORATED);
-        dialogStage.setScene(new Scene(loader.load()));
+        Stage dialogStage = App.createDialogStage("SaveMacro");
 
-        Topbar.dragDialog((AnchorPane) dialogStage.getScene().lookup("#topBar"), dialogStage);
-        Topbar.closeDialog((Button) dialogStage.getScene().lookup("#exitBtn"), dialogStage);
         TextField macroName = (TextField) dialogStage.getScene().lookup("#macroName");
         Text macroNameError = (Text) dialogStage.getScene().lookup("#macroNameError");
         Button saveBtn = (Button) dialogStage.getScene().lookup("#saveBtn");
+        AnchorPane window = (AnchorPane) dialogStage.getScene().lookup("#window");
+
+        window.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                saveBtn.fire();
+            }
+        });
+
         saveBtn.setOnAction(event ->{
             macroNameError.setVisible(false);
             if (macroName.getText().isEmpty()){
-                macroNameError.setText("Input a name for the Macro.");
+                macroNameError.setText("Name cannot be empty.");
                 macroNameError.setVisible(true);
             }
             else if (Database.macroExist(macroName.getText())){

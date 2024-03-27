@@ -39,7 +39,7 @@
                               <Font name="Arial Bold" size="40.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" prefHeight="55.0" text="E-Mail:" textFill="#ddd6d6">
+                        <Label alignment="CENTER_RIGHT" prefHeight="100.0" text="E-Mail:" textFill="#ddd6d6">
                            <font>
                               <Font name="Arial Bold" size="40.0" />
                            </font>
@@ -73,7 +73,7 @@
                               <Font name="Arial" size="40.0" />
                            </font>
                         </Label>
-                        <Label fx:id="emailLabel" prefHeight="55.0" text="test" textFill="WHITE">
+                        <Label fx:id="emailLabel" maxWidth="700.0" prefHeight="100.0" text="test" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Arial" size="40.0" />
                            </font>

@@ -1,45 +1,42 @@
 package org.openjfx;
 
-import java.util.HashMap;
-
 public class User {
 
-    private static String username;
-    private static String email;
-    private static String password;
+    private String username;
+    private String email;
+    private String password;
 
-    public static void clear(){
-        MacroElements.setMacro(new HashMap<>());
-        username = null;
-        email = null;
-        password = null;
+    public User(String username) {
+        this.username = username;
     }
 
-    public static String getUsername() {
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    public String getUsername() {
         return username;
     }
 
-    public static void setUsername(String username) {
-        User.username = username;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public static String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public static void setEmail(String email) {
-        User.email = email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public static String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public static void setPassword(String password) {
-        User.password = password;
-    }
-
-    public static String display(){
-        return "Username: " + username + " Email: " + email + " Password: " + password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

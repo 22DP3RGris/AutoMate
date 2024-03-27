@@ -13,12 +13,16 @@
     background-color: #36393e;
     -fx-background: #36393e;
     background: #36393e;
-    -fx-padding: 0px, 0px, 0px, 0px;
+    -fx-padding: 0px 0px 0px 0px;
     padding: 0px;
 }
 
 .scroll-bar:vertical {
     -fx-pref-width: 12px; 
+    -fx-margin: 0px 0px 0px 0px;
+    margin: 0px 0px 0px, 0px;
+    -fx-padding: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
     -fx-background-color: #1e2124; 
     background-color: #1e2124;
 }

@@ -3,6 +3,7 @@ package org.openjfx;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -21,16 +22,14 @@ public class RegisterController {
     private PasswordField cPasswordField;
     @FXML 
     private Text usernameError, eMailError, passwordError, cPasswordError;
+    @FXML
+    private Button submitReg;
 
     @FXML
     private void initialize(){
         window.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                try {
-                    processForm();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                submitReg.fire();
             }
         });
     }

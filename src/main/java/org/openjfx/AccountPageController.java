@@ -24,30 +24,30 @@ public class AccountPageController {
     private void initialize() throws IOException{
 
         // Set the user's information
-        usernameLabel.setText(User.getUsername());
-        emailLabel.setText(User.getEmail());
+        usernameLabel.setText(CurrentUser.getUsername());
+        emailLabel.setText(CurrentUser.getEmail());
 
         if (showPassword.isSelected()){ // Show the password
-            passwordLabel.setText(User.getPassword());
+            passwordLabel.setText(CurrentUser.getPassword());
         }
         else{ // Hide the password
-            passwordLabel.setText("*".repeat(User.getPassword().length()));
+            passwordLabel.setText("*".repeat(CurrentUser.getPassword().length()));
         }
 
         // Show the password when the checkbox is selected
         showPassword.setOnAction(event -> {
             if (showPassword.isSelected()){
-                passwordLabel.setText(User.getPassword());
+                passwordLabel.setText(CurrentUser.getPassword());
             }
             else{
-                passwordLabel.setText("*".repeat(User.getPassword().length()));
+                passwordLabel.setText("*".repeat(CurrentUser.getPassword().length()));
             }
         });
     }
 
     @FXML // Logout the user
     private void logout() throws IOException{
-        User.clear();
+        CurrentUser.clear();
         App.getStage().setMaximized(false);
         App.getStage().setResizable(false);
         App.setRoot("login", true);

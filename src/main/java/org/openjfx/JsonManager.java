@@ -18,7 +18,7 @@ public class JsonManager {
 
     public static void updateMacros(HashMap<String, HashMap<String, HashMap<String, String>>> macros) {
         ObjectMapper mapper = new ObjectMapper();
-        File file = new File("Macros/" + User.getUsername() + ".json");
+        File file = new File("Macros/" + CurrentUser.getUsername() + ".json");
 
         try {
             mapper.writerWithDefaultPrettyPrinter().writeValue(file, macros);
@@ -29,7 +29,7 @@ public class JsonManager {
     
     public static void writeMacro(String macroName, HashMap<String, HashMap<String, String>> commands) {
         ObjectMapper mapper = new ObjectMapper();
-        File file = new File("Macros/" + User.getUsername() + ".json");
+        File file = new File("Macros/" + CurrentUser.getUsername() + ".json");
 
         HashMap<String, HashMap<String, HashMap<String, String>>> macros = new HashMap<>();
 
@@ -55,7 +55,7 @@ public class JsonManager {
 
     public static HashMap<String, HashMap<String, HashMap<String, String>>> readMacrosFromJson(){
         ObjectMapper mapper = new ObjectMapper();
-        File file = new File("Macros/" + User.getUsername() + ".json");
+        File file = new File("Macros/" + CurrentUser.getUsername() + ".json");
 
         HashMap<String, HashMap<String, HashMap<String, String>>> macros = new HashMap<>();
 
@@ -73,7 +73,7 @@ public class JsonManager {
 
     public static void removeMacro(String macroName){
         ObjectMapper mapper = new ObjectMapper();
-        File file = new File("Macros/" + User.getUsername() + ".json");
+        File file = new File("Macros/" + CurrentUser.getUsername() + ".json");
 
         HashMap<String, HashMap<String, HashMap<String, String>>> macros = new HashMap<>();
 

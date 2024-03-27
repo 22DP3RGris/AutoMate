@@ -117,7 +117,7 @@ public class SideNav {
         sideNavButtons.put(((Button) scene.lookup("#homeBtn")), (Button) scene.lookup("#homeLabel"));
         sideNavButtons.put((Button) scene.lookup("#createBtn"), (Button) scene.lookup("#createLabel"));
         sideNavButtons.put((Button) scene.lookup("#folderBtn"), (Button) scene.lookup("#folderLabel"));
-        // sideNavButtons.put((Button) scene.lookup("#friendsBtn"), (Button) scene.lookup("#friendsLabel"));
+        sideNavButtons.put((Button) scene.lookup("#friendsBtn"), (Button) scene.lookup("#friendsLabel"));
         sideNavButtons.put((Button) scene.lookup("#accountBtn"), (Button) scene.lookup("#accountLabel"));
         // sideNavButtons.put((Button) scene.lookup("#settingsBtn"), (Button) scene.lookup("#settingsLabel"));
         return sideNavButtons;
