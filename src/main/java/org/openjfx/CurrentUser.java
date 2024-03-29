@@ -10,7 +10,7 @@ public class CurrentUser{
 
     public static void clear(){
         MacroElements.setMacro(new HashMap<>());
-        username = null;
+        password = null;
         email = null;
         username = null;
     }

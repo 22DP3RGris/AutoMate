@@ -16,21 +16,17 @@ public class Topbar{
         });
     }
 
-    public static void close(Button button) throws IOException{
+    public static void close(Button button){
         if (button == null) return;
         button.setOnMouseReleased(event -> {
             App.getStage().close();
         });
     }
 
-    public static void maximize(Button button) throws IOException{
+    public static void maximize(Button button){
         if (button == null) return;
         button.setOnMouseReleased(event -> {
-            if(App.getStage().isMaximized()){
-                App.getStage().setMaximized(false);
-            } else {
-                App.getStage().setMaximized(true);
-            }
+            App.getStage().setMaximized(!App.getStage().isMaximized());
         });
     }
 
@@ -60,7 +56,7 @@ public class Topbar{
         });
     }
 
-    public static void closeDialog(Button button, Stage stage) throws IOException{
+    public static void closeDialog(Button button, Stage stage){
         if (button == null) return;
         button.setOnMouseReleased(event -> {
             stage.close();

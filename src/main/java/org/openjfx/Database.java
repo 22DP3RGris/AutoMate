@@ -66,7 +66,7 @@ public class Database{
 
     public static boolean usernameExist(String username) {
 
-        if (username.equals("")) return false;
+        if (username.isEmpty()) return false;
         exist = false;
 
         DatabaseReference ref = baseRef.child(username);
@@ -100,7 +100,7 @@ public class Database{
 
     public static boolean emailExist(String email) {
 
-        if (email.equals("")) return false;
+        if (email.isEmpty()) return false;
         exist = false;
 
         DatabaseReference ref = baseRef;
@@ -135,14 +135,12 @@ public class Database{
         return exist;
     }
 
-    public static boolean registerUser(String username, String password, String email) {
+    public static void registerUser(String username, String password, String email) {
    
         DatabaseReference ref = baseRef.child(username);
 
         ref.child("email").setValueAsync(email);
         ref.child("password").setValueAsync(password);
-
-        return true;
     }
 
     public static void saveMacro(String macroName, HashMap<String, HashMap<String, String>> commands) {
@@ -159,7 +157,7 @@ public class Database{
 
     public static boolean macroExist(String macroName) {
 
-        if (macroName.equals("")) return false;
+        if (macroName.isEmpty()) return false;
         exist = false;
 
         DatabaseReference ref = baseRef.child(CurrentUser.getUsername()).child("macros").child(macroName);
@@ -240,7 +238,7 @@ public class Database{
 
     public static boolean friendRequestExist(String fromUser, String toUser) {
 
-        if (fromUser.equals("") || toUser.equals("")) return false;
+        if (fromUser.isEmpty() || toUser.isEmpty()) return false;
         exist = false;
 
         DatabaseReference ref = baseRef.child(toUser).child("friendRequests").child(fromUser);
@@ -368,7 +366,7 @@ public class Database{
 
     public static boolean friendExists(String username) {
         
-        if (username.equals("")) return false;
+        if (username.isEmpty()) return false;
         exist = false;
 
         DatabaseReference ref = baseRef.child(CurrentUser.getUsername()).child("friends").child(username);

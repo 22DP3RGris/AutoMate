@@ -27,8 +27,7 @@ public class Validator {
     @FXML
     public static void numberField(HBox source) {
         for (Node node : source.getChildren()) {
-            if (node instanceof TextField) {
-                TextField textField = (TextField) node;
+            if (node instanceof TextField textField) {
                 if (textField.getPromptText().equals("Key")){
                     keyField(textField);
                     continue;

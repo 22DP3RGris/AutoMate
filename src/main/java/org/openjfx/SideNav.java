@@ -15,7 +15,7 @@ public class SideNav {
     private static HashMap<Button, Button> sideNavButtons;
     public static boolean sideNavOpen;
 
-    public static void init(Scene scene) throws IOException{
+    public static void init(Scene scene){
         AnchorPane sideNavElements = (AnchorPane) scene.lookup("#sideNavElements");
         AnchorPane workspace = (AnchorPane) scene.lookup("#workspace");
         SideNav.setSideNavButtons(getSideNavButtons());
@@ -45,11 +45,7 @@ public class SideNav {
         sideNavButtons = buttons;
     }
 
-    public static boolean isSideButtonsNull(){
-        return sideNavButtons == null;
-    }
-
-    public static void open(AnchorPane sideNavElements) throws IOException, InterruptedException{
+    public static void open(AnchorPane sideNavElements){
         sideNavElements.setVisible(true);
         TranslateTransition transit = new TranslateTransition(Duration.seconds(0.35), sideNavElements);
         double xOffset;
@@ -61,11 +57,10 @@ public class SideNav {
         xOffset = sideNavElements.getTranslateX();
         transit.setByX(0 - xOffset);
         transit.play();
-        xOffset = sideNavElements.getTranslateX();
         sideNavOpen = true;
     }
 
-    public static void close(AnchorPane sideNavElements) throws IOException, InterruptedException{
+    public static void close(AnchorPane sideNavElements){
         TranslateTransition transit = new TranslateTransition(Duration.seconds(0.35), sideNavElements);
         double xOffset;
         closeLabels();
@@ -75,7 +70,7 @@ public class SideNav {
         sideNavOpen = false;
     }
 
-    public static void openBtns() throws IOException{
+    public static void openBtns(){
         for (Button btn : sideNavButtons.keySet()){
             String page = btn.getId().split("B")[0] + "Page";
             btn.setOnMouseReleased(event -> {
@@ -90,7 +85,7 @@ public class SideNav {
         }
     }
 
-    public static void openLabels() throws IOException{
+    public static void openLabels(){
         for (Button btn : sideNavButtons.keySet()){
             String page = btn.getId().split("B")[0] + "Page";
             sideNavButtons.get(btn).setOnMouseReleased(event -> {
@@ -101,11 +96,11 @@ public class SideNav {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            });;
+            });
         }
     }
 
-    public static void closeLabels() throws IOException{
+    public static void closeLabels(){
         for (Button btn : sideNavButtons.keySet()){
             sideNavButtons.get(btn).removeEventHandler(MouseEvent.MOUSE_RELEASED, sideNavButtons.get(btn).getOnMouseReleased());
         }

@@ -18,7 +18,7 @@ public class App extends Application {
     private static Stage stage; // Stores window
     private static String currentScene; // Stores current FXML file name
     private static Scene scene; // Stores current scene
-    private static Rectangle2D screenBounds = javafx.stage.Screen.getPrimary().getVisualBounds(); // Stores user screen bounds
+    private static final Rectangle2D screenBounds = javafx.stage.Screen.getPrimary().getVisualBounds(); // Stores user screen bounds
 
     // Happens when the application starts, sets up the application window
     @Override

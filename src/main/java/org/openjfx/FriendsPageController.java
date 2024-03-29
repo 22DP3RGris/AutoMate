@@ -27,7 +27,7 @@ public class FriendsPageController {
     private ScrollPane mainScroll;
 
     @FXML
-    private void initialize() throws IOException{
+    private void initialize(){
         friendsList.prefWidthProperty().bind(mainScroll.widthProperty());
         updateFriendBoxes();
     }

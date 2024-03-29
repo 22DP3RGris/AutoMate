@@ -23,14 +23,14 @@ public class FolderPageController {
     private ScrollPane mainScroll;
 
     @FXML
-    private void initialize() throws IOException{
+    private void initialize(){
         macroList.prefWidthProperty().bind(mainScroll.widthProperty());
         HashMap<String, HashMap<String, HashMap<String, String>>> macros = JsonManager.readMacrosFromJson();
         createMacroBoxes(macros);
     }
 
     @FXML
-    private void syncWithDb() throws IOException{
+    private void syncWithDb(){
         HashMap<String, HashMap<String, HashMap<String, String>>> macros = Database.getMacros();
         JsonManager.updateMacros(macros);
         macros = JsonManager.readMacrosFromJson();

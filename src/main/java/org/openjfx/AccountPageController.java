@@ -3,7 +3,6 @@ package org.openjfx;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 
@@ -16,12 +15,9 @@ public class AccountPageController {
     @FXML
     private CheckBox showPassword;
 
-    @FXML
-    private Button logoutBtn;
-
 
     @FXML // Initialize the scene
-    private void initialize() throws IOException{
+    private void initialize(){
 
         // Set the user's information
         usernameLabel.setText(CurrentUser.getUsername());

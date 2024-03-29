@@ -32,7 +32,7 @@ public class CreatePageController {
     private Button run;
 
     @FXML // Initialize the scene
-    private void initialize() throws IOException{
+    private void initialize(){
 
         if (!MacroElements.getMacro().isEmpty()) {
             placeholder = MacroElements.createMacroBoxes(placeholder, elements);
@@ -118,18 +118,15 @@ public class CreatePageController {
     @FXML
     private HashMap<String, HashMap<String, String>> getCommands() {
         HashMap<String, HashMap<String, String>> commands = new HashMap<>();
-        String name = "";
-        String count = "";
-        String delay = "";
-        String letter = "";
-        byte parameterCounter = 0;
+        String name;
+        String count;
+        String delay;
+        String letter;
+        byte parameterCounter;
+        byte counter = 0;
         for (Node node : elements.getChildren()) {
-            try {
-                if (node.getId().equals("btns") || ((Label)((HBox) node).getChildren()).getText().equals("Select Element")){
-                    continue;
-                };
-            } catch (Exception e) {
-            }
+            counter++;
+            if (counter < 2) continue;
             if (node instanceof HBox) {
                 HBox hbox = ((HBox) node).getChildren().size() == 2 ? (HBox) ((HBox) node).getChildren().get(1) : (HBox) ((HBox) node).getChildren().get(0);
                 parameterCounter = 0;
@@ -138,26 +135,24 @@ public class CreatePageController {
                 count = "";
                 delay = "";
                 for (Node child : hbox.getChildren()) {
-                    if (child instanceof Label) {
-                        Label label = (Label) child;
+                    if (child instanceof Label label) {
                         parameterCounter++;
                         for (char c : label.getText().toCharArray()) {
                             if (Character.isUpperCase(c)) {
                                 name += String.valueOf(c);
                             }
                         }
-                    } else if (child instanceof TextField) {
-                        TextField textField = (TextField) child;
+                    } else if (child instanceof TextField textField) {
                         parameterCounter++;
                         if (textField.getPromptText().equals("Count")) {
-                            if (textField.getText() == ""){
+                            if (textField.getText().isEmpty()){
                                 count = "1";
                             }
                             else{
                                 count = textField.getText();
                             }
                         } else if (textField.getPromptText().equals("Delay") || textField.getPromptText().equals("Time")){
-                            if (textField.getText() == ""){
+                            if (textField.getText().isEmpty()){
                                 delay = "100";
                             }
                             else{

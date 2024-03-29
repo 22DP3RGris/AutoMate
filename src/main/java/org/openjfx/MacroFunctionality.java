@@ -15,7 +15,7 @@ public class MacroFunctionality {
         robot = new Robot();
     }
 
-    public static void runMacro(HashMap<String, HashMap<String, String>> commands) throws Exception{
+    public static void runMacro(HashMap<String, HashMap<String, String>> commands){
         if (commands.isEmpty()) return;
         sleep(4000);
         for (int i = 0; i < commands.size(); i++){
@@ -37,9 +37,10 @@ public class MacroFunctionality {
                     sleep(Integer.parseInt(command.get("delay")));
                     break;
                 case "P":
+                    if (command.get("letter").isEmpty()) break;
                     for (int j = 0; j < Integer.parseInt(command.get("count")); j++) {
                         keyPress(KeyCode.valueOf(command.get("letter").toUpperCase()));
-                        int delay = (Integer.parseInt(command.get("delay")) > 100) ? Integer.parseInt(command.get("delay")) : 100;
+                        int delay = Math.max(Integer.parseInt(command.get("delay")), 100);
                         sleep(delay);
                     }
                     break;
@@ -49,21 +50,21 @@ public class MacroFunctionality {
         }
     }
 
-    public static void sleep(int duration) throws AWTException{
+    public static void sleep(int duration){
         robot.delay(duration);
     }
 
-    private static void leftMouseClick() throws AWTException{
+    private static void leftMouseClick(){
         robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
     }
-    
-    private static void rightMouseClick() throws AWTException{
+
+    private static void rightMouseClick(){
         robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
         robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
     }
 
-    private static void keyPress(KeyCode keyCode) throws AWTException{
+    private static void keyPress(KeyCode keyCode){
         robot.keyPress(keyCode.getCode());
         robot.keyRelease(keyCode.getCode());
     }

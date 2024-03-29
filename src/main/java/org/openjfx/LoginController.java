@@ -39,7 +39,7 @@ public class LoginController {
     @FXML
     private void processForm() throws IOException{
 
-        if (!usernameField.getText().equals("") && !passwordField.getText().equals ("")){
+        if (!usernameField.getText().isEmpty() && !passwordField.getText().isEmpty()){
             if(Database.loginUser(usernameField.getText(), passwordField.getText())){
                 App.setResizable(true);
                 App.setRoot("homePage", true);

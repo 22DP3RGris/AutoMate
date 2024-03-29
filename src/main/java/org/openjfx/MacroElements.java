@@ -22,14 +22,12 @@ public class MacroElements {
         parent.getChildren().add(0, createRemoveBtn());
         target.setAlignment(Pos.CENTER);
         for (Node node : source.getChildren()) {
-            if (node instanceof Label) {
-                Label original = (Label) node;
+            if (node instanceof Label original) {
                 Label clone = new Label(original.getText());
                 clone.setFocusTraversable(false);
                 clone.getStyleClass().add("element-label");
                 target.getChildren().add(clone);
-            } else if (node instanceof TextField) {
-                TextField original = (TextField) node;
+            } else if (node instanceof TextField original) {
                 TextField clone = new TextField(original.getText());
                 clone.setPrefWidth(original.getPrefWidth());
                 clone.setPromptText(original.getPromptText());
@@ -112,50 +110,55 @@ public class MacroElements {
 
             for (String command : order) { 
                 if (macro.get(key).containsKey(command)) {
-                    if (command.equals("name")) {
-                        Label label = new Label(getFullCommandName(macro.get(key).get(command)));
-                        label.getStyleClass().add("element-label");
-                        macroBox.getChildren().add(label);
-                    } else if (command.equals("count")) {
-                        String countValue = macro.get(key).get(command);
-                        if (countValue.equals("1")) {
-                            countValue = "";
-                        }
-                        TextField count = new TextField(countValue);
-                        count.setPrefWidth(51);
-                        count.setPromptText("Count");
-                        count.getStyleClass().add("element-input");
-                        HBox.setMargin(count, new Insets(0, 0, 0, 10));
-                        count.setPrefHeight(30);
-                        count.setFocusTraversable(false);
-                        macroBox.getChildren().add(count);
-                    } else if (command.equals("delay")) {
-                        String delayValue = macro.get(key).get(command);
-                        if (delayValue.equals("100")) {
-                            delayValue = "";
-                        }
-                        TextField delay = new TextField(delayValue);
-                        delay.setPrefWidth(54);
-                        if (macro.get(key).get("name").equals("W")) {
-                            delay.setPromptText("Time");
-                        } else{
-                            delay.setPromptText("Delay");
-                        }
-                        delay.getStyleClass().add("element-input");
-                        HBox.setMargin(delay, new Insets(0, 0, 0, 10));
-                        delay.setPrefHeight(30);
-                        delay.setFocusTraversable(false);
-                        macroBox.getChildren().add(delay);
-                    } else if (command.equals("letter")) {
-                        TextField letter = new TextField(KeyCodeReverse.reverseKeyCodeToUser(macro.get(key).get(command)));
-                        letter.setPrefWidth(100);
-                        letter.setPromptText("Key");
-                        letter.setEditable(false);
-                        letter.getStyleClass().add("element-input");
-                        HBox.setMargin(letter, new Insets(0, 0, 0, 10));
-                        letter.setPrefHeight(30);
-                        letter.setFocusTraversable(false);
-                        macroBox.getChildren().add(letter);
+                    switch (command) {
+                        case "name":
+                            Label label = new Label(getFullCommandName(macro.get(key).get(command)));
+                            label.getStyleClass().add("element-label");
+                            macroBox.getChildren().add(label);
+                            break;
+                        case "count":
+                            String countValue = macro.get(key).get(command);
+                            if (countValue.equals("1")) {
+                                countValue = "";
+                            }
+                            TextField count = new TextField(countValue);
+                            count.setPrefWidth(51);
+                            count.setPromptText("Count");
+                            count.getStyleClass().add("element-input");
+                            HBox.setMargin(count, new Insets(0, 0, 0, 10));
+                            count.setPrefHeight(30);
+                            count.setFocusTraversable(false);
+                            macroBox.getChildren().add(count);
+                            break;
+                        case "delay":
+                            String delayValue = macro.get(key).get(command);
+                            if (delayValue.equals("100")) {
+                                delayValue = "";
+                            }
+                            TextField delay = new TextField(delayValue);
+                            delay.setPrefWidth(54);
+                            if (macro.get(key).get("name").equals("W")) {
+                                delay.setPromptText("Time");
+                            } else {
+                                delay.setPromptText("Delay");
+                            }
+                            delay.getStyleClass().add("element-input");
+                            HBox.setMargin(delay, new Insets(0, 0, 0, 10));
+                            delay.setPrefHeight(30);
+                            delay.setFocusTraversable(false);
+                            macroBox.getChildren().add(delay);
+                            break;
+                        case "letter":
+                            TextField letter = new TextField(KeyCodeReverse.reverseKeyCodeToUser(macro.get(key).get(command)));
+                            letter.setPrefWidth(100);
+                            letter.setPromptText("Key");
+                            letter.setEditable(false);
+                            letter.getStyleClass().add("element-input");
+                            HBox.setMargin(letter, new Insets(0, 0, 0, 10));
+                            letter.setPrefHeight(30);
+                            letter.setFocusTraversable(false);
+                            macroBox.getChildren().add(letter);
+                            break;
                     }
                 }
             }
