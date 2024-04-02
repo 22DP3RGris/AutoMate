@@ -2,8 +2,8 @@ package org.openjfx;
 
 import java.util.HashMap;
 
+// This class is used to store the current user's information
 public class CurrentUser{
-
     private static String username;
     private static String email;
     private static String password;

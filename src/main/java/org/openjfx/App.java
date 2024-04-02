@@ -91,9 +91,11 @@ public class App extends Application {
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
     }
 
+    // Creates a dialog stage and sets up the topbar.
     public static Stage createDialogStage(String fxml) throws IOException{
         FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        
+
+        // Create the dialog stage.
         Stage dialogStage = new Stage();
         dialogStage.initModality(Modality.APPLICATION_MODAL);
         dialogStage.initStyle(javafx.stage.StageStyle.UNDECORATED);
@@ -101,8 +103,10 @@ public class App extends Application {
         dialogStage.setResizable(false);
         dialogStage.sizeToScene();
 
+        // Initialize the topbar functionality.
         Topbar.dragDialog((AnchorPane) dialogStage.getScene().lookup("#topBar"), dialogStage);
         Topbar.closeDialog((Button) dialogStage.getScene().lookup("#exitBtn"), dialogStage);
+
         return dialogStage;
     }
 }

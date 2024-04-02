@@ -8,11 +8,10 @@ public class HomePageController {
     @FXML
     private Label welcomeMsg;
 
-    @FXML
+    @FXML // Initialize the scene
     private void initialize(){
- 
+        // Set the welcome message
         welcomeMsg.setText("Welcome, " + CurrentUser.getUsername() + "!");
-
     }
 
 }

@@ -12,16 +12,27 @@ import javafx.util.Duration;
 
 public class SideNav {
 
+    // Store side navigation buttons
     private static HashMap<Button, Button> sideNavButtons;
+
+    // Store side navigation state
     public static boolean sideNavOpen;
 
-    public static void init(Scene scene){
+    public static void init(Scene scene){ // Initialize the side navigation
+
         AnchorPane sideNavElements = (AnchorPane) scene.lookup("#sideNavElements");
         AnchorPane workspace = (AnchorPane) scene.lookup("#workspace");
-        SideNav.setSideNavButtons(getSideNavButtons());
+
+        // Set side navigation buttons
+        sideNavButtons = getSideNavButtons();
+
+        // Hide side navigation
         sideNavOpen = false;
         sideNavElements.setTranslateX(-300);
+
         Button sideNavBtn = (Button) App.getScene().lookup("#sideNavBtn");
+
+        // Open side navigation when the user clicks on the side navigation button
         sideNavBtn.setOnAction(event -> {
             try {
                 open(sideNavElements);
@@ -29,6 +40,8 @@ public class SideNav {
                 e.printStackTrace();
             }
         });
+
+        // If the user clicks on the workspace, close the side navigation
         workspace.setOnMouseClicked(event -> {
             if (sideNavOpen){
                 try {
@@ -38,43 +51,55 @@ public class SideNav {
                 }
             }
         });
-        SideNav.openBtns();
+        SideNav.openBtns(); // Prepare the side navigation buttons
     }
 
-    public static void setSideNavButtons(HashMap<Button, Button> buttons){
-        sideNavButtons = buttons;
-    }
-
+    private static double xOffset;
+    // Open the side navigation
     public static void open(AnchorPane sideNavElements){
+
+        // Show the side navigation
         sideNavElements.setVisible(true);
+
+        // Create a transition
         TranslateTransition transit = new TranslateTransition(Duration.seconds(0.35), sideNavElements);
-        double xOffset;
+
+        // If the side navigation is open, close it
         if(sideNavOpen){
             close(sideNavElements);
             sideNavOpen = false;
         }
+
+        // Open the side navigation
         openLabels();
+
+        // Play the transition
         xOffset = sideNavElements.getTranslateX();
         transit.setByX(0 - xOffset);
         transit.play();
         sideNavOpen = true;
     }
 
+    // Close the side navigation
     public static void close(AnchorPane sideNavElements){
+
+        // Create a transition
         TranslateTransition transit = new TranslateTransition(Duration.seconds(0.35), sideNavElements);
-        double xOffset;
-        closeLabels();
+
+        // Play the transition
         xOffset = sideNavElements.getTranslateX();
         transit.setByX(-300 + xOffset);
         transit.play();
         sideNavOpen = false;
     }
 
+    // Prepare the side navigation buttons onClick
     public static void openBtns(){
-        for (Button btn : sideNavButtons.keySet()){
-            String page = btn.getId().split("B")[0] + "Page";
+        for (Button btn : sideNavButtons.keySet()){ // For each button in the side navigation
+            String page = btn.getId().split("B")[0] + "Page"; // Get the page name
             btn.setOnMouseReleased(event -> {
                 try {
+                    // If the current scene is not the page, set the root to the page
                     if (!App.getCurrentScene().equals(page)){
                         App.setRoot(page, false);
                     }
@@ -85,11 +110,13 @@ public class SideNav {
         }
     }
 
+    // Prepare the side navigation labels onClick
     public static void openLabels(){
-        for (Button btn : sideNavButtons.keySet()){
-            String page = btn.getId().split("B")[0] + "Page";
+        for (Button btn : sideNavButtons.keySet()){ // For each button in the side navigation
+            String page = btn.getId().split("B")[0] + "Page"; // Get the page name
             sideNavButtons.get(btn).setOnMouseReleased(event -> {
                 try {
+                    // If the current scene is not the page, set the root to the page
                     if (!App.getCurrentScene().equals(page)){
                         App.setRoot(page, false);
                     }
@@ -100,12 +127,7 @@ public class SideNav {
         }
     }
 
-    public static void closeLabels(){
-        for (Button btn : sideNavButtons.keySet()){
-            sideNavButtons.get(btn).removeEventHandler(MouseEvent.MOUSE_RELEASED, sideNavButtons.get(btn).getOnMouseReleased());
-        }
-    }
-
+    // Get the side navigation buttons and labels to HashMap
     private static HashMap<Button, Button> getSideNavButtons(){
         HashMap<Button, Button> sideNavButtons = new HashMap<>();
         Scene scene = App.getStage().getScene();

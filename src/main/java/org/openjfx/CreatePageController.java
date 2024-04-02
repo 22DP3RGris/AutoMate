@@ -34,6 +34,7 @@ public class CreatePageController {
     @FXML // Initialize the scene
     private void initialize(){
 
+        // If the macro is not empty then create the macro boxes
         if (!MacroElements.getMacro().isEmpty()) {
             placeholder = MacroElements.createMacroBoxes(placeholder, elements);
         }
@@ -70,7 +71,7 @@ public class CreatePageController {
         }
     }
 
-    @FXML
+    @FXML // Clear the commands
     private void clearCommands() {
         while (elements.getChildren().size() > 1){
             elements.getChildren().remove(elements.getChildren().size() - 1);
@@ -78,23 +79,18 @@ public class CreatePageController {
         placeholder = MacroElements.appendPlaceHolder(placeholder, elements);
     }
 
-    @FXML
+    @FXML // Save the macro
     private void saveMacro() throws IOException {
 
         Stage dialogStage = App.createDialogStage("SaveMacro");
 
         TextField macroName = (TextField) dialogStage.getScene().lookup("#macroName");
         Text macroNameError = (Text) dialogStage.getScene().lookup("#macroNameError");
+        Button saveAsBtn = (Button) dialogStage.getScene().lookup("#saveAsBtn");
         Button saveBtn = (Button) dialogStage.getScene().lookup("#saveBtn");
-        AnchorPane window = (AnchorPane) dialogStage.getScene().lookup("#window");
 
-        window.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                saveBtn.fire();
-            }
-        });
-
-        saveBtn.setOnAction(event ->{
+        // Save the macro as a new macro
+        saveAsBtn.setOnAction(event ->{
             macroNameError.setVisible(false);
             if (macroName.getText().isEmpty()){
                 macroNameError.setText("Name cannot be empty.");
@@ -105,65 +101,86 @@ public class CreatePageController {
                 macroNameError.setVisible(true);
             }
             else{
+                // Save the macro to the database and the json file
                 Database.saveMacro(macroName.getText(), getCommands());
                 JsonManager.writeMacro(macroName.getText(), getCommands());
                 dialogStage.close();
             }
 
         });
-    
+
+        // Save the macro
+        saveBtn.setOnAction(event ->{
+            if (MacroElements.getMacroName() == null){
+                saveAsBtn.fire();
+                return;
+            }
+            // Save the macro to the database and the json file
+            Database.saveMacro(MacroElements.getMacroName(), getCommands());
+            JsonManager.writeMacro(MacroElements.getMacroName(), getCommands());
+            dialogStage.close();
+        });
+
+        // Show the dialog stage
         dialogStage.showAndWait();
     }
 
-    @FXML
+    @FXML // Get the commands from UI elements.
     private HashMap<String, HashMap<String, String>> getCommands() {
+
         HashMap<String, HashMap<String, String>> commands = new HashMap<>();
+
         String name;
         String count;
         String delay;
         String letter;
         byte parameterCounter;
         byte counter = 0;
+
+        // Loop through the elements and get the commands
         for (Node node : elements.getChildren()) {
             counter++;
-            if (counter < 2) continue;
+            if (counter < 2) continue; // Skip the first element (Buttons)
             if (node instanceof HBox) {
+                // If there is remove button, commands are in the second(1) HBox, otherwise in the first(0) HBox.
                 HBox hbox = ((HBox) node).getChildren().size() == 2 ? (HBox) ((HBox) node).getChildren().get(1) : (HBox) ((HBox) node).getChildren().get(0);
                 parameterCounter = 0;
                 name = "";
                 letter = "";
                 count = "";
                 delay = "";
+
+                // Loop through the HBox and get the command.
                 for (Node child : hbox.getChildren()) {
-                    if (child instanceof Label label) {
+                    if (child instanceof Label label) { // Get the name of the command
                         parameterCounter++;
                         for (char c : label.getText().toCharArray()) {
                             if (Character.isUpperCase(c)) {
                                 name += String.valueOf(c);
                             }
                         }
-                    } else if (child instanceof TextField textField) {
+                    } else if (child instanceof TextField textField) { // Get the parameters of the command
                         parameterCounter++;
-                        if (textField.getPromptText().equals("Count")) {
+                        if (textField.getPromptText().equals("Count")) { // Get the count
                             if (textField.getText().isEmpty()){
                                 count = "1";
                             }
                             else{
                                 count = textField.getText();
                             }
-                        } else if (textField.getPromptText().equals("Delay") || textField.getPromptText().equals("Time")){
+                        } else if (textField.getPromptText().equals("Delay") || textField.getPromptText().equals("Time")){ // Get the delay
                             if (textField.getText().isEmpty()){
                                 delay = "100";
                             }
                             else{
                                 delay = textField.getText();
                             }
-                        } else if (textField.getPromptText().equals("Key")){
+                        } else if (textField.getPromptText().equals("Key")){ // Get the letter
                             letter = KeyCodeReverse.reverseKeyCodeToMacro(textField.getText());
                         }
                     }
                 }
-                if (!letter.isEmpty() && parameterCounter == 4){
+                if (!letter.isEmpty() && parameterCounter == 4){ // If the command has all parameters
                     HashMap<String, String> command = new HashMap<>();
                     command.put("name", name);
                     command.put("letter", letter);
@@ -171,13 +188,13 @@ public class CreatePageController {
                     command.put("delay", delay);
                     commands.put(String.valueOf(commands.size()), command);
                 } else
-                if (!count.isEmpty() && !delay.isEmpty() && parameterCounter == 3) {
+                if (!count.isEmpty() && !delay.isEmpty() && parameterCounter == 3) { // If the command has count and delay
                     HashMap<String, String> command = new HashMap<>();
                     command.put("name", name);
                     command.put("count", count);
                     command.put("delay", delay);
                     commands.put(String.valueOf(commands.size()), command);
-                } else if (!delay.isEmpty() && parameterCounter == 2){
+                } else if (!delay.isEmpty() && parameterCounter == 2){ // If the command has only delay
                     HashMap<String, String> command = new HashMap<>();
                     command.put("name", name);
                     command.put("delay", delay);

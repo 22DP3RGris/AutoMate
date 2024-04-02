@@ -1,5 +1,6 @@
 package org.openjfx;
 
+// User class to store user information
 public class User {
 
     private String username;

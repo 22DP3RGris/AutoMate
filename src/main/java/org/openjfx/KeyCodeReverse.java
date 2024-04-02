@@ -1,6 +1,8 @@
 package org.openjfx;
 
 public class KeyCodeReverse {
+
+    // Convert a key code to a macro key code
     public static String reverseKeyCodeToMacro(String keyCode) {
         switch (keyCode) {
             case "Backspace":
@@ -78,6 +80,7 @@ public class KeyCodeReverse {
         }
     }
 
+    // Convert a key code to a user key code
     public static String reverseKeyCodeToUser(String KeyCode){
         switch (KeyCode){
             case "BACK_SPACE":

@@ -22,7 +22,7 @@
                <content>
                   <VBox fx:id="friendsList" alignment="CENTER">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="59.0" prefWidth="583.0">
+                        <HBox alignment="CENTER" prefHeight="59.0" prefWidth="900.0">
                            <children>
                               <Button focusTraversable="false" mnemonicParsing="false" onAction="#sendRequest" prefHeight="40.0" prefWidth="215.0" styleClass="run-btn" text="Send Request" textFill="WHITE">
                                  <font>
@@ -30,6 +30,14 @@
                                  </font>
                                  <HBox.margin>
                                     <Insets top="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button alignment="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#sentRequests" prefHeight="39.0" prefWidth="187.0" styleClass="run-btn" text="Sent Requests" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="21.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="20.0" />
                                  </HBox.margin>
                               </Button>
                               <Button focusTraversable="false" mnemonicParsing="false" onAction="#openRequests" prefHeight="39.0" prefWidth="245.0" styleClass="run-btn" text="Incoming Requests" textFill="WHITE">

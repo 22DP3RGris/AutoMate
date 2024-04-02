@@ -13,25 +13,35 @@ import javafx.scene.layout.VBox;
 
 public class MacroElements {
 
+    // Store current macro
     private static HashMap<String, HashMap<String, String>> macro = new HashMap<>();
 
+    // Store current macro name
+    private static String macroName;
+
+    // Clone needed element
     public static void cloneElement(HBox source, HBox target) {
+
+        // Clear target
         target.getChildren().clear();
+
+        // Clone elements
         HBox parent = (HBox) target.getParent();
         HBox.setMargin(target, new Insets(0, 0, 0, 0));
         parent.getChildren().add(0, createRemoveBtn());
         target.setAlignment(Pos.CENTER);
-        for (Node node : source.getChildren()) {
-            if (node instanceof Label original) {
+
+        for (Node node : source.getChildren()) { // For each element in the source
+            if (node instanceof Label original) { // If the element is a label
                 Label clone = new Label(original.getText());
                 clone.setFocusTraversable(false);
                 clone.getStyleClass().add("element-label");
                 target.getChildren().add(clone);
-            } else if (node instanceof TextField original) {
+            } else if (node instanceof TextField original) { // If the element is a text field
                 TextField clone = new TextField(original.getText());
                 clone.setPrefWidth(original.getPrefWidth());
                 clone.setPromptText(original.getPromptText());
-                if (original.getPromptText().equals("Key")) {
+                if (original.getPromptText().equals("Key")) { // If the element is a key
                     clone.setPrefWidth(100);
                     clone.setEditable(false);
                 } 
@@ -42,10 +52,13 @@ public class MacroElements {
                 target.getChildren().add(clone);
             }
         }
-        Validator.numberField(target);
+        Validator.numberField(target); // Validate the number field
     }
 
+    // Create a placeholder
     public static HBox createPlaceHolder() {
+
+        // Create the placeholder box
         HBox mainBox = new HBox();
         mainBox.setAlignment(Pos.CENTER);
         mainBox.setPrefWidth(400);
@@ -57,20 +70,27 @@ public class MacroElements {
         VBox.setMargin(mainBox, new Insets(20, 0, 0, 0));
         HBox.setMargin(placeHolder, new Insets(0, 0, 0, 45));
         placeHolder.getStyleClass().add("placeholder");
+
+        // Add the label to the placeholder
         Label label = new Label("Select Element");
         label.getStyleClass().add("element-label");
         placeHolder.getChildren().add(label);
         mainBox.getChildren().add(placeHolder);
+
         return mainBox;
     }
 
     private static Button createRemoveBtn() {
+
+        // Create the remove button
         Button removeBtn = new Button("X");
         removeBtn.getStyleClass().add("element-delete");
         removeBtn.setPrefWidth(30);
         removeBtn.setPrefHeight(30);
         HBox.setMargin(removeBtn, new Insets(0, 20, 0, 0));
         removeBtn.cursorProperty().set(javafx.scene.Cursor.HAND);
+
+        // Remove the element when the remove button is clicked
         removeBtn.setOnAction(event -> {
             HBox parentNode = (HBox)((Button) event.getSource()).getParent();
             ((VBox) parentNode.getParent()).getChildren().remove(parentNode);
@@ -80,22 +100,21 @@ public class MacroElements {
         return removeBtn;
     }
 
-    public static void setMacro(HashMap<String, HashMap<String, String>> Macro) {
-        macro = Macro;
-    }
-
-    public static HashMap<String, HashMap<String, String>> getMacro() {
-        return macro;
-    }
-
+    // Create macro boxes from the commands list
     public static HBox createMacroBoxes(HBox placeholder, VBox commands) {
-        while (commands.getChildren().size() > 1) {
+
+        // Clear the commands
+        while (commands.getChildren().size() > 1) { // Don't remove the buttons
             commands.getChildren().remove(commands.getChildren().size() - 1);
         }
+
+        // Go through each commands in the macro
         for (int i = 0; i < macro.size(); i++) {
 
+            // Get the key
             String key = String.valueOf(i);
 
+            // Create the parent and macro box
             HBox parent = new HBox();
             parent.setAlignment(Pos.CENTER);
             parent.getChildren().add(0, createRemoveBtn());
@@ -108,8 +127,13 @@ public class MacroElements {
             // Order of elements
             String[] order = {"name", "letter", "count", "delay"}; 
 
-            for (String command : order) { 
+            // Add elements based on the order
+            for (String command : order) {
+
+                // If the command exists
                 if (macro.get(key).containsKey(command)) {
+
+                    // Add the element, depending on the command
                     switch (command) {
                         case "name":
                             Label label = new Label(getFullCommandName(macro.get(key).get(command)));
@@ -166,13 +190,16 @@ public class MacroElements {
             parent.getChildren().add(macroBox);
             commands.getChildren().add(parent);
         }
+
+        // Return the current placeholder (target)
         return appendPlaceHolder(placeholder, commands);
     }
 
+    // Append a placeholder to the commands
     public static HBox appendPlaceHolder(HBox placeholder, VBox elements) {
         // If last placeholder is not empty then add a new placeholder
         if (!placeholder.getChildren().isEmpty()) {
-            placeholder = MacroElements.createPlaceHolder();
+            placeholder = createPlaceHolder();
             elements.getChildren().add(placeholder);
             placeholder = (HBox) placeholder.getChildren().get(0);
         }
@@ -180,6 +207,7 @@ public class MacroElements {
         return placeholder;
     }
 
+    // Get the full command name from the abbreviation
     private static String getFullCommandName(String name) {
         switch (name) {
             case "LC":
@@ -193,5 +221,21 @@ public class MacroElements {
             default:
                 return "";
         }
+    }
+
+    public static void setMacro(HashMap<String, HashMap<String, String>> Macro) {
+        macro = Macro;
+    }
+
+    public static void setMacroName(String name) {
+        macroName = name;
+    }
+
+    public static String getMacroName() {
+        return macroName;
+    }
+
+    public static HashMap<String, HashMap<String, String>> getMacro() {
+        return macro;
     }
 }

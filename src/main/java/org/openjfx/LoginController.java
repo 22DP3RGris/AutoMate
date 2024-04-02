@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 
 public class LoginController {
 
+    // Scene elements
     @FXML
     private AnchorPane window;
 
@@ -27,8 +28,10 @@ public class LoginController {
     @FXML
     private Button submitLogin;
 
-    @FXML
+    @FXML // Initialize the scene
     private void initialize(){
+
+        // If the user presses enter, submit the login form
         window.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 submitLogin.fire();
@@ -36,10 +39,13 @@ public class LoginController {
         });
     }
     
-    @FXML
+    @FXML // Process the login form
     private void processForm() throws IOException{
 
+        // Check if the fields are not empty
         if (!usernameField.getText().isEmpty() && !passwordField.getText().isEmpty()){
+
+            // Check if the user's credentials are correct
             if(Database.loginUser(usernameField.getText(), passwordField.getText())){
                 App.setResizable(true);
                 App.setRoot("homePage", true);
@@ -48,7 +54,7 @@ public class LoginController {
         errorMsg.setText("Incorrect password or username.");errorMsg.setVisible(true);
     }
 
-    @FXML
+    @FXML // Redirect the user to the register page
     private void redirectToRegister() throws IOException{
         App.setRoot("register", true);
     }
