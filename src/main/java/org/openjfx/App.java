@@ -35,6 +35,9 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
 
+        Database.init();
+        JsonManager.init();
+
         // ResizeHelper.addResizeListener(stage);
     }
 
@@ -61,8 +64,6 @@ public class App extends Application {
 
     // Main method, initializes the database and launches the application
     public static void main(String[] args) throws IOException {
-        Database.init();
-        JsonManager.init();
         launch(args);
     }
 

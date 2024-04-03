@@ -1,35 +1,50 @@
 package org.openjfx;
 
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
 
 import java.io.IOException;
 import java.net.InetAddress;
 
 public class InternetConnectionChecker {
 
+    private static Stage dialogStage = new Stage();
+    public static void waitForInternet(){
+        while (!hasConnection()) {
+            if (!dialogStage.isShowing())
+            {
+                try {
+                    showError();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     // Check if the user has an internet connection
-    private static boolean checkConnection() {
+    private static boolean hasConnection() {
         try {
             // Check if the user can reach the Google DNS server
             InetAddress inetAddress = InetAddress.getByName("8.8.8.8");
             return inetAddress.isReachable(1000);
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
     }
 
-    // Check if the user has an internet connection, if not show an error dialog
-    public static boolean hasInternetConnection() throws IOException {
+    // Show an error dialog
+    private static void showError() throws IOException {
 
-        boolean internetConnection = checkConnection();
+        dialogStage = App.createDialogStage("InternetError");
 
-        if (internetConnection) {
-            return true;
-        }
+        Button closeAppBtn = (Button) dialogStage.getScene().lookup("#closeAppBtn");
 
-        Stage dialogStage = App.createDialogStage("InternetError");
+        closeAppBtn.setOnMouseClicked(event -> {
+            System.exit(0);
+        });
+
         dialogStage.showAndWait();
-        return false;
     }
+
 }
