@@ -10,8 +10,11 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 public class FolderPageController {
@@ -69,7 +72,7 @@ public class FolderPageController {
         parent.setAlignment(Pos.CENTER);
         macroBox.setAlignment(Pos.CENTER);
         macroBox.getStyleClass().add("placeholder");
-        VBox.setMargin(parent, new Insets(20, 250, 0, 200));
+        VBox.setMargin(parent, new Insets(20, 180, 0, 200));
 
         // Add the macro name to the macro box
         Label label = new Label(macroName);
@@ -88,9 +91,28 @@ public class FolderPageController {
             }
         });
 
-        // Add the macro box to the parent and add the remove button
+        // Create the share button
+        Button sendMacro = new Button("Share");
+        sendMacro.getStyleClass().add("run-btn");
+        sendMacro.setPrefWidth(100);
+        sendMacro.setPrefHeight(30);
+        sendMacro.setFocusTraversable(false);
+        HBox.setMargin(sendMacro, new Insets(0, 0, 0, 20));
+        sendMacro.cursorProperty().set(Cursor.HAND);
+
+        // Share the macro when the share button is clicked
+        sendMacro.setOnAction(event -> {
+            try {
+                shareMacro(macroName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Add elements to the parent
+        parent.getChildren().add(removeBtn());
         parent.getChildren().add(macroBox);
-        parent.getChildren().add(0, removeBtn());
+        parent.getChildren().add(sendMacro);
         macroList.getChildren().add(parent);
     }
 
@@ -102,7 +124,7 @@ public class FolderPageController {
         removeBtn.getStyleClass().add("element-delete");
         removeBtn.setPrefWidth(30);
         removeBtn.setPrefHeight(30);
-        HBox.setMargin(removeBtn, new Insets(0, 20, 0, 0));
+        HBox.setMargin(removeBtn, new Insets(0, 20, 0, 60));
         removeBtn.cursorProperty().set(javafx.scene.Cursor.HAND);
 
         // Remove the macro box when the remove button is clicked
@@ -115,5 +137,58 @@ public class FolderPageController {
         });
         removeBtn.setFocusTraversable(false);
         return removeBtn;
+    }
+
+    // Share the macro
+    private static void shareMacro(String macroName) throws IOException {
+
+        // Create the share macro dialog stage
+        Stage dialogStage = App.createDialogStage("ShareMacro");
+
+        // Get the scene elements
+        TextField friendsName = (TextField) dialogStage.getScene().lookup("#friendsName");
+        Button shareBtn = (Button) dialogStage.getScene().lookup("#shareBtn");
+        Text friendsNameError = (Text) dialogStage.getScene().lookup("#friendsNameError");
+
+        // Share the macro when the share button is clicked
+        shareBtn.setOnAction(event -> {
+            friendsNameError.setVisible(false);
+            String friendName = friendsName.getText();
+            if (friendName.isEmpty()) { // If the username is empty, show an error message
+                friendsNameError.setText("Enter a username.");
+                friendsNameError.setVisible(true);
+            } else if (!Database.friendExists(friendName)) { // If the user isn't a friend, show an error message
+                friendsNameError.setText("User isn't your friend.");
+                friendsNameError.setVisible(true);
+            } else{ // Share the macro
+                Database.sentMacroShareRequest(friendName, macroName);
+                dialogStage.close();
+            }
+        });
+
+        dialogStage.showAndWait();
+    }
+
+    @FXML
+    private void incomingMacros() throws IOException {
+        Stage dialogStage = App.createDialogStage("IncomingMacros");
+
+        // Get the scroll pane
+        ScrollPane scroll = (ScrollPane) dialogStage.getScene().lookup("#scroll");
+
+        // Get the requests vbox
+        VBox requests = (VBox) scroll.getContent();
+
+        // Set the width of the requests vbox to the width of the scroll pane
+        requests.prefWidthProperty().bind(scroll.widthProperty());
+
+        // Get the incoming macros from the database
+        HashMap<String, HashMap<String, String>> incomingMacros = Database.getIncomingMacros();
+        for (String friend : incomingMacros.keySet()){
+            for (String macroName : incomingMacros.get(friend).keySet()){
+                System.out.println(friend + " " + macroName);
+            }
+        }
+        dialogStage.showAndWait();
     }
 }

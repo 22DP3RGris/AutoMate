@@ -104,6 +104,11 @@
 }
 
 .run-btn{
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    font-size: 20px;
+    -fx-font-weight: bold;
+    font-weight: bold;
     -fx-background-color: #282b30;
     background-color: #282b30;
 }

@@ -111,8 +111,10 @@ public class CreatePageController {
 
         // Save the macro
         saveBtn.setOnAction(event ->{
+            macroNameError.setVisible(false);
             if (MacroElements.getMacroName() == null){
-                saveAsBtn.fire();
+                macroNameError.setText("Save the macro as a new macro first.");
+                macroNameError.setVisible(true);
                 return;
             }
             // Save the macro to the database and the json file

@@ -548,4 +548,53 @@ public class Database{
         // Remove the friend request
         ref.removeValueAsync();
     }
+
+    // Sent macro share request
+    public static void sentMacroShareRequest(String friend, String macroName) {
+
+        // Open the friend's shared macros path
+        DatabaseReference ref = baseRef.child(friend).child("incomingMacros").child(CurrentUser.getUsername()).child(macroName);
+
+        // Set the shared macro
+        ref.setValueAsync(macroName);
+    }
+
+    public static HashMap<String, HashMap<String, String>> getIncomingMacros(){
+
+        // Create a new hashmap to store the incoming macros
+        HashMap<String, HashMap<String, String>> incomingMacros = new HashMap<>();
+
+        // Get the current user's incoming macros
+        DatabaseReference ref = baseRef.child(CurrentUser.getUsername()).child("incomingMacros");
+
+        // Wait for the database response
+        final Semaphore semaphore = new Semaphore(0);
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot friend : dataSnapshot.getChildren()) {
+                    HashMap<String, String> macroNames = new HashMap<>();
+                    for (DataSnapshot macroName : friend.getChildren()) {
+                        macroNames.put(macroName.getKey(), macroName.getValue().toString());
+                    }
+                    incomingMacros.put(friend.getKey(), macroNames);
+                }
+                // Release the semaphore
+                semaphore.release();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+                semaphore.release();
+            }
+        });
+        try {
+            // Wait for the database response (semaphore release)
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return incomingMacros;
+    }
 }
