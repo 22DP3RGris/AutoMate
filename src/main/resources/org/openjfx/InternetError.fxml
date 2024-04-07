@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -41,14 +42,26 @@
       </AnchorPane>
       <VBox alignment="TOP_CENTER" layoutX="6.0" layoutY="57.0" prefHeight="143.0" prefWidth="390.0" styleClass="main-back" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="53.0">
          <children>
-            <Label text="Required stable internet connection" textAlignment="CENTER" textFill="RED" wrapText="true">
+            <Label text="Required stable internet connection" textAlignment="CENTER" textFill="#ec4040" wrapText="true">
                <font>
                   <Font name="Arial Bold" size="33.0" />
                </font>
                <VBox.margin>
-                  <Insets left="20.0" right="20.0" top="20.0" />
+                  <Insets left="20.0" right="20.0" top="10.0" />
                </VBox.margin>
             </Label>
+            <Button fx:id="closeAppBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="108.0" text="Close App" textFill="WHITE">
+               <styleClass>
+                  <String fx:value="submit-btn" />
+                  <String fx:value="sec-nav-bar" />
+               </styleClass>
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </children>

@@ -20,7 +20,9 @@ public class Database{
     private static DatabaseReference baseRef;
 
     public static void init() throws IOException{ // Initialize the database connection
-        
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
+
         FileInputStream serviceAccount = new FileInputStream("Firebase/key.json");
         FirebaseOptions options = FirebaseOptions.builder()
         .setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -31,6 +33,8 @@ public class Database{
     }
 
     public static boolean loginUser(String username, String password) { // Login the user
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
 
         exist = false;
 
@@ -75,6 +79,9 @@ public class Database{
 
     public static boolean usernameExist(String username) {
 
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
+
         // If the username is empty return false
         if (username.isEmpty()) return false;
         exist = false;
@@ -114,6 +121,9 @@ public class Database{
     }
 
     public static boolean emailExist(String email) {
+
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
 
         // If the email is empty return false
         if (email.isEmpty()) return false;
@@ -158,6 +168,9 @@ public class Database{
 
     public static void registerUser(String username, String password, String email) {
 
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
+
         // Get the user's information
         DatabaseReference ref = baseRef.child(username);
 
@@ -168,6 +181,9 @@ public class Database{
 
     public static void saveMacro(String macroName, HashMap<String, HashMap<String, String>> commands) {
 
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
+
         // Open the user's macros path
         DatabaseReference ref = baseRef.child(CurrentUser.getUsername()).child("macros").child(macroName);
 
@@ -177,6 +193,9 @@ public class Database{
 
     public static void deleteMacro(String macroName) {
 
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
+
         // Open the user's macros path
         DatabaseReference ref = baseRef.child(CurrentUser.getUsername()).child("macros").child(macroName);
 
@@ -185,6 +204,9 @@ public class Database{
     }
 
     public static boolean macroExist(String macroName) {
+
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
 
         // If the macro name is empty return false
         if (macroName.isEmpty()) return false;
@@ -225,6 +247,9 @@ public class Database{
     }
 
     public static HashMap<String, HashMap<String, HashMap<String, String>>> getMacros() {
+
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
 
         // Create a new hashmap to store the macros
         HashMap<String, HashMap<String, HashMap<String, String>>> macros = new HashMap<>();
@@ -275,6 +300,9 @@ public class Database{
 
     public static void setFriendRequest(String fromUser, String toUser) {
 
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
+
         // Open the current user's friend requests path
         DatabaseReference ref = baseRef.child(toUser).child("friendRequests").child(fromUser);
 
@@ -289,6 +317,9 @@ public class Database{
     }
 
     public static boolean friendRequestExist(String fromUser, String toUser) {
+
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
 
         // If the usernames are empty return false
         if (fromUser.isEmpty() || toUser.isEmpty()) return false;
@@ -329,6 +360,9 @@ public class Database{
     }
 
     public static ArrayList<User> getIncomingFriendRequests() {
+
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
 
         // Create a new arraylist to store the incoming friend requests
         ArrayList<User> requests = new ArrayList<>();
@@ -371,6 +405,9 @@ public class Database{
 
     public static void declineFriendRequest(String username) {
 
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
+
         // Open the current user's friend requests path
         DatabaseReference ref = baseRef.child(CurrentUser.getUsername()).child("friendRequests").child(username);
 
@@ -385,6 +422,9 @@ public class Database{
     }
 
     public static void addFriend(String username) {
+
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
 
         // Open the current user's friends path
         DatabaseReference ref = baseRef.child(CurrentUser.getUsername()).child("friends").child(username);
@@ -406,6 +446,9 @@ public class Database{
     }
 
     public static ArrayList<User> getFriendList() {
+
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
 
         // Create a new arraylist to store the friends
         ArrayList<User> friends = new ArrayList<>();
@@ -446,6 +489,9 @@ public class Database{
 
     public static void removeFriend(String username) {
 
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
+
         // Open the current user's friends path
         DatabaseReference ref = baseRef.child(CurrentUser.getUsername()).child("friends").child(username);
 
@@ -460,6 +506,9 @@ public class Database{
     }
 
     public static boolean friendExists(String username) {
+
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
 
         // If the username is empty return false
         if (username.isEmpty()) return false;
@@ -501,6 +550,9 @@ public class Database{
 
     public static ArrayList<User> getFriendRequestList(){
 
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
+
         // Create a new arraylist to store the friend requests
         ArrayList<User> requests = new ArrayList<>();
 
@@ -535,6 +587,9 @@ public class Database{
     }
 
     public static void removeSentRequest(String username){
+
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
 
         // Open the current user's sent friend requests path
         DatabaseReference ref = baseRef.child(CurrentUser.getUsername()).child("sentFriendRequests").child(username);
