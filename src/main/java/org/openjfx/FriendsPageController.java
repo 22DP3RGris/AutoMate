@@ -45,10 +45,10 @@ public class FriendsPageController {
 
         // Sort the friends based on the selected toggle
         if (((ToggleButton) sort.getSelectedToggle()).getId().equals("aToZ")){
-            Sorter.sort(friends, false);
+            Sorter.sortUserName(friends, false);
         }
         else if (((ToggleButton) sort.getSelectedToggle()).getId().equals("zToA")){
-            Sorter.sort(friends, true);
+            Sorter.sortUserName(friends, true);
         }
 
         // Remove the current friend boxes

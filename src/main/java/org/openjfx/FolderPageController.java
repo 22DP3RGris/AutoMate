@@ -1,17 +1,14 @@
 package org.openjfx;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.TreeMap;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -27,6 +24,11 @@ public class FolderPageController {
     @FXML
     private ScrollPane mainScroll;
 
+    private HashMap<String, HashMap<String, HashMap<String, String>>> allMacros = new HashMap<>();
+
+    @FXML
+    private ToggleGroup sort;
+
     @FXML // Initialize the scene
     private void initialize(){
 
@@ -34,42 +36,53 @@ public class FolderPageController {
         macroList.prefWidthProperty().bind(mainScroll.widthProperty());
 
         // Get the macros from the database and create the macro boxes
-        TreeMap<String, HashMap<String, HashMap<String, String>>> macros = new TreeMap<>(JsonManager.readMacrosFromJson());
+        allMacros = JsonManager.readMacrosFromJson();
 
-        createMacroBoxes(macros);
+        updateMacroBoxes();
     }
 
     @FXML // Sync the local macros with the database
     private void syncWithDb(){
 
         // Get the macros from the database and update the JSON file
-        TreeMap<String, HashMap<String, HashMap<String, String>>> macros = new TreeMap<>(Database.getMacros());
-        JsonManager.updateMacros(new HashMap<>(macros));
-        macros = new TreeMap<>(JsonManager.readMacrosFromJson());
+        allMacros = new HashMap<>(Database.getMacros());
+        JsonManager.updateMacros(allMacros);
+        allMacros = JsonManager.readMacrosFromJson();
 
-        // Remove the current macro boxes and create the new ones
+        // Update the macro boxes
+        updateMacroBoxes();
+    }
+
+    @FXML // Update the macro boxes
+    private void updateMacroBoxes(){
+        // Clear the macro list
         while (macroList.getChildren().size() > 2) {
             macroList.getChildren().remove(macroList.getChildren().size() - 1);
         }
-        createMacroBoxes(macros);
-    }
-
-    // Create the macro boxes
-    private void createMacroBoxes(TreeMap<String, HashMap<String, HashMap<String, String>>> macros){
-        for (String macroName : macros.keySet()){
-            createMacroBox(macroName, macros.get(macroName));
+        // Get and sort the macro names
+        ArrayList<String> macroNames = new ArrayList<>(allMacros.keySet());
+        // Sort the macro names based on the selected sort
+        if (((ToggleButton) sort.getSelectedToggle()).getId().equals("aToZ")){
+            Sorter.sortMacroName(macroNames, false);
+        }
+        else if (((ToggleButton) sort.getSelectedToggle()).getId().equals("zToA")){
+            Sorter.sortMacroName(macroNames, true);
+        }
+        // Create the macro boxes
+        for (String macroName : macroNames){
+            createMacroBox(macroName);
         }
     }
 
     // Create a single macro box
-    private void createMacroBox(String macroName, HashMap<String, HashMap<String, String>> commands){
+    private void createMacroBox(String macroName){
 
         // Create the macro box
         HBox parent = new HBox();
         HBox macroBox = new HBox();
         macroBox.setCursor(Cursor.HAND);
         macroBox.setPrefWidth(600);
-        macroBox.setPrefHeight(75);
+        macroBox.setPrefHeight(60);
         parent.setAlignment(Pos.CENTER);
         macroBox.setAlignment(Pos.CENTER);
         macroBox.getStyleClass().add("placeholder");
@@ -84,7 +97,7 @@ public class FolderPageController {
         // Open the macro when the macro box is clicked
         macroBox.setOnMouseClicked(event -> {
             try {
-                MacroElements.setMacro(commands);
+                MacroElements.setMacro(allMacros.get(macroName));
                 MacroElements.setMacroName(macroName);
                 App.setRoot("createPage", false);
             } catch (IOException e) {
