@@ -2,6 +2,7 @@ package org.openjfx;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -33,7 +34,7 @@ public class FolderPageController {
         macroList.prefWidthProperty().bind(mainScroll.widthProperty());
 
         // Get the macros from the database and create the macro boxes
-        HashMap<String, HashMap<String, HashMap<String, String>>> macros = JsonManager.readMacrosFromJson();
+        TreeMap<String, HashMap<String, HashMap<String, String>>> macros = new TreeMap<>(JsonManager.readMacrosFromJson());
 
         createMacroBoxes(macros);
     }
@@ -42,9 +43,9 @@ public class FolderPageController {
     private void syncWithDb(){
 
         // Get the macros from the database and update the JSON file
-        HashMap<String, HashMap<String, HashMap<String, String>>> macros = Database.getMacros();
-        JsonManager.updateMacros(macros);
-        macros = JsonManager.readMacrosFromJson();
+        TreeMap<String, HashMap<String, HashMap<String, String>>> macros = new TreeMap<>(Database.getMacros());
+        JsonManager.updateMacros(new HashMap<>(macros));
+        macros = new TreeMap<>(JsonManager.readMacrosFromJson());
 
         // Remove the current macro boxes and create the new ones
         while (macroList.getChildren().size() > 2) {
@@ -54,7 +55,7 @@ public class FolderPageController {
     }
 
     // Create the macro boxes
-    private void createMacroBoxes(HashMap<String, HashMap<String, HashMap<String, String>>> macros){
+    private void createMacroBoxes(TreeMap<String, HashMap<String, HashMap<String, String>>> macros){
         for (String macroName : macros.keySet()){
             createMacroBox(macroName, macros.get(macroName));
         }
@@ -185,10 +186,64 @@ public class FolderPageController {
         // Get the incoming macros from the database
         HashMap<String, HashMap<String, String>> incomingMacros = Database.getIncomingMacros();
         for (String friend : incomingMacros.keySet()){
-            for (String macroName : incomingMacros.get(friend).keySet()){
-                System.out.println(friend + " " + macroName);
+            for (String macro : incomingMacros.get(friend).keySet()){
+                createIncomingMacroBox(requests, macro, friend);
             }
         }
         dialogStage.showAndWait();
+    }
+
+    // Create the incoming macro box
+    private void createIncomingMacroBox(VBox requests, String macroName, String friendName){
+
+        // Create the incoming macro box
+        HBox parent = new HBox();
+        parent.setAlignment(Pos.CENTER);
+
+        HBox macroBox = new HBox();
+        macroBox.setPrefWidth(400);
+        macroBox.setPrefHeight(75);
+        macroBox.setAlignment(Pos.CENTER);
+        macroBox.getStyleClass().add("placeholder");
+        VBox.setMargin(parent, new Insets(20, 50, 10, 0));
+
+        Button removeBtn = new Button("X");
+        removeBtn.getStyleClass().add("element-delete");
+        removeBtn.setPrefWidth(30);
+        removeBtn.setPrefHeight(30);
+        HBox.setMargin(removeBtn, new Insets(0, 0, 0, 40));
+        removeBtn.cursorProperty().set(javafx.scene.Cursor.HAND);
+        removeBtn.setOnAction( event -> {
+            HBox parentNode = (HBox)((Button) event.getSource()).getParent();
+            ((VBox) parentNode.getParent()).getChildren().remove(parentNode);
+            Database.removeIncomingMacro(friendName, macroName);
+        });
+        parent.getChildren().add(removeBtn);
+
+        Button acceptBtn = new Button("✔");
+        acceptBtn.getStyleClass().add("element-delete");
+        acceptBtn.setPrefWidth(30);
+        acceptBtn.setPrefHeight(30);
+        HBox.setMargin(acceptBtn, new Insets(0, 20, 0, 10));
+        acceptBtn.cursorProperty().set(javafx.scene.Cursor.HAND);
+        acceptBtn.setOnAction( event -> {
+            HBox parentNode = (HBox)((Button) event.getSource()).getParent();
+            ((VBox) parentNode.getParent()).getChildren().remove(parentNode);
+            // Database.acceptIncomingMacro(friendName, macroName);
+            // JsonManager.writeMacro(macroName, Database.getMacro(friendName, macroName));
+        });
+        parent.getChildren().add(acceptBtn);
+
+        Label label = new Label(macroName);
+        label.getStyleClass().add("element-label");
+        macroBox.getChildren().add(label);
+        HBox.setMargin(macroBox, new Insets(0, 20, 0, 0));
+        parent.getChildren().add(macroBox);
+
+        label = new Label("From: " + friendName);
+        label.getStyleClass().add("element-label");
+        parent.getChildren().add(label);
+
+        requests.getChildren().add(parent);
     }
 }

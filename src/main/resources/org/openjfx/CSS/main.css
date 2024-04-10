@@ -117,3 +117,15 @@
     -fx-background-color: #191b1d;
     background-color: #191b1d;
 }
+
+.search-bar{
+    -fx-background-color: #36393e;
+    background-color: #36393e;
+    -fx-border-color: #2a2d30;
+    border-color: #2a2d30;
+    -fx-text-fill: #BCBCBC;
+    -fx-border-radius: 5px;
+    border-radius: 5px;
+    -fx-background-radius: 10px;
+    -fx-background-insets: 0;
+}

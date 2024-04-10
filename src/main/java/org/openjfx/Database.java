@@ -652,4 +652,13 @@ public class Database{
         }
         return incomingMacros;
     }
+
+    public static void removeIncomingMacro(String friend, String macroName) {
+
+        // Open the friend's shared macros path
+        DatabaseReference ref = baseRef.child(CurrentUser.getUsername()).child("incomingMacros").child(friend).child(macroName);
+
+        // Remove the shared macro
+        ref.removeValueAsync();
+    }
 }

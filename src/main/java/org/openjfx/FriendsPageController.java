@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -27,6 +24,9 @@ public class FriendsPageController {
     @FXML
     private ScrollPane mainScroll;
 
+    @FXML
+    private ToggleGroup sort;
+
     @FXML // Initialize the scene
     private void initialize(){
 
@@ -37,14 +37,22 @@ public class FriendsPageController {
         updateFriendBoxes();
     }
 
-    // Update the friend boxes
+    @FXML // Update the friend boxes
     private void updateFriendBoxes(){
 
         // Get the friends from the database
         ArrayList<User> friends = Database.getFriendList();
 
+        // Sort the friends based on the selected toggle
+        if (((ToggleButton) sort.getSelectedToggle()).getId().equals("aToZ")){
+            Sorter.sort(friends, false);
+        }
+        else if (((ToggleButton) sort.getSelectedToggle()).getId().equals("zToA")){
+            Sorter.sort(friends, true);
+        }
+
         // Remove the current friend boxes
-        while (friendsList.getChildren().size() > 1) { // Keep the buttons
+        while (friendsList.getChildren().size() > 2) { // Keep the buttons, filters and search bar
             friendsList.getChildren().remove(friendsList.getChildren().size() - 1);
         }
 
