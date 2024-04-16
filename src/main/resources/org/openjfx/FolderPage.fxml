@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -46,7 +47,10 @@
                         </HBox>
                         <HBox alignment="CENTER" prefWidth="200.0">
                            <children>
-                              <Label styleClass="element-label" text="Sort: " />
+                              <Label styleClass="element-label" text="Sort: ">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin></Label>
                               <RadioButton fx:id="aToZ" mnemonicParsing="false" onAction="#updateMacroBoxes" prefWidth="30.0" selected="true">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="sort" />
@@ -76,6 +80,15 @@
                                     <Insets left="5.0" />
                                  </HBox.margin>
                               </Label>
+                              <TextField fx:id="searchbar" alignment="CENTER" prefHeight="23.0" prefWidth="327.0" promptText="Search 🔍">
+                                 <styleClass>
+                                    <String fx:value="search-bar" />
+                                    <String fx:value="element-label" />
+                                 </styleClass>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </TextField>
                            </children>
                            <VBox.margin>
                               <Insets top="20.0" />

@@ -27,21 +27,33 @@ public class FriendsPageController {
     @FXML
     private ToggleGroup sort;
 
+    @FXML
+    private TextField searchbar;
+
+    private ArrayList<User> friends = Database.getFriendList();;
+
     @FXML // Initialize the scene
     private void initialize(){
 
         // Set the width of the friends list to the width of the scroll pane
         friendsList.prefWidthProperty().bind(mainScroll.widthProperty());
 
-        // Update the friend boxes
+        // Search for friends when the search bar text changes
+        searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
+            friends = Searcher.searchFriendByStr(Database.getFriendList(), newValue);
+            updateFriendBoxes(friends);
+        });
+
         updateFriendBoxes();
     }
 
-    @FXML // Update the friend boxes
-    private void updateFriendBoxes(){
+    @FXML
+    private void  updateFriendBoxes(){
+        updateFriendBoxes(friends);
+    }
 
-        // Get the friends from the database
-        ArrayList<User> friends = Database.getFriendList();
+    @FXML // Update the friend boxes
+    private void updateFriendBoxes(ArrayList<User> friends){
 
         // Sort the friends based on the selected toggle
         if (((ToggleButton) sort.getSelectedToggle()).getId().equals("aToZ")){
@@ -76,6 +88,7 @@ public class FriendsPageController {
             deleteBtn.setOnAction(event -> {
                 friendsList.getChildren().remove(friendBox);
                 Database.removeFriend(friend.getUsername());
+                friends.remove(friend);
             });
             friendBox.getChildren().add(deleteBtn);
 
@@ -143,6 +156,7 @@ public class FriendsPageController {
                 requests.getChildren().remove(request);
                 Database.declineFriendRequest(user.getUsername());
                 Database.addFriend(user.getUsername());
+                friends.add(user);
                 updateFriendBoxes();
             });
             request.getChildren().add(acceptBtn);

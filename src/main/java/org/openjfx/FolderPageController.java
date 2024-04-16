@@ -9,6 +9,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -29,6 +31,11 @@ public class FolderPageController {
     @FXML
     private ToggleGroup sort;
 
+    @FXML
+    private TextField searchbar;
+
+    private ArrayList<String> macroNames;
+
     @FXML // Initialize the scene
     private void initialize(){
 
@@ -37,6 +44,11 @@ public class FolderPageController {
 
         // Get the macros from the database and create the macro boxes
         allMacros = JsonManager.readMacrosFromJson();
+        macroNames = new ArrayList<>(allMacros.keySet());
+        searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
+            macroNames = Searcher.searchMacroByStr(new ArrayList<>(allMacros.keySet()), newValue);
+            updateMacroBoxes();
+        });
 
         updateMacroBoxes();
     }
@@ -50,6 +62,8 @@ public class FolderPageController {
         allMacros = JsonManager.readMacrosFromJson();
 
         // Update the macro boxes
+        macroNames = new ArrayList<>(allMacros.keySet());
+        searchbar.clear();
         updateMacroBoxes();
     }
 
@@ -59,8 +73,6 @@ public class FolderPageController {
         while (macroList.getChildren().size() > 2) {
             macroList.getChildren().remove(macroList.getChildren().size() - 1);
         }
-        // Get and sort the macro names
-        ArrayList<String> macroNames = new ArrayList<>(allMacros.keySet());
         // Sort the macro names based on the selected sort
         if (((ToggleButton) sort.getSelectedToggle()).getId().equals("aToZ")){
             Sorter.sortMacroName(macroNames, false);
@@ -131,7 +143,7 @@ public class FolderPageController {
     }
 
     // Create the remove button for the macro box
-    private static Button removeBtn() {
+    private Button removeBtn() {
 
         // Create the remove button
         Button removeBtn = new Button("X");
@@ -148,6 +160,8 @@ public class FolderPageController {
             String macroName = ((Label) ((HBox)parentNode.getChildren().get(1)).getChildren().get(0)).getText();
             Database.deleteMacro(macroName);
             JsonManager.removeMacro(macroName);
+            allMacros.remove(macroName);
+            macroNames.remove(macroName);
         });
         removeBtn.setFocusTraversable(false);
         return removeBtn;
@@ -160,16 +174,23 @@ public class FolderPageController {
         Stage dialogStage = App.createDialogStage("ShareMacro");
 
         // Get the scene elements
+        AnchorPane window = (AnchorPane) dialogStage.getScene().lookup("#window");
         TextField friendsName = (TextField) dialogStage.getScene().lookup("#friendsName");
         Button shareBtn = (Button) dialogStage.getScene().lookup("#shareBtn");
         Text friendsNameError = (Text) dialogStage.getScene().lookup("#friendsNameError");
+
+        window.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                shareBtn.fire();
+            }
+        });
 
         // Share the macro when the share button is clicked
         shareBtn.setOnAction(event -> {
             friendsNameError.setVisible(false);
             String friendName = friendsName.getText();
             if (friendName.isEmpty()) { // If the username is empty, show an error message
-                friendsNameError.setText("Enter a username.");
+                friendsNameError.setText("Enter friends username.");
                 friendsNameError.setVisible(true);
             } else if (!Database.friendExists(friendName)) { // If the user isn't a friend, show an error message
                 friendsNameError.setText("User isn't your friend.");
@@ -240,10 +261,13 @@ public class FolderPageController {
         HBox.setMargin(acceptBtn, new Insets(0, 20, 0, 10));
         acceptBtn.cursorProperty().set(javafx.scene.Cursor.HAND);
         acceptBtn.setOnAction( event -> {
-            HBox parentNode = (HBox)((Button) event.getSource()).getParent();
-            ((VBox) parentNode.getParent()).getChildren().remove(parentNode);
-            // Database.acceptIncomingMacro(friendName, macroName);
-            // JsonManager.writeMacro(macroName, Database.getMacro(friendName, macroName));
+            try {
+                saveMacro(macroName, friendName);
+                HBox parentNode = (HBox)((Button) event.getSource()).getParent();
+                ((VBox) parentNode.getParent()).getChildren().remove(parentNode);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
         parent.getChildren().add(acceptBtn);
 
@@ -258,5 +282,44 @@ public class FolderPageController {
         parent.getChildren().add(label);
 
         requests.getChildren().add(parent);
+    }
+
+    public void saveMacro(String macroName, String friendName) throws IOException {
+        Stage dialogStage = App.createDialogStage("SetMacroName");
+
+        // Get the scene elements
+        AnchorPane window = (AnchorPane) dialogStage.getScene().lookup("#window");
+        TextField macroNameField = (TextField) dialogStage.getScene().lookup("#macroNameField");
+        Button submitBtn = (Button) dialogStage.getScene().lookup("#submitBtn");
+        Text macroNameError = (Text) dialogStage.getScene().lookup("#macroNameError");
+
+        window.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                submitBtn.fire();
+            }
+        });
+
+        submitBtn.setOnAction(e ->{
+            macroNameError.setVisible(false);
+            String newMacroName = macroNameField.getText();
+            if (newMacroName.isEmpty()) {
+                macroNameError.setText("Enter a macro name.");
+                macroNameError.setVisible(true);
+            } else if (allMacros.containsKey(newMacroName)) {
+                macroNameError.setText("Macro name already exists.");
+                macroNameError.setVisible(true);
+            } else {
+                HashMap<String, HashMap<String, String>> macro = Database.getMacro(friendName, macroName);
+                Database.acceptIncomingMacro(friendName, newMacroName, macro);
+                JsonManager.writeMacro(newMacroName, macro);
+                Database.removeIncomingMacro(friendName, macroName);
+                macroNames.add(newMacroName);
+                allMacros.put(newMacroName, macro);
+                updateMacroBoxes();
+                dialogStage.close();
+            }
+        });
+
+        dialogStage.showAndWait();
     }
 }

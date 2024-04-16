@@ -246,6 +246,53 @@ public class Database{
         return exist;
     }
 
+    public static HashMap<String, HashMap<String, String>> getMacro(String friendName, String macroName){
+
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
+
+        // Create a new hashmap to store the macro
+        HashMap<String, HashMap<String, String>> macro = new HashMap<>();
+
+        // Get the user's macro
+        DatabaseReference ref = baseRef.child(friendName).child("macros").child(macroName);
+
+        // Wait for the database response
+        final Semaphore semaphore = new Semaphore(0);
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // For each command
+                for (DataSnapshot command : dataSnapshot.getChildren()) {
+                    HashMap<String, String> commandMap = new HashMap<>();
+                    // For each parameter
+                    for (DataSnapshot parameter : command.getChildren()) {
+                        commandMap.put(parameter.getKey(), parameter.getValue().toString());
+                    }
+                    macro.put(command.getKey(), commandMap);
+                }
+                // Release the semaphore
+                semaphore.release();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+                semaphore.release();
+            }
+        });
+
+        try {
+            // Wait for the database response (semaphore release)
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return macro;
+    }
+
     public static HashMap<String, HashMap<String, HashMap<String, String>>> getMacros() {
 
         // Wait for internet connection
@@ -607,6 +654,9 @@ public class Database{
     // Sent macro share request
     public static void sentMacroShareRequest(String friend, String macroName) {
 
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
+
         // Open the friend's shared macros path
         DatabaseReference ref = baseRef.child(friend).child("incomingMacros").child(CurrentUser.getUsername()).child(macroName);
 
@@ -615,6 +665,9 @@ public class Database{
     }
 
     public static HashMap<String, HashMap<String, String>> getIncomingMacros(){
+
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
 
         // Create a new hashmap to store the incoming macros
         HashMap<String, HashMap<String, String>> incomingMacros = new HashMap<>();
@@ -655,10 +708,24 @@ public class Database{
 
     public static void removeIncomingMacro(String friend, String macroName) {
 
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
+
         // Open the friend's shared macros path
         DatabaseReference ref = baseRef.child(CurrentUser.getUsername()).child("incomingMacros").child(friend).child(macroName);
 
         // Remove the shared macro
         ref.removeValueAsync();
+    }
+
+    public static void acceptIncomingMacro(String friend, String macroName, HashMap<String, HashMap<String, String>> macro) {
+        // Wait for internet connection
+        InternetConnectionChecker.waitForInternet();
+
+        // Open the macros path
+        DatabaseReference ref = baseRef.child(CurrentUser.getUsername()).child("macros").child(macroName);
+
+        // Set the shared macro
+        ref.setValueAsync(macro);
     }
 }

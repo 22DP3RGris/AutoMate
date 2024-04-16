@@ -17,7 +17,7 @@
    <children>
       <AnchorPane fx:id="topBar" layoutX="10.0" layoutY="10.0" prefHeight="53.0" prefWidth="382.0" styleClass="nav-bar" stylesheets="@CSS/nav-bar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="186.0" layoutY="27.0" prefHeight="52.0" prefWidth="400.0" text="Share Macro" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+            <Label alignment="CENTER" layoutX="186.0" layoutY="27.0" prefHeight="52.0" prefWidth="400.0" text="Set Macro Name" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font name="Arial Bold" size="35.0" />
                </font>
@@ -44,12 +44,12 @@
       </AnchorPane>
       <VBox alignment="TOP_CENTER" layoutX="6.0" layoutY="57.0" prefHeight="143.0" prefWidth="390.0" styleClass="main-back" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="53.0">
          <children>
-            <TextField fx:id="friendsName" focusTraversable="false" prefHeight="35.0" prefWidth="200.0" promptText="Enter your friend's username" styleClass="input-field">
+            <TextField fx:id="macroNameField" focusTraversable="false" prefHeight="35.0" prefWidth="200.0" promptText="Enter macro name" styleClass="input-field">
                <VBox.margin>
                   <Insets left="50.0" right="50.0" top="20.0" />
                </VBox.margin>
             </TextField>
-            <Text fx:id="friendsNameError" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="error-msg" visible="false">
+            <Text fx:id="macroNameError" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="error-msg" visible="false">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
@@ -57,7 +57,7 @@
                   <Font size="13.0" />
                </font>
             </Text>
-            <Button fx:id="shareBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" text="Share" textFill="WHITE">
+            <Button fx:id="submitBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" text="Submit" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
