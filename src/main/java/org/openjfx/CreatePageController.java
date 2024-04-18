@@ -20,7 +20,7 @@ public class CreatePageController {
 
     // Scene elements
     @FXML
-    private HBox placeholder, leftClick, rightClick, wait, oneKey, writeTxt;
+    private HBox placeholder, leftClick, rightClick, wait, oneKey, writeTxt, cursorPos;
 
     @FXML
     private ScrollPane mainScroll;
@@ -35,12 +35,12 @@ public class CreatePageController {
     private void initialize(){
 
         // If the macro is not empty then create the macro boxes
-        if (!MacroElements.getMacro().isEmpty()) {
+        if (!(MacroElements.getMacro() == null)) {
             placeholder = MacroElements.createMacroBoxes(placeholder, elements);
         }
 
         elements.prefWidthProperty().bind(mainScroll.widthProperty()); // Center the elements
-        setElements(leftClick, rightClick, wait, oneKey, writeTxt); // Set the elements to be clicked
+        setElements(leftClick, rightClick, wait, oneKey, writeTxt, cursorPos); // Set the elements to be clicked
         run.setOnMouseReleased(event -> {
             App.getScene().getRoot().requestFocus(); // Set the focus to the scene
             run.setDisable(true); // Disable the run button
@@ -112,7 +112,7 @@ public class CreatePageController {
         // Save the macro
         saveBtn.setOnAction(event ->{
             macroNameError.setVisible(false);
-            if (MacroElements.getMacroName() == null){
+            if (MacroElements.getMacro() == null){
                 macroNameError.setText("Save the macro as a new macro first.");
                 macroNameError.setVisible(true);
                 return;
@@ -137,6 +137,8 @@ public class CreatePageController {
         String delay;
         String letter;
         String str;
+        String mouse_x;
+        String mouse_y;
         byte parameterCounter;
         byte counter = 0;
 
@@ -153,6 +155,8 @@ public class CreatePageController {
                 count = "";
                 delay = "";
                 str = "";
+                mouse_x = "";
+                mouse_y = "";
 
                 // Loop through the HBox and get the command.
                 for (Node child : hbox.getChildren()) {
@@ -166,23 +170,25 @@ public class CreatePageController {
                     } else if (child instanceof TextField textField) { // Get the parameters of the command
                         parameterCounter++;
                         if (textField.getPromptText().equals("Count")) { // Get the count
-                            if (textField.getText().isEmpty()){
+                            if (textField.getText().isEmpty()) {
                                 count = "1";
-                            }
-                            else{
+                            } else {
                                 count = textField.getText();
                             }
-                        } else if (textField.getPromptText().equals("Delay") || textField.getPromptText().equals("Time")){ // Get the delay
-                            if (textField.getText().isEmpty()){
+                        } else if (textField.getPromptText().equals("Delay") || textField.getPromptText().equals("Time")) { // Get the delay
+                            if (textField.getText().isEmpty()) {
                                 delay = "100";
-                            }
-                            else{
+                            } else {
                                 delay = textField.getText();
                             }
-                        } else if (textField.getPromptText().equals("Key")){ // Get the letter
+                        } else if (textField.getPromptText().equals("Key")) { // Get the letter
                             letter = KeyCodeReverse.reverseKeyCodeToMacro(textField.getText());
                         } else if (textField.getPromptText().equals("Text")) { // Get the text
                             str = textField.getText();
+                        } else if (textField.getPromptText().equals("X")) { // Get the x coordinate
+                            mouse_x = textField.getText();
+                        } else if (textField.getPromptText().equals("Y")) { // Get the y coordinate
+                            mouse_y = textField.getText();
                         }
                     }
                 }
@@ -204,12 +210,22 @@ public class CreatePageController {
                         commands.put(String.valueOf(commands.size()), command);
                     }
                 } else
-                if (!count.isEmpty() && !delay.isEmpty() && parameterCounter == 3) { // If the command has count and delay
-                    HashMap<String, String> command = new HashMap<>();
-                    command.put("name", name);
-                    command.put("count", count);
-                    command.put("delay", delay);
-                    commands.put(String.valueOf(commands.size()), command);
+                if (parameterCounter == 3) { // If the command has count and delay
+                    if (mouse_x.isEmpty() && mouse_y.isEmpty()){
+                        HashMap<String, String> command = new HashMap<>();
+                        command.put("name", name);
+                        command.put("count", count);
+                        command.put("delay", delay);
+                        commands.put(String.valueOf(commands.size()), command);
+                    }
+                    else{
+                        HashMap<String, String> command = new HashMap<>();
+                        command.put("name", name);
+                        command.put("button", "Set Location");
+                        command.put("mouse_x", mouse_x);
+                        command.put("mouse_y", mouse_y);
+                        commands.put(String.valueOf(commands.size()), command);
+                    }
                 } else if (!delay.isEmpty() && parameterCounter == 2){ // If the command has only delay
                     HashMap<String, String> command = new HashMap<>();
                     command.put("name", name);

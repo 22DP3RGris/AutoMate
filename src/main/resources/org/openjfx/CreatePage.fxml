@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" styleClass="main-back" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.CreatePageController">
+<AnchorPane fx:id="window" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" styleClass="main-back" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.CreatePageController">
    <children>
       <AnchorPane fx:id="workspace" layoutX="76.0" layoutY="71.0" prefHeight="649.0" prefWidth="1204.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="71.0">
          <children>
@@ -23,6 +23,14 @@
                <content>
                   <VBox>
                      <children>
+                        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="15.0" prefWidth="315.0" text="Elements">
+                           <font>
+                              <Font name="System Bold" size="35.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
                         <HBox fx:id="leftClick" alignment="CENTER" prefHeight="50.0" prefWidth="300.0" styleClass="element">
                            <children>
                               <Label alignment="CENTER" focusTraversable="false" text="Left Click">
@@ -41,7 +49,7 @@
                               </TextField>
                            </children>
                            <VBox.margin>
-                              <Insets left="15.0" top="20.0" />
+                              <Insets left="15.0" top="10.0" />
                            </VBox.margin>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -99,7 +107,7 @@
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="46.0" promptText="Key" styleClass="element-input">
+                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="46.0" promptText="Key" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -129,7 +137,7 @@
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="46.0" promptText="Text" styleClass="element-input">
+                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="46.0" promptText="Text" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -159,7 +167,7 @@
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Button mnemonicParsing="false" styleClass="element-button" text="Set Location">
+                              <Button cancelButton="true" mnemonicParsing="false" styleClass="element-button" text="Set Location">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>

@@ -99,6 +99,9 @@ public class SideNav {
             String page = btn.getId().split("B")[0] + "Page"; // Get the page name
             btn.setOnMouseReleased(event -> {
                 try {
+                    // Clear the current macro
+                    MacroElements.setMacro(null);
+
                     // If the current scene is not the page, set the root to the page
                     if (!App.getCurrentScene().equals(page)){
                         App.setRoot(page, false);
@@ -116,6 +119,9 @@ public class SideNav {
             String page = btn.getId().split("B")[0] + "Page"; // Get the page name
             sideNavButtons.get(btn).setOnMouseReleased(event -> {
                 try {
+                    // Clear the current macro
+                    MacroElements.setMacro(null);
+
                     // If the current scene is not the page, set the root to the page
                     if (!App.getCurrentScene().equals(page)){
                         App.setRoot(page, false);

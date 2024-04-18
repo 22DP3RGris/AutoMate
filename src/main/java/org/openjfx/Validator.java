@@ -40,6 +40,15 @@ public class Validator {
                 if (textField.getPromptText().equals("Text")){ // If the element is a text
                     continue;
                 }
+                if (textField.getPromptText().equals("X") || textField.getPromptText().equals("Y")){ // If the element is a coordinate
+                    textField.textProperty().addListener((observable, oldValue, newValue) -> {
+                        if (!newValue.matches("^-?\\d*")) { // If the value is not a number
+                            // Replace the value with an empty string
+                            textField.setText(newValue.replaceAll("\\D", ""));
+                        }
+                    });
+                    continue;
+                }
                 // Validate the number field
                 textField.textProperty().addListener((observable, oldValue, newValue) -> {
                     if (!newValue.matches("\\d*")) { // If the value is not a number

@@ -2,6 +2,8 @@ package org.openjfx;
 
 import java.util.HashMap;
 
+import java.awt.Toolkit;
+import java.awt.event.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -42,8 +44,11 @@ public class MacroElements {
                 TextField clone = new TextField(original.getText());
                 clone.setPrefWidth(original.getPrefWidth());
                 clone.setPromptText(original.getPromptText());
-                if (original.getPromptText().equals("Key") || original.getPromptText().equals("Text")) { // If the element is a key or text
+                if (original.getPromptText().equals("Key") || original.getPromptText().equals("Text")) {  // If the element is a key or text
                     clone.setPrefWidth(100);
+                }
+                else if (original.getPromptText().equals("X") || original.getPromptText().equals("Y")) {  // If the element is a coordinate
+                    clone.setPrefWidth(60);
                 }
                 if (original.getPromptText().equals("Key")){
                     clone.setEditable(false);
@@ -53,6 +58,31 @@ public class MacroElements {
                 clone.setPrefHeight(30);
                 clone.setFocusTraversable(false);
                 target.getChildren().add(clone);
+            } else if (node instanceof  Button original) { // If the element is a button
+                Button clone = new Button(original.getText());
+                clone.getStyleClass().add("element-button");
+                clone.setPrefWidth(100);
+                clone.setPrefHeight(30);
+                HBox.setMargin(clone, new Insets(0, 0, 0, 10));
+                clone.setCursor(Cursor.HAND);
+                clone.setFocusTraversable(true);
+                target.getChildren().add(clone);
+                if (original.getText().equals("Set Location")){
+                    clone.setOnMouseReleased(event -> {
+
+                        int[] mousePos = MacroFunctionality.getMousePosition();
+
+                        for (Node child : target.getChildren()) {
+                            if (child instanceof TextField textField) {
+                                if (textField.getPromptText().equals("X")) {
+                                    textField.setText(String.valueOf(mousePos[0]));
+                                } else if (textField.getPromptText().equals("Y")) {
+                                    textField.setText(String.valueOf(mousePos[1]));
+                                }
+                            }
+                        }
+                    });
+                }
             }
         }
         Validator.numberField(target); // Validate the number field
@@ -127,7 +157,7 @@ public class MacroElements {
             VBox.setMargin(parent, new Insets(20, 0, 0, 0));
 
             // Order of elements
-            String[] order = {"name", "letter", "str", "count", "delay"};
+            String[] order = {"name", "button", "letter", "str", "count", "delay", "mouse_x", "mouse_y"};
 
             // Add elements based on the order
             for (String command : order) {
@@ -195,6 +225,52 @@ public class MacroElements {
                             str.setFocusTraversable(false);
                             macroBox.getChildren().add(str);
                             break;
+                        case "mouse_x":
+                            TextField x = new TextField(macro.get(key).get(command));
+                            x.setPrefWidth(60);
+                            x.setPromptText("X");
+                            x.getStyleClass().add("element-input");
+                            HBox.setMargin(x, new Insets(0, 0, 0, 10));
+                            x.setPrefHeight(30);
+                            x.setFocusTraversable(false);
+                            macroBox.getChildren().add(x);
+                            break;
+                        case "mouse_y":
+                            TextField y = new TextField(macro.get(key).get(command));
+                            y.setPrefWidth(60);
+                            y.setPromptText("Y");
+                            y.getStyleClass().add("element-input");
+                            HBox.setMargin(y, new Insets(0, 0, 0, 10));
+                            y.setPrefHeight(30);
+                            y.setFocusTraversable(false);
+                            macroBox.getChildren().add(y);
+                            break;
+                        case "button":
+                            Button button = new Button(macro.get(key).get(command));
+                            if (macro.get(key).get(command).equals("Set Location")) {
+                                button.setOnMouseReleased(event -> {
+
+                                    int[] mousePos = MacroFunctionality.getMousePosition();
+
+                                    for (Node node : macroBox.getChildren()) {
+                                        if (node instanceof TextField textField) {
+                                            if (textField.getPromptText().equals("X")) {
+                                                textField.setText(String.valueOf(mousePos[0]));
+                                            } else if (textField.getPromptText().equals("Y")) {
+                                                textField.setText(String.valueOf(mousePos[1]));
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                            button.getStyleClass().add("element-button");
+                            button.setPrefWidth(100);
+                            button.setPrefHeight(30);
+                            HBox.setMargin(button, new Insets(0, 0, 0, 10));
+                            button.setCursor(Cursor.HAND);
+                            button.setFocusTraversable(true);
+                            macroBox.getChildren().add(button);
+                            break;
                     }
                 }
             }
@@ -232,6 +308,8 @@ public class MacroElements {
                 return "Press";
             case "W":
                 return "Write";
+            case "C":
+                return "Cursor";
             default:
                 return "";
         }

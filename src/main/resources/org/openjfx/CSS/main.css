@@ -103,6 +103,40 @@
     background-color: #363739;
 }
 
+.custom-text2{
+    -fx-font-size: 18px;
+    font-size: 18px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-font-family: "Arial";
+    font-family: "Arial";
+}
+
+.table-column{
+    -fx-background-color: #363739;
+    background-color: #363739;
+    -fx-border-color: #2a2d30;
+    border-color: #2a2d30;
+}
+
+.table-header{
+    -fx-background-color: #303133;
+    background-color: #303133;
+    -fx-border-width: 0px 0px 1px 0px;
+    border-width: 0px 0px 1px 0px;
+    -fx-border-color: #2a2d30;
+    border-color: #2a2d30;
+}
+
+.row-header{
+    -fx-background-color: #303133;
+    background-color: #303133;
+    -fx-border-width: 0px 1px 0px 0px;
+    border-width: 0px 1px 0px 0px;
+    -fx-border-color: #2a2d30;
+    border-color: #2a2d30;
+}
+
 .run-btn{
     -fx-text-fill: #ffffff;
     -fx-font-size: 20px;
