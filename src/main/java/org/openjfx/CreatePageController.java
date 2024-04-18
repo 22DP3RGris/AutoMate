@@ -20,7 +20,7 @@ public class CreatePageController {
 
     // Scene elements
     @FXML
-    private HBox placeholder, leftClick, rightClick, wait, oneKey;
+    private HBox placeholder, leftClick, rightClick, wait, oneKey, writeTxt;
 
     @FXML
     private ScrollPane mainScroll;
@@ -40,7 +40,7 @@ public class CreatePageController {
         }
 
         elements.prefWidthProperty().bind(mainScroll.widthProperty()); // Center the elements
-        setElements(leftClick, rightClick, wait, oneKey); // Set the elements to be clicked
+        setElements(leftClick, rightClick, wait, oneKey, writeTxt); // Set the elements to be clicked
         run.setOnMouseReleased(event -> {
             App.getScene().getRoot().requestFocus(); // Set the focus to the scene
             run.setDisable(true); // Disable the run button
@@ -50,7 +50,7 @@ public class CreatePageController {
                 try {
                     MacroElements.setMacro(getCommands());
                     MacroFunctionality.init();
-                    MacroFunctionality.runMacro(getCommands());
+                    MacroFunctionality.runMacro(MacroElements.getMacro());
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
@@ -136,6 +136,7 @@ public class CreatePageController {
         String count;
         String delay;
         String letter;
+        String str;
         byte parameterCounter;
         byte counter = 0;
 
@@ -151,6 +152,7 @@ public class CreatePageController {
                 letter = "";
                 count = "";
                 delay = "";
+                str = "";
 
                 // Loop through the HBox and get the command.
                 for (Node child : hbox.getChildren()) {
@@ -179,16 +181,28 @@ public class CreatePageController {
                             }
                         } else if (textField.getPromptText().equals("Key")){ // Get the letter
                             letter = KeyCodeReverse.reverseKeyCodeToMacro(textField.getText());
+                        } else if (textField.getPromptText().equals("Text")) { // Get the text
+                            str = textField.getText();
                         }
                     }
                 }
-                if (!letter.isEmpty() && parameterCounter == 4){ // If the command has all parameters
-                    HashMap<String, String> command = new HashMap<>();
-                    command.put("name", name);
-                    command.put("letter", letter);
-                    command.put("count", count);
-                    command.put("delay", delay);
-                    commands.put(String.valueOf(commands.size()), command);
+                if (parameterCounter == 4){ // If the command has all parameters
+                    if (str.isEmpty()){
+                        HashMap<String, String> command = new HashMap<>();
+                        command.put("name", name);
+                        command.put("letter", letter);
+                        command.put("count", count);
+                        command.put("delay", delay);
+                        commands.put(String.valueOf(commands.size()), command);
+                    }
+                    else{
+                        HashMap<String, String> command = new HashMap<>();
+                        command.put("name", name);
+                        command.put("str", str);
+                        command.put("count", count);
+                        command.put("delay", delay);
+                        commands.put(String.valueOf(commands.size()), command);
+                    }
                 } else
                 if (!count.isEmpty() && !delay.isEmpty() && parameterCounter == 3) { // If the command has count and delay
                     HashMap<String, String> command = new HashMap<>();

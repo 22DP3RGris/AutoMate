@@ -118,6 +118,12 @@
     background-color: #191b1d;
 }
 
+.element-button{
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #282b30;
+    background-color: #282b30;
+}
+
 .search-bar{
     -fx-background-color: #36393e;
     background-color: #36393e;

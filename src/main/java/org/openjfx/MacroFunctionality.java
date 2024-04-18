@@ -1,8 +1,10 @@
 package org.openjfx;
 
-import java.awt.AWTException;
-import java.awt.Robot;
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 import javafx.scene.input.KeyCode;
@@ -29,7 +31,6 @@ public class MacroFunctionality {
         // Loop through the commands
         for (int i = 0; i < commands.size(); i++){
             HashMap<String, String> command = commands.get(String.valueOf(i)); // Get the current command
-
             // Check the command name
             switch (command.get("name")) {
                 case "LC":
@@ -46,9 +47,17 @@ public class MacroFunctionality {
                         sleep(Integer.parseInt(command.get("delay")));
                     }
                     break;
-                case "W":
+                case "WF":
                     // Wait for the specified duration
                     sleep(Integer.parseInt(command.get("delay")));
+                    break;
+                case "W":
+                    if (command.get("str").isEmpty()) break;
+                    // Complete the write command
+                    for (int j = 0; j < Integer.parseInt(command.get("count")); j++) {
+                        pasteText(command.get("str"));
+                        sleep(Integer.parseInt(command.get("delay")));
+                    }
                     break;
                 case "P":
                     // Complete the key press command
@@ -86,5 +95,16 @@ public class MacroFunctionality {
     private static void keyPress(KeyCode keyCode){
         robot.keyPress(keyCode.getCode());
         robot.keyRelease(keyCode.getCode());
+    }
+
+    private static void pasteText(String text){
+        StringSelection stringSelection = new StringSelection(text);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, stringSelection);
+
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
     }
 }

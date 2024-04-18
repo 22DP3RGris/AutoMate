@@ -37,6 +37,9 @@ public class Validator {
                     keyField(textField); // Validate the key field
                     continue; // Skip the rest of the loop
                 }
+                if (textField.getPromptText().equals("Text")){ // If the element is a text
+                    continue;
+                }
                 // Validate the number field
                 textField.textProperty().addListener((observable, oldValue, newValue) -> {
                     if (!newValue.matches("\\d*")) { // If the value is not a number
@@ -48,7 +51,7 @@ public class Validator {
         }
     }
 
-    @FXML // Validate the key field
+    // Validate the key field
     public static void keyField(TextField textField) {
         // Clear the text field on click
         textField.setOnMouseClicked(event -> {

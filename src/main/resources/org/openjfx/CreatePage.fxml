@@ -19,11 +19,11 @@
    <children>
       <AnchorPane fx:id="workspace" layoutX="76.0" layoutY="71.0" prefHeight="649.0" prefWidth="1204.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="71.0">
          <children>
-            <ScrollPane hbarPolicy="NEVER" layoutX="905.0" layoutY="-7.0" prefHeight="649.0" prefWidth="300.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-2.0">
+            <ScrollPane hbarPolicy="NEVER" layoutX="905.0" layoutY="-7.0" prefHeight="649.0" prefWidth="350.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-2.0">
                <content>
                   <VBox>
                      <children>
-                        <HBox fx:id="leftClick" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="element">
+                        <HBox fx:id="leftClick" alignment="CENTER" prefHeight="50.0" prefWidth="300.0" styleClass="element">
                            <children>
                               <Label alignment="CENTER" focusTraversable="false" text="Left Click">
                                  <font>
@@ -51,7 +51,7 @@
                            <children>
                               <Label alignment="CENTER" focusTraversable="false" text="Right Click">
                                  <font>
-                                    <Font name="Arial Bold" size="19.0" />
+                                    <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Label>
                               <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="51.0" promptText="Count" styleClass="element-input">
@@ -74,7 +74,7 @@
                         </HBox>
                         <HBox fx:id="wait" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="element">
                            <children>
-                              <Label alignment="CENTER" focusTraversable="false" text="Wait">
+                              <Label alignment="CENTER" focusTraversable="false" text="Wait For">
                                  <font>
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
@@ -96,7 +96,7 @@
                            <children>
                               <Label alignment="CENTER" focusTraversable="false" text="Press">
                                  <font>
-                                    <Font name="Arial Bold" size="18.0" />
+                                    <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Label>
                               <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="46.0" promptText="Key" styleClass="element-input">
@@ -122,18 +122,78 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </HBox>
+                        <HBox fx:id="writeTxt" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="element">
+                           <children>
+                              <Label alignment="CENTER" focusTraversable="false" text="Write">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="46.0" promptText="Text" styleClass="element-input">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="49.0" promptText="Count" styleClass="element-input">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Delay" styleClass="element-input">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets left="15.0" top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox fx:id="cursorPos" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="element">
+                           <children>
+                              <Label alignment="CENTER" focusTraversable="false" text="Cursor">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Button mnemonicParsing="false" styleClass="element-button" text="Set Location">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="40.0" promptText="X" styleClass="element-input">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="40.0" promptText="Y" styleClass="element-input">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets left="15.0" top="20.0" />
+                           </VBox.margin>
+                        </HBox>
                      </children></VBox>
                </content>
                <padding>
                   <Insets bottom="1.0" right="1.0" top="2.0" />
                </padding>
             </ScrollPane>
-            <ScrollPane fx:id="mainScroll" focusTraversable="false" hbarPolicy="NEVER" prefHeight="649.0" prefWidth="841.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="-1.0">
+            <ScrollPane fx:id="mainScroll" focusTraversable="false" hbarPolicy="NEVER" prefHeight="651.0" prefWidth="847.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="-1.0">
                <padding>
                   <Insets left="200.0" />
                </padding>
                <content>
-                  <VBox fx:id="elements" alignment="CENTER">
+                  <VBox fx:id="elements" alignment="CENTER" fillWidth="false" prefWidth="845.0">
                      <children>
                         <HBox fx:id="btns" alignment="CENTER" prefWidth="400.0">
                            <children>
@@ -166,12 +226,12 @@
                               <Insets left="45.0" top="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER">
+                        <HBox alignment="CENTER" maxHeight="75.0" maxWidth="450.0" prefHeight="75.0" prefWidth="450.0">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
                            <children>
-                              <HBox fx:id="placeholder" alignment="CENTER" prefHeight="75.0" prefWidth="400.0" styleClass="placeholder">
+                              <HBox fx:id="placeholder" alignment="CENTER" minHeight="75.0" prefHeight="75.0" prefWidth="450.0" styleClass="placeholder">
                                  <children>
                                     <Label text="Select Element">
                                        <font>
@@ -187,7 +247,7 @@
                         </HBox>
                      </children>
                      <padding>
-                        <Insets left="253.0" right="253.0" />
+                        <Insets left="197.0" right="198.0" />
                      </padding>
                   </VBox>
                </content>
@@ -195,7 +255,7 @@
          </children></AnchorPane>
       <AnchorPane fx:id="topBar" layoutX="10.0" layoutY="10.0" maxHeight="70.0" maxWidth="1280.0" prefHeight="70.0" prefWidth="1280.0" styleClass="nav-bar" stylesheets="@CSS/backgrounds.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="75.0" layoutY="29.0" prefHeight="47.0" prefWidth="905.0" text="AutoMate" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="12.0">
+            <Label alignment="CENTER" layoutX="75.0" layoutY="29.0" prefHeight="47.0" prefWidth="905.0" text="AutoMate" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="12.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

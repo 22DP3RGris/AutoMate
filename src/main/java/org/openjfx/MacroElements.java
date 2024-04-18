@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -41,10 +42,12 @@ public class MacroElements {
                 TextField clone = new TextField(original.getText());
                 clone.setPrefWidth(original.getPrefWidth());
                 clone.setPromptText(original.getPromptText());
-                if (original.getPromptText().equals("Key")) { // If the element is a key
+                if (original.getPromptText().equals("Key") || original.getPromptText().equals("Text")) { // If the element is a key or text
                     clone.setPrefWidth(100);
+                }
+                if (original.getPromptText().equals("Key")){
                     clone.setEditable(false);
-                } 
+                }
                 clone.getStyleClass().add("element-input");
                 HBox.setMargin(clone, new Insets(0, 0, 0, 10));
                 clone.setPrefHeight(30);
@@ -61,11 +64,11 @@ public class MacroElements {
         // Create the placeholder box
         HBox mainBox = new HBox();
         mainBox.setAlignment(Pos.CENTER);
-        mainBox.setPrefWidth(400);
+        mainBox.setPrefWidth(450);
         mainBox.setPrefHeight(75);
         HBox placeHolder = new HBox();
-        placeHolder.setPrefWidth(400);
-        placeHolder.setPrefHeight(75);
+        placeHolder.setPrefWidth(450);
+        placeHolder.setMinHeight(75);
         placeHolder.setAlignment(Pos.CENTER);
         VBox.setMargin(mainBox, new Insets(20, 0, 0, 0));
         HBox.setMargin(placeHolder, new Insets(0, 0, 0, 45));
@@ -76,7 +79,6 @@ public class MacroElements {
         label.getStyleClass().add("element-label");
         placeHolder.getChildren().add(label);
         mainBox.getChildren().add(placeHolder);
-
         return mainBox;
     }
 
@@ -88,7 +90,7 @@ public class MacroElements {
         removeBtn.setPrefWidth(30);
         removeBtn.setPrefHeight(30);
         HBox.setMargin(removeBtn, new Insets(0, 20, 0, 0));
-        removeBtn.cursorProperty().set(javafx.scene.Cursor.HAND);
+        removeBtn.cursorProperty().set(Cursor.HAND);
 
         // Remove the element when the remove button is clicked
         removeBtn.setOnAction(event -> {
@@ -119,13 +121,13 @@ public class MacroElements {
             parent.setAlignment(Pos.CENTER);
             parent.getChildren().add(0, createRemoveBtn());
             HBox macroBox = new HBox();
-            macroBox.setPrefWidth(400);
-            macroBox.setPrefHeight(75);
+            macroBox.setPrefWidth(450);
+            macroBox.setMinHeight(75);
             macroBox.setAlignment(Pos.CENTER);
             VBox.setMargin(parent, new Insets(20, 0, 0, 0));
 
             // Order of elements
-            String[] order = {"name", "letter", "count", "delay"}; 
+            String[] order = {"name", "letter", "str", "count", "delay"};
 
             // Add elements based on the order
             for (String command : order) {
@@ -146,7 +148,7 @@ public class MacroElements {
                                 countValue = "";
                             }
                             TextField count = new TextField(countValue);
-                            count.setPrefWidth(51);
+                            count.setPrefWidth(50);
                             count.setPromptText("Count");
                             count.getStyleClass().add("element-input");
                             HBox.setMargin(count, new Insets(0, 0, 0, 10));
@@ -183,6 +185,16 @@ public class MacroElements {
                             letter.setFocusTraversable(false);
                             macroBox.getChildren().add(letter);
                             break;
+                        case "str":
+                            TextField str = new TextField(macro.get(key).get(command));
+                            str.setPrefWidth(100);
+                            str.setPromptText("Text");
+                            str.getStyleClass().add("element-input");
+                            HBox.setMargin(str, new Insets(0, 0, 0, 10));
+                            str.setPrefHeight(30);
+                            str.setFocusTraversable(false);
+                            macroBox.getChildren().add(str);
+                            break;
                     }
                 }
             }
@@ -214,10 +226,12 @@ public class MacroElements {
                 return "Left Click";
             case "RC":
                 return "Right Click";
-            case "W":
-                return "Wait";
+            case "WF":
+                return "Wait For";
             case "P":
                 return "Press";
+            case "W":
+                return "Write";
             default:
                 return "";
         }
