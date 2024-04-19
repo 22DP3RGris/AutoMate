@@ -153,6 +153,8 @@ public class KeyCodeReverse {
                 return "Numpad 8";
             case "NUMPAD9":
                 return "Numpad 9";
+            case "":
+                return "";
             default:
                 return KeyCode.toLowerCase().substring(0, 1).toUpperCase() + KeyCode.toLowerCase().substring(1);
         }

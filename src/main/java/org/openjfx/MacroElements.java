@@ -2,8 +2,6 @@ package org.openjfx;
 
 import java.util.HashMap;
 
-import java.awt.Toolkit;
-import java.awt.event.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;

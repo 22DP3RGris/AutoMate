@@ -18,9 +18,9 @@
    <children>
       <AnchorPane fx:id="workspace" layoutX="76.0" layoutY="71.0" prefHeight="649.0" prefWidth="1204.0" styleClass="main-back" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="71.0">
          <children>
-            <ScrollPane fx:id="mainScroll" focusTraversable="false" hbarPolicy="NEVER" prefHeight="649.0" prefWidth="1205.0" styleClass="main-back" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-1.0">
+            <ScrollPane fx:id="mainScroll" fitToHeight="true" focusTraversable="false" hbarPolicy="NEVER" prefHeight="649.0" prefWidth="1205.0" styleClass="main-back" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-1.0">
                <content>
-                  <VBox fx:id="tipList" alignment="TOP_CENTER" prefHeight="305.0" prefWidth="1195.0">
+                  <VBox fx:id="tipList" alignment="TOP_CENTER" prefHeight="811.0">
                      <children>
                         <Label fx:id="welcomeMsg" alignment="CENTER" text="Welcome {Username}!" textFill="WHITE">
                            <font>
@@ -522,7 +522,7 @@
                      </graphic>
                   </Button>
                </children></VBox>
-            <VBox alignment="CENTER" layoutY="499.0" prefHeight="150.0" prefWidth="75.0" stylesheets="@CSS/nav-bar.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <VBox alignment="BOTTOM_CENTER" layoutY="499.0" prefHeight="150.0" prefWidth="75.0" stylesheets="@CSS/nav-bar.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Button fx:id="accountBtn" focusTraversable="false" minHeight="75.0" minWidth="75.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="side-nav-element">
                      <graphic>
@@ -538,21 +538,6 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
-                  </Button>
-                  <Button fx:id="settingsBtn" focusTraversable="false" minHeight="75.0" minWidth="75.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="side-nav-element">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/Navigation/settings.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </graphic>
                   </Button>
                </children>
             </VBox>

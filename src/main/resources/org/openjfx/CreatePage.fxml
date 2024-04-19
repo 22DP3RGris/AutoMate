@@ -38,11 +38,11 @@
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="51.0" promptText="Count" styleClass="element-input">
+                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="51.0" promptText="Count" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin></TextField>
-                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Delay" styleClass="element-input">
+                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Delay" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -62,12 +62,12 @@
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="51.0" promptText="Count" styleClass="element-input">
+                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="51.0" promptText="Count" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Delay" styleClass="element-input">
+                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Delay" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -87,7 +87,7 @@
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Time" styleClass="element-input">
+                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Time" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -107,17 +107,17 @@
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="46.0" promptText="Key" styleClass="element-input">
+                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="46.0" promptText="Key" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="49.0" promptText="Count" styleClass="element-input">
+                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="49.0" promptText="Count" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Delay" styleClass="element-input">
+                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Delay" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -137,17 +137,17 @@
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="46.0" promptText="Text" styleClass="element-input">
+                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="46.0" promptText="Text" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="49.0" promptText="Count" styleClass="element-input">
+                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="49.0" promptText="Count" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Delay" styleClass="element-input">
+                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="54.0" promptText="Delay" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -172,12 +172,12 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="40.0" promptText="X" styleClass="element-input">
+                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="40.0" promptText="X" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField alignment="CENTER" focusTraversable="false" prefHeight="27.0" prefWidth="40.0" promptText="Y" styleClass="element-input">
+                              <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="27.0" prefWidth="40.0" promptText="Y" styleClass="element-input">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -470,7 +470,7 @@
                      </graphic>
                   </Button>
                </children></VBox>
-            <VBox alignment="CENTER" layoutY="499.0" prefHeight="150.0" prefWidth="75.0" stylesheets="@CSS/nav-bar.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <VBox alignment="BOTTOM_CENTER" layoutY="499.0" prefHeight="150.0" prefWidth="75.0" stylesheets="@CSS/nav-bar.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Button fx:id="accountBtn" focusTraversable="false" minHeight="75.0" minWidth="75.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="side-nav-element">
                      <graphic>
@@ -486,21 +486,6 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
-                  </Button>
-                  <Button fx:id="settingsBtn" focusTraversable="false" minHeight="75.0" minWidth="75.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" styleClass="side-nav-element">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/Navigation/settings.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </graphic>
                   </Button>
                </children>
             </VBox>
