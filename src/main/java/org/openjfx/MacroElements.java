@@ -191,7 +191,7 @@ public class MacroElements {
                             }
                             TextField delay = new TextField(delayValue);
                             delay.setPrefWidth(54);
-                            if (macro.get(key).get("name").equals("W")) {
+                            if (macro.get(key).get("name").equals("WF")) {
                                 delay.setPromptText("Time");
                             } else {
                                 delay.setPromptText("Delay");
