@@ -217,17 +217,9 @@
                   </Button>
                </children>
             </VBox>
-            <VBox layoutY="450.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <VBox alignment="BOTTOM_CENTER" layoutY="450.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Button fx:id="accountLabel" alignment="BASELINE_LEFT" focusTraversable="false" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" styleClass="side-nav-element-child-lowers" text="ACCOUNT" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="Arial Bold" size="30.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="settingsLabel" alignment="BASELINE_LEFT" focusTraversable="false" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" styleClass="side-nav-element-child-lowers" text="SETTINGS" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

@@ -38,7 +38,6 @@ public class App extends Application {
         Database.init();
         JsonManager.init();
 
-        // ResizeHelper.addResizeListener(stage);
     }
 
     // Changes the scene to the specified FXML file
