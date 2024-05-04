@@ -62,7 +62,7 @@ public class App extends Application {
     }
 
     // Main method, initializes the database and launches the application
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         launch(args);
     }
 
